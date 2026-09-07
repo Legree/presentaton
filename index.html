@@ -42,38 +42,10 @@ html{font-size:clamp(13px,.6vw + .62vh,23px);scroll-behavior:smooth;background:v
 body{
   font-family:var(--f);color:var(--ink);background:var(--white);
   height:100svh;overflow-y:scroll;scroll-snap-type:y mandatory;overscroll-behavior-y:none;
-  -webkit-font-smoothing:antialiased;line-height:1.5;cursor:none;
+  -webkit-font-smoothing:antialiased;line-height:1.5;
 }
 body::-webkit-scrollbar{width:0}
 a{color:inherit}
-
-/* ═════════ ПРЕЛОАДЕР ═════════ */
-#pre{
-  position:fixed;inset:0;z-index:200;background:var(--coral);
-  display:grid;place-items:center;
-  transition:transform 1.1s var(--ease);
-}
-#pre.gone{transform:translateY(-101%)}
-#pre .n{
-  font-size:clamp(4rem,18vw,15rem);font-weight:1000;letter-spacing:-.06em;
-  color:var(--white);line-height:.8;font-variant-numeric:tabular-nums;
-}
-#pre .cap{
-  position:absolute;left:6vw;bottom:6vh;color:var(--white);
-  font-size:.8rem;letter-spacing:.34em;text-transform:uppercase;font-weight:600;
-}
-#pre .bar{position:absolute;left:0;bottom:0;height:3px;background:var(--white);width:0%}
-
-/* ═════════ КУРСОР ═════════ */
-#cur{
-  position:fixed;top:0;left:0;z-index:190;pointer-events:none;
-  width:12px;height:12px;border-radius:50%;background:var(--coral);
-  transform:translate(-50%,-50%);
-  transition:width .35s var(--ease),height .35s var(--ease),background .35s,opacity .3s;
-  mix-blend-mode:normal;
-}
-#cur.big{width:60px;height:60px;background:rgba(255,76,0,.22);border:1px solid var(--coral)}
-@media (hover:none){#cur{display:none}body{cursor:auto}}
 
 /* ═════════ СЕКЦІЯ ═════════ */
 .s{
@@ -137,35 +109,12 @@ strong{font-weight:800}
 .med.r43{aspect-ratio:4/3} .med.r169{aspect-ratio:16/9} .med.r11{aspect-ratio:1/1}
 .med.r34{aspect-ratio:3/4}
 
-/* ═════════ TRIONN: перекат тексту на посиланні ═════════ */
-.roll{
-  display:inline-flex;align-items:center;gap:.7em;text-decoration:none;
-  border:1px solid var(--line-2);border-radius:100px;padding:.85em 1.7em;
-  font-weight:800;font-size:1rem;letter-spacing:-.01em;overflow:hidden;position:relative;
-  transition:background .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease);
+/* ═════════ КОНТАКТНИЙ РЯДОК ═════════ */
+.phone{
+  font-size:clamp(1.5rem,3.6vw,2.9rem);font-weight:1000;letter-spacing:-.035em;
+  line-height:1.05;color:var(--coral);
 }
-.roll .rt{position:relative;display:block;overflow:hidden;height:1.3em}
-.roll .rt span{display:block;transition:transform .5s var(--ease)}
-.roll .rt span+span{position:absolute;top:100%;left:0}
-.roll:hover{background:var(--coral);border-color:var(--coral);color:var(--white)}
-.roll:hover .rt span{transform:translateY(-100%)}
-.s.coral .roll:hover{background:var(--white);color:var(--coral)}
-.roll .ar{transition:transform .5s var(--ease)}
-.roll:hover .ar{transform:translateX(4px)}
-
-/* ═════════ TRIONN: біжучі рядки ═════════ */
-.mq{overflow:hidden;width:100%;
-  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.mq-t{display:flex;width:max-content;animation:mq var(--dur,38s) linear infinite}
-.mq-t > span{
-  display:flex;align-items:center;gap:2.4rem;padding-right:2.4rem;white-space:nowrap;
-  font-size:clamp(1.6rem,4.4vw,3.6rem);font-weight:1000;letter-spacing:-.035em;
-}
-.mq-t > span::after{content:"";width:.34em;height:.34em;border-radius:50%;background:var(--coral);flex:none}
-.s.coral .mq-t > span::after,.s.dark .mq-t > span::after{background:var(--white)}
-.mq.rev .mq-t{animation-direction:reverse}
-.mq.out .mq-t > span{-webkit-text-stroke:1.5px var(--line-2);color:transparent}
-@keyframes mq{to{transform:translateX(-50%)}}
+.s.coral .phone,.s.ph .phone{color:#FFF8F1}
 
 /* ═════════ СІТКИ ═════════ */
 .sp{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:5vw;align-items:center}
@@ -219,6 +168,9 @@ strong{font-weight:800}
 .stat{display:flex;flex-direction:column;gap:.3rem}
 .stat .v{font-size:clamp(2.6rem,6vw,5rem);font-weight:1000;letter-spacing:-.05em;line-height:.9;color:var(--coral);font-variant-numeric:tabular-nums}
 .s.coral .stat .v,.s.dark .stat .v{color:var(--white)}
+/* на фото- і сонячних секціях цифри білі з тінню, інакше тонуть у фоні */
+.s.ph .stat .v,.s.sun .stat .v{color:#FFF8F1;text-shadow:0 4px 22px rgba(23,23,23,.32)}
+.s.ph .stat .l,.s.sun .stat .l{color:#FFF8F1;opacity:.9}
 .stat .l{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-3);font-weight:600}
 
 /* таблиці */
@@ -264,7 +216,7 @@ tbody tr{opacity:0;transform:translateY(16px);transition:.7s var(--ease) var(--d
 body.moved .bot .hint{opacity:0}
 .prog{position:fixed;left:0;top:0;height:2px;background:var(--coral);z-index:90;width:0;transition:width .3s linear}
 .rail{position:fixed;right:1.5vw;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;gap:5px}
-.rail b{width:2px;height:12px;border-radius:2px;background:var(--ink-25);transition:.35s var(--ease);cursor:none;display:block}
+.rail b{width:2px;height:12px;border-radius:2px;background:var(--ink-25);transition:.35s var(--ease);cursor:pointer;display:block}
 .rail b.on{background:var(--coral);height:26px}
 
 
@@ -285,7 +237,7 @@ body.moved .bot .hint{opacity:0}
 .a-draw{stroke-dasharray:var(--len,1200);stroke-dashoffset:var(--len,1200);
   animation:draw 2.6s var(--ease) forwards var(--ad,0s)}
 @keyframes draw{to{stroke-dashoffset:0}}
-.a-fly{offset-rotate:auto;animation:fly var(--fd,11s) linear infinite var(--ad,0s)}
+.a-fly{offset-rotate:0deg;animation:fly var(--fd,11s) linear infinite var(--ad,0s)}
 @keyframes fly{from{offset-distance:0%}to{offset-distance:100%}}
 
 /* горизонтальні маршрути розкладу */
@@ -352,7 +304,7 @@ body.moved .bot .hint{opacity:0}
 .map .lb.dest{font-size:20px;fill:var(--dest)}
 .map .dot{fill:var(--dest)}
 .map .lead{stroke:var(--pin);stroke-width:1;opacity:.55}
-.map .plane{offset-rotate:auto;animation-play-state:paused}
+.map .plane{offset-rotate:0deg;animation-play-state:paused}
 .s.in .map .plane{animation:fly var(--fd,9s) linear infinite var(--ad,0s);animation-play-state:running}
 @media (max-width:700px){.map .lb{font-size:22px;stroke-width:5}.map .lb.dest{font-size:28px}}
 
@@ -398,6 +350,84 @@ body.moved .bot .hint{opacity:0}
 .tick-t > span::after{content:"";width:.42em;height:.42em;border-radius:50%;
   background:#FFF8F1;flex:none;opacity:.8}
 
+
+/* ═════════ СІТКА НАПРЯМКІВ ═════════ */
+.dgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 2rem;margin-top:1.4rem}
+.dgrid li{list-style:none;border-top:1px solid var(--line);padding:.85rem 0;
+  display:flex;gap:.9rem;align-items:baseline;overflow:hidden}
+.dgrid .n{font-size:.68rem;font-weight:800;color:var(--accent);flex:none;
+  letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.dgrid .t{display:block;font-size:clamp(1.1rem,2.2vw,2rem);font-weight:1000;letter-spacing:-.035em;
+  line-height:1.05;transform:translateY(115%);transition:transform .85s var(--ease) var(--d,0s)}
+.s.in .dgrid .t{transform:none}
+.dgrid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+/* ═════════ ФІРМОВИЙ ПАТЕРН ═════════ */
+.s.coral::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:url("assets/pattern.png") repeat;
+  background-size:min(44vw,480px);opacity:.13;
+}
+.s.sun .patt{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:url("assets/pattern.png") repeat;
+  background-size:min(38vw,420px);opacity:.09;
+}
+
+
+/* ═════════ PREMIUM ═════════ */
+.s.prem{--bg:var(--ink);--fg:#F5F1EC;
+  --fg-2:rgba(245,241,236,.7);--fg-3:rgba(245,241,236,.46);
+  --line:rgba(245,241,236,.16);--line-2:rgba(245,241,236,.32);
+  --accent:var(--orange);--card:rgba(245,241,236,.05);--halo:var(--ink)}
+.s.prem .lbl{color:var(--orange)}
+.s.prem::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:url("assets/pattern.png") repeat;background-size:min(44vw,480px);opacity:.05}
+.s.prem .deco{--dc:rgba(255,128,0,.42);--dc2:rgba(255,128,0,.18)}
+.s.prem .map{--land:rgba(245,241,236,.08);--coast:rgba(245,241,236,.22);
+  --arc:var(--orange);--pin:var(--orange);--dest:var(--red);--txt:#F5F1EC;--halo:var(--ink)}
+.s.prem .cd{border-top-color:var(--orange)}
+.s.prem .hot li b,.s.prem .idx .n{color:var(--orange)}
+.s.prem .phone{color:var(--orange)}
+.s.prem .stat .v{color:var(--orange)}
+.s.prem em{color:var(--orange)}
+
+/* графіка розділів Premium */
+.gfx{width:100%;position:relative}
+.gfx svg{width:100%;height:auto;display:block;overflow:visible}
+.gfx.tall svg{width:auto;height:min(72vh,760px);margin:0 auto}
+@media (max-width:1100px){.gfx.tall svg{height:min(46vh,420px)}}
+.gfx .ol{fill:rgba(255,128,0,.10);stroke:rgba(255,128,0,.42);stroke-width:1.6}
+.gfx .hl{fill:none;stroke:var(--orange);stroke-width:8;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:var(--len,1600);stroke-dashoffset:var(--len,1600)}
+.s.in .gfx .hl{animation:draw 1.8s var(--ease) .35s forwards}
+.gfx .mk{fill:var(--red);transform-box:fill-box;transform-origin:center;transform:scale(0)}
+.s.in .gfx .mk{animation:pinIn .6s cubic-bezier(.34,1.7,.5,1) forwards var(--ad,.6s)}
+.gfx .isl{fill:var(--orange);opacity:0}
+.s.in .gfx .isl{animation:islIn .5s var(--ease) forwards var(--ad,0s)}
+@keyframes islIn{to{opacity:var(--op,.5)}}
+.gfx .ln{fill:none;stroke:rgba(255,128,0,.5);stroke-width:2;
+  stroke-dasharray:var(--len,900);stroke-dashoffset:var(--len,900)}
+.s.in .gfx .ln{animation:draw 1.5s var(--ease) forwards var(--ad,0s)}
+.gfx .lbt{font-family:var(--f);font-size:15px;font-weight:800;fill:#F5F1EC;opacity:0;
+  transition:opacity .7s var(--ease) var(--ad,.8s)}
+.s.in .gfx .lbt{opacity:1}
+.gfx .lbs{font-family:var(--f);font-size:12px;font-weight:600;fill:rgba(245,241,236,.55);
+  letter-spacing:.14em;text-transform:uppercase;opacity:0;
+  transition:opacity .7s var(--ease) var(--ad,.9s)}
+.s.in .gfx .lbs{opacity:1}
+.gfx .pl{fill:var(--orange);opacity:.9}
+.gfx .rg{fill:none;stroke:rgba(255,128,0,.3);stroke-width:1.5}
+
+/* плитки напрямків */
+.tiles{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1rem}
+.tiles figure{margin:0}
+.tiles figcaption{margin-top:.7rem;font-weight:800;font-size:1rem;letter-spacing:-.015em}
+.tiles .en{display:block;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--orange);font-weight:600;margin-top:.2rem}
+@media (max-width:1100px){.tiles{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:700px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 /* ═════════ АДАПТИВ ═════════ */
 @media (max-width:1100px){
   .sp,.sp.rev,.sp.eq{grid-template-columns:1fr;gap:2.4rem}
@@ -422,8 +452,7 @@ body.moved .bot .hint{opacity:0}
 </head>
 <body>
 
-<div id="pre"><div class="n" id="preN">000</div><div class="cap">Тревелон · Сезон Зима 2026-2027</div><div class="bar" id="preBar"></div></div>
-<div id="cur"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="lm"><g transform="translate(-192,-260.5)"><path d="M325.61 356.136C327.791 346.67 323.824 336.85 315.681 331.553L232.494 277.452C223.173 271.39 210.66 276.402 208.101 287.222L170.996 444.093C168.674 453.911 176.122 463.326 186.212 463.324C250.849 463.056 310.806 418.7 325.61 356.136Z"/><path d="M108.395 508.409C106.68 515.657 100.21 520.775 92.7622 520.776L86.1263 520.776C33.2179 520.11 -10.1163 462.083 2.072 410.36L22.294 325.657C24.4412 316.663 31.0771 309.413 39.8465 306.481L138.82 273.386C150.761 269.393 162.446 280.065 159.549 292.318L133.191 403.815C131.754 409.893 128.238 415.278 123.25 419.037L82.6996 449.602C81.3701 450.604 80.5823 452.167 80.568 453.832L80.5334 457.84C80.5078 460.815 82.9127 463.241 85.8884 463.241H112.312C115.768 463.241 118.319 466.466 117.524 469.829L108.395 508.409Z"/><path d="M291.002 0.000771553L286.093 0.000923456C278.646 0.00115386 272.176 5.11833 270.46 12.3643L228.555 189.323C226.917 196.238 228.816 203.515 233.623 208.749L325.504 308.787C328.408 311.949 333.666 310.579 334.659 306.402L381.99 107.123C394.292 54.6362 348.419 -0.237247 291.002 0.000771553Z"/><path d="M59.0945 167.591L35.7093 266.058C34.6623 270.467 39.1818 274.103 43.2332 272.074C68.2682 259.535 133.84 226.232 174.155 201.528C178.904 198.618 182.212 193.914 183.497 188.494L211.001 72.4638C212.872 64.5695 206.88 56.9988 198.767 57.0077C133.977 56.1926 74.0161 104.538 59.0945 167.591Z"/></g></g></defs></svg>
 <div class="prog" id="prog"></div>
 <header class="top"><img src="assets/logo-white.png" alt="Тревелон"><span class="meta">Сезон 2026-2027</span></header>
 <nav class="rail" id="rail" aria-label="Секції"></nav>
@@ -439,12 +468,13 @@ body.moved .bot .hint{opacity:0}
   <div class="rays" aria-hidden="true"></div>
   <div class="disc" aria-hidden="true"></div>
   <div class="horizon" aria-hidden="true"></div>
+  <div class="patt" aria-hidden="true"></div>
   <div class="w">
     <span class="lbl fu">Вмикай подорожі!</span>
     <h1 class="rv">Там зима<br>виглядає<br>як — літо!</h1>
     <div class="fu" style="--d:.55s;margin-top:2.2rem;display:flex;gap:2.6rem;flex-wrap:wrap;align-items:flex-end">
       <div class="stat"><span class="v" data-count="21">0</span><span class="l">напрямків у продукті</span></div>
-      <div class="stat"><span class="v">2026<span style="opacity:.55">/</span>27</span><span class="l">сезон зима</span></div>
+      <div class="stat"><span class="v">2026<span style="opacity:.75;font-weight:300">/</span>27</span><span class="l">сезон зима</span></div>
     </div>
   </div>
   <div class="tick" aria-hidden="true"><div class="tick-t"><span>Єгипет</span><span>ОАЕ</span><span>Мальдіви</span><span>Таїланд</span><span>Маврикій</span><span>Тенеріфе</span><span>Шрі-Ланка</span><span>Танзанія</span><span>Сейшели</span><span>Домінікана</span><span>В'єтнам</span><span>Єгипет</span><span>ОАЕ</span><span>Мальдіви</span><span>Таїланд</span><span>Маврикій</span><span>Тенеріфе</span><span>Шрі-Ланка</span><span>Танзанія</span><span>Сейшели</span><span>Домінікана</span><span>В'єтнам</span></div></div>
@@ -478,22 +508,16 @@ body.moved .bot .hint{opacity:0}
   </div>
 </section>
 
-<!-- ══ 05 НАПРЯМКИ ЗИМА ══ -->
+<!-- ══ НАПРЯМКИ ЗИМА ══ -->
 <section class="s tint" data-b="Продукт">
   <div class="w">
     <span class="lbl fu">11 пляжних напрямків</span>
-    <h2 class="rv" style="margin-bottom:2.4rem">Там зима виглядає як літо!</h2>
+    <h2 class="rv">Там зима виглядає як літо!</h2>
+    <ul class="dgrid"><li><span class="n">01</span><span class="t" style="--d:0.20s">Єгипет</span></li><li><span class="n">02</span><span class="t" style="--d:0.26s">ОАЕ</span></li><li><span class="n">03</span><span class="t" style="--d:0.31s">Мальдіви</span></li><li><span class="n">04</span><span class="t" style="--d:0.36s">Таїланд</span></li><li><span class="n">05</span><span class="t" style="--d:0.42s">Маврикій</span></li><li><span class="n">06</span><span class="t" style="--d:0.48s">Тенеріфе</span></li><li><span class="n">07</span><span class="t" style="--d:0.53s">Шрі-Ланка</span></li><li><span class="n">08</span><span class="t" style="--d:0.58s">Танзанія</span></li><li><span class="n">09</span><span class="t" style="--d:0.64s">Сейшели</span></li><li><span class="n">10</span><span class="t" style="--d:0.70s">Домінікана</span></li><li><span class="n">11</span><span class="t" style="--d:0.75s">В'єтнам</span></li></ul>
+    <p class="sm fu" style="--d:.9s;margin-top:1.6rem">
+      Курорти: Хургада · Шарм-ель-Шейх · Дубай · Абу-Дабі · Пхукет · Паттайя · Фу Кок
+    </p>
   </div>
-  <div class="mq fu" style="--d:.3s;--dur:34s"><div class="mq-t">
-    <span>Єгипет</span><span>ОАЕ</span><span>Мальдіви</span><span>Таїланд</span><span>Маврикій</span><span>Тенеріфе</span>
-    <span>Шрі-Ланка</span><span>Танзанія</span><span>Сейшели</span><span>Домінікана</span><span>В'єтнам</span>
-    <span>Єгипет</span><span>ОАЕ</span><span>Мальдіви</span><span>Таїланд</span><span>Маврикій</span><span>Тенеріфе</span>
-    <span>Шрі-Ланка</span><span>Танзанія</span><span>Сейшели</span><span>Домінікана</span><span>В'єтнам</span>
-  </div></div>
-  <div class="mq out rev fu" style="--d:.42s;--dur:44s;margin-top:.6rem"><div class="mq-t">
-    <span>Пхукет</span><span>Паттайя</span><span>Фу Кок</span><span>Хургада</span><span>Шарм-ель-Шейх</span><span>Дубай</span><span>Абу-Дабі</span>
-    <span>Пхукет</span><span>Паттайя</span><span>Фу Кок</span><span>Хургада</span><span>Шарм-ель-Шейх</span><span>Дубай</span><span>Абу-Дабі</span>
-  </div></div>
 </section>
 
 <!-- ══ 06 ГОРИ ══ -->
@@ -722,7 +746,7 @@ body.moved .bot .hint{opacity:0}
         <tr><td>Пакетні тури</td><td class="n"><b>10%</b></td><td class="n">за 14 днів до заїзду</td></tr>
         <tr><td>Наземне обслуговування</td><td class="n"><b>10%</b></td><td class="n">за 14 днів до заїзду</td></tr>
         <tr><td>Авіа та автобусні квитки</td><td class="n" colspan="2">Повна оплата в день підтвердження</td></tr>
-        <tr><td>Тури на регулярних рейсах</td><td class="n"><b>30%</b>, але не більше вартості квитка</td><td class="n">за 14 днів до заїзду</td></tr>
+        <tr><td>Тури на регулярних рейсах</td><td class="n"><b>30%</b>, але не менше вартості квитка</td><td class="n">за 14 днів до заїзду</td></tr>
         <tr><td>Преміум тури</td><td class="n"><b>20%</b></td><td class="n">за 30 днів до вильоту</td></tr>
         <tr><td>Індивідуальні тури</td><td class="n" colspan="2">Індивідуальні умови за домовленістю з менеджером напрямку</td></tr>
       </tbody>
@@ -736,6 +760,7 @@ body.moved .bot .hint{opacity:0}
   <div class="rays" aria-hidden="true"></div>
   <div class="disc" aria-hidden="true"></div>
   <div class="horizon" aria-hidden="true"></div>
+  <div class="patt" aria-hidden="true"></div>
   <div class="w">
     <span class="lbl fu">Вмикай подорожі!</span>
     <h1 class="rv">Займи<br>своє місце<br>на пляжі!</h1>
@@ -744,17 +769,14 @@ body.moved .bot .hint{opacity:0}
   <div class="tick" aria-hidden="true"><div class="tick-t"><span>Анталія</span><span>Кемер</span><span>Белек</span><span>Каталонія</span><span>Майорка</span><span>Коста-Брава</span><span>Салоу</span><span>Греція</span><span>Анталія</span><span>Кемер</span><span>Белек</span><span>Каталонія</span><span>Майорка</span><span>Коста-Брава</span><span>Салоу</span><span>Греція</span></div></div>
 </section>
 
-<!-- ══ 22 НАПРЯМКИ ЛІТО ══ -->
+<!-- ══ НАПРЯМКИ ЛІТО ══ -->
 <section class="s tint" data-b="Літо 2027">
   <div class="w">
-    <img class="mas fu" src="assets/mascot-beach.png" alt="" style="margin-bottom:1.6rem">
+    <img class="mas fu" src="assets/mascot-beach.png" alt="" style="margin-bottom:1.2rem">
     <span class="lbl fu">Пляжні напрямки</span>
-    <h2 class="rv" style="margin-bottom:2rem">Туреччина · Іспанія · Греція</h2>
+    <h2 class="rv">Туреччина · Іспанія · Греція</h2>
+    <ul class="dgrid"><li><span class="n">01</span><span class="t" style="--d:0.20s">Анталія</span></li><li><span class="n">02</span><span class="t" style="--d:0.26s">Кемер</span></li><li><span class="n">03</span><span class="t" style="--d:0.31s">Белек</span></li><li><span class="n">04</span><span class="t" style="--d:0.36s">Каталонія</span></li><li><span class="n">05</span><span class="t" style="--d:0.42s">Майорка</span></li><li><span class="n">06</span><span class="t" style="--d:0.48s">Коста-Брава</span></li><li><span class="n">07</span><span class="t" style="--d:0.53s">Салоу</span></li><li><span class="n">08</span><span class="t" style="--d:0.58s">Крит</span></li></ul>
   </div>
-  <div class="mq fu" style="--d:.35s;--dur:30s"><div class="mq-t">
-    <span>Анталія</span><span>Кемер</span><span>Белек</span><span>Каталонія</span><span>Майорка</span><span>Коста-Брава</span><span>Салоу</span>
-    <span>Анталія</span><span>Кемер</span><span>Белек</span><span>Каталонія</span><span>Майорка</span><span>Коста-Брава</span><span>Салоу</span>
-  </div></div>
 </section>
 
 <!-- ══ АНТАЛІЯ ПОЛІТНА ══ -->
@@ -830,7 +852,7 @@ body.moved .bot .hint{opacity:0}
         <tr><td>Пакетні тури</td><td class="n"><b>1 000 грн</b></td><td class="n">не менше 20% до 31.03.2027</td><td class="n">за 14 днів до заїзду</td></tr>
         <tr><td>Наземне обслуговування</td><td class="n"><b>1 000 грн</b></td><td class="n">не менше 20% до 31.03.2027</td><td class="n">за 14 днів до заїзду</td></tr>
         <tr><td>Авіа та автобусні квитки</td><td class="n" colspan="3">Повна оплата в день підтвердження</td></tr>
-        <tr><td>Тури на регулярних рейсах</td><td class="n"><b>30%</b>, але не більше вартості квитка</td><td class="n">не менше 40% до 31.03 (Європа — 50%)</td><td class="n">за 20 днів до заїзду</td></tr>
+        <tr><td>Тури на регулярних рейсах</td><td class="n"><b>30%</b>, але не менше вартості квитка</td><td class="n">не менше 40% до 31.03 (Європа — 50%)</td><td class="n">за 20 днів до заїзду</td></tr>
         <tr><td>Преміум тури</td><td class="n"><b>Без оплати</b></td><td class="n">до 28.02 — 30%, до 30.04 — 50%</td><td class="n">за 30 днів до вильоту</td></tr>
         <tr><td>Індивідуальні тури</td><td class="n" colspan="3">Індивідуальні умови за домовленістю з менеджером напрямку</td></tr>
       </tbody>
@@ -909,7 +931,7 @@ body.moved .bot .hint{opacity:0}
       <div class="cd box"><span class="k">Екстрений зв'язок</span><h3>24 / 7</h3><p>Завжди, коли турист уже в дорозі</p></div>
     </div>
     <div class="fu" style="--d:.6s;margin-top:2.4rem">
-      <a class="roll" href="tel:+380443334433"><span class="rt"><span>+38 (044) 333 44 33</span><span>Зателефонувати</span></span><span class="ar">→</span></a>
+      <p class="phone">+38 (044) 333 44 33</p>
     </div>
   </div>
 </section>
@@ -1115,49 +1137,422 @@ body.moved .bot .hint{opacity:0}
       <div class="cd box"><span class="k">Відділ</span><h3>Інклюзивний туризм</h3><p>Подорожі, доступні для туристів з особливими потребами.</p></div>
     </div>
     <div class="fu" style="--d:.6s;margin-top:2rem">
-      <a class="roll" href="mailto:sales@travelon.to"><span class="rt"><span>sales@travelon.to</span><span>Написати листа</span></span><span class="ar">→</span></a>
+      <p class="phone">sales@travelon.to</p>
     </div>
   </div>
 </section>
 
-<!-- ══ 48 PREMIUM HERO ══ -->
-<section class="s ph" data-b="Premium">
+<!-- ══ PREMIUM ══ -->
+<section class="s ph prem" data-b="Premium">
   <div class="bg"><img src="assets/premium-leaves.jpg" alt=""></div>
   <div class="w">
-    <span class="lbl fu">«Travelon Premium» · 2026</span>
-    <h1 class="rv">Незабутній<br><em class="c">luxury</em> відпочинок<br>починається з Тревелон</h1>
+    <span class="lbl fu">«Travelon Premium» · Зима 2025-26</span>
+    <h1 class="rv">Незабутній<br><em>luxury</em> відпочинок<br>починається з Тревелон</h1>
   </div>
 </section>
 
-<!-- ══ 49 PREMIUM ЧОМУ МИ ══ -->
-<section class="s ph" data-b="Premium">
-  <div class="bg"><img src="assets/premium-yacht.jpg" alt=""></div>
+<section class="s prem" data-b="Premium">
   <div class="w sp">
     <div>
       <span class="lbl fu">«Travelon Premium»</span>
       <h2 class="rv">Чому саме ми?</h2>
+      <div class="med r169 fu" style="--d:.4s;margin-top:1.6rem"><img src="assets/prem/why.jpg" alt="" loading="lazy"></div>
     </div>
-    <ol class="idx fu" style="--d:.35s">
-      <li><span class="n">01</span><span><span class="t">Індивідуальний підхід до масових напрямків</span></span></li>
-      <li><span class="n">02</span><span><span class="t">Персональний супровід вашого замовлення</span></span></li>
-      <li><span class="n">03</span><span><span class="t">Окрема телефонна лінія та пошта</span></span></li>
-      <li><span class="n">04</span><span><span class="t">Завжди на зв'язку в телеграм</span></span></li>
-      <li><span class="n">05</span><span><span class="t">Знаємо, як зробити подорож дійсно преміальною</span></span></li>
-      <li><span class="n">06</span><span><span class="t">Підтвердження ціни конкурентів</span></span></li>
-    </ol>
+    <ol class="idx fu" style="--d:.3s"><li><span class="n">01</span><span><span class="t">Індивідуальний підхід до масових напрямків</span></span></li><li><span class="n">02</span><span><span class="t">Персональний супровід вашого замовлення</span></span></li><li><span class="n">03</span><span><span class="t">Завжди на зв'язку</span></span></li><li><span class="n">04</span><span><span class="t">Підтвердження за ціною конкурента</span></span></li><li><span class="n">05</span><span><span class="t">Преміальні опції для комфортного відпочинку</span></span></li><li><span class="n">06</span><span><span class="t">Об’єктивний та комплексний підхід до претензій</span><span class="d">Щодо якості наданих послуг</span></span></li></ol>
   </div>
 </section>
 
-<!-- ══ 50 PREMIUM 24/7 ══ -->
-<section class="s ph" data-b="Premium">
+<section class="s prem" data-b="Premium">
+  <div class="w">
+    <span class="lbl fu">Premium · Зима 25-26</span>
+    <h2 class="rv" style="margin-bottom:1.8rem">Шість напрямків сезону</h2>
+    <div class="tiles"><figure class="fu" style="--d:0.20s">
+        <div class="med r43"><img src="assets/prem/d-uae.jpg" alt="ОАЕ" loading="lazy"></div>
+        <figcaption>ОАЕ<span class="en">UAE</span></figcaption></figure><figure class="fu" style="--d:0.27s">
+        <div class="med r43"><img src="assets/prem/d-qatar.jpg" alt="Катар" loading="lazy"></div>
+        <figcaption>Катар<span class="en">Qatar</span></figcaption></figure><figure class="fu" style="--d:0.34s">
+        <div class="med r43"><img src="assets/prem/d-egypt.jpg" alt="Єгипет" loading="lazy"></div>
+        <figcaption>Єгипет<span class="en">Egypt</span></figcaption></figure><figure class="fu" style="--d:0.41s">
+        <div class="med r43"><img src="assets/prem/d-maldives.jpg" alt="Мальдівські о-ви" loading="lazy"></div>
+        <figcaption>Мальдівські о-ви<span class="en">Maldives</span></figcaption></figure><figure class="fu" style="--d:0.48s">
+        <div class="med r43"><img src="assets/prem/d-seychelles.jpg" alt="Сейшельські о-ви" loading="lazy"></div>
+        <figcaption>Сейшельські о-ви<span class="en">Seychelles</span></figcaption></figure><figure class="fu" style="--d:0.55s">
+        <div class="med r43"><img src="assets/prem/d-mauritius.jpg" alt="о-в Маврикій" loading="lazy"></div>
+        <figcaption>о-в Маврикій<span class="en">Mauritius</span></figcaption></figure></div>
+  </div>
+</section>
+
+<section class="s prem" data-b="ОАЕ">
+  <div class="w sp rev">
+    <div class="med r169 fu" style="--d:.15s"><img src="assets/prem/uae-flights.jpg" alt="" loading="lazy"></div>
+    <div>
+      <span class="lbl fu">Три аеропорти прибуття</span>
+      <h2 class="rv">Польотна<br>програма<br>до ОАЕ</h2>
+    </div>
+  </div>
+  <div class="w g3 fu" style="--d:.5s;margin-top:2rem">
+    <div class="cd"><span class="k">Дубай · DXB</span><h3>Flydubai · Wizz Air</h3><p>Кишинів · Будапешт · Варшава · Краків · Бухарест · Софія · Прага</p></div>
+    <div class="cd"><span class="k">Абу-Дабі · AUH</span><h3>Wizz Air</h3><p>Будапешт · Катовіце · Краків · Бухарест · Клуж · Софія</p></div>
+    <div class="cd"><span class="k">Шарджа · SHJ</span><h3>Air Arabia</h3><p>Варшава · Краків · Катовіце · Гданськ · Відень · Мюнхен · Франкфурт</p></div>
+  </div>
+</section>
+
+<section class="s prem" data-b="ОАЕ">
+  <div class="w sp">
+    <div>
+      <span class="lbl fu">Dubai Int Airport</span>
+      <h2 class="rv">Marhaba<br>Meet &amp; Greet</h2>
+      <div class="g2 fu" style="--d:.5s;margin-top:1.8rem">
+        <div class="cd"><span class="k">Груповий сервіс</span>
+          <h3>від 38 EUR</h3><p>Bronze Meet &amp; Greet</p>
+          <h3 style="margin-top:.9rem">від 55 EUR</h3><p>Silver Meet &amp; Assist</p></div>
+        <div class="cd"><span class="k">Індивідуальний сервіс</span>
+          <h3>від 97 EUR</h3><p>Gold Meet &amp; Greet</p>
+          <h3 style="margin-top:.9rem">від 300 EUR</h3><p>Elite Meet &amp; Assist</p></div>
+      </div>
+    </div>
+    <div class="med r34 fu" style="--d:.2s"><img src="assets/prem/marhaba.jpg" alt="" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="s prem" data-b="ОАЕ">
+  <div class="w sp rev">
+    <div class="med r169 fu" style="--d:.15s"><img src="assets/prem/majilis.jpg" alt="" loading="lazy"></div>
+    <div>
+      <span class="lbl fu">Dubai Int Airport · від 850 EUR</span>
+      <h2 class="rv">Al Majilis<br>Service</h2>
+      <div class="g2 fu" style="--d:.5s;margin-top:1.6rem">
+        <div class="cd"><span class="k">Прибуття</span><p>Зустріч біля трапа або на виході з рукава, персональний трансфер в Al Majilis, окреме проходження формальностей, лаунж з ексклюзивною їжею та напоями, супровід з багажем до авто.</p></div>
+        <div class="cd"><span class="k">Виліт</span><p>Зустріч біля входу в Al Majilis, окремі формальності, лаунж, трансфер до літака та пріоритетна посадка — першим або останнім, за бажанням пасажира.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s prem" data-b="ОАЕ">
+  <div class="w sp">
+    <div>
+      <span class="lbl fu">Для готелів Преміум — тільки індивідуальні</span>
+      <h2 class="rv">Трансфери<br>з/до аеропорту</h2>
+      <p class="sm fu" style="--d:.6s;margin-top:1.2rem">Додаткова послуга — VIP Parking</p>
+    </div>
+    <div>
+      <div class="med r169 fu" style="--d:.2s"><img src="assets/prem/transfers.jpg" alt="" loading="lazy"></div>
+      <div class="g2 fu" style="--d:.45s;margin-top:1.2rem">
+        <div class="cd"><span class="k">Седани</span><h3>Standard · Luxury · Premium</h3><p>Lexus ES 350/300 · BMW 7 Series · Mercedes S-class</p></div>
+        <div class="cd"><span class="k">Мінівени</span><h3>Standard · Luxury</h3><p>Toyota Hi-Ace · Mercedes Vito</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s prem" data-b="ОАЕ">
+  <div class="w sp rev">
+    <div class="gfx fu" data-gfx="palm"  style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Дубай пляж · рекомендовані готелі</span>
+      <h2 class="rv">Palm<br>Jumeirah</h2>
+      
+      <p class="sm fu" style="--d:.5s;margin:1rem 0 1.2rem">Нещодавно відкриті готелі 2025: Jumeirah Marsa Al Arab — завершення легендарного тріо «Парус — Хвиля — Суперяхта», та Jumeirah Al Naseem.</p>
+      <div class="g2 fu" style="--d:.6s">
+        <div class="cd"><span class="k">Madinat Jumeirah</span><p>Mina A Salam · Al Qasr · Dar Al Masyaf</p></div>
+        <div class="cd"><span class="k">Мережа Marriott</span><p>The Ritz Carlton · Le Royal Meridien · Westin Mina Seyahi · W Dubai Mina Seyahi · W Dubai The Palm</p></div>
+        <div class="cd"><span class="k">На Пальмі</span><p>Atlantis · Atlantis The Royal · Rixos The Palm · Raffles The Palm · Waldorf Astoria The Palm</p></div>
+        <div class="cd" style="border-top-color:var(--red)"><span class="k">Увага</span><p>Динамічні ціни на готелі Jumeirah Group. Депозити в більшості готелів Дубая.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s prem" data-b="ОАЕ">
+  <div class="w sp">
+    <div class="gfx fu" data-gfx="coast"  style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Абу-Дабі · рекомендовані готелі</span>
+      <h2 class="rv">Острів<br>Saadiyat</h2>
+      
+      <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>Mandarin Oriental Emirates Palace</li><li><b>02</b>Rixos Marina Abu Dhabi — дитячий клуб</li><li><b>03</b>St. Regis Saadiyat Island Resort</li><li><b>04</b>Rixos Premium Saadiyat Island — Ultra AI</li><li><b>05</b>Club Prive by Rixos Saadiyat</li><li><b>06</b>Park Hyatt Abu Dhabi</li><li><b>07</b>Jumeirah Saadiyat Island</li><li><b>08</b>Saadiyat Rotana Resort & SPA — AI</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="s prem" data-b="ОАЕ">
+  <div class="w sp rev">
+    <div class="gfx fu" data-gfx="ridge"  style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Фуджейра · рекомендовані готелі</span>
+      <h2 class="rv">Гори<br>і океан</h2>
+      
+      <p class="sm fu" style="--d:.5s;margin:1rem 0 1rem">Готелі працюють на різних типах харчування: BB · HB · FB · AI. Рекомендована комбінація Фуджейра + Дубай.</p>
+      <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>Intercontinental Fujairah</li><li><b>02</b>Fairmont Fujairah</li><li><b>03</b>Address Beach Resort Fujairah</li><li><b>04</b>Le Meridien Al Aqah Beach</li><li><b>05</b>Miramare Al Aqah Beach</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="s prem" data-b="ОАЕ">
+  <div class="w sp">
+    <div class="gfx fu" data-gfx="marjan"  style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Рас-аль-Хайма · рекомендовані готелі</span>
+      <h2 class="rv">Al Marjan<br>Island</h2>
+      
+      <p class="sm fu" style="--d:.5s;margin:1rem 0 1rem">Планується відкриття першого в ОАЕ казино — 2027.</p>
+      <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>Waldorf Astoria Ras Al Khaimah</li><li><b>02</b>Anantara Mina Ras Al Khaimah Resort</li><li><b>03</b>The Ritz Carlton Ras Al Khaimah</li><li><b>04</b>Rixos Al Mairid (ex. Hilton RAK)</li><li><b>05</b>Movenpick Resort Al Marjan Island</li><li><b>06</b>Sofitel Al Hamra (ex. Hilton Al Hamra)</li><li><b>07</b>The Cove Rotana Resort</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="s prem" data-b="Мальдіви">
+  <div class="w sp rev">
+    <div class="gfx fu" data-gfx="hub" data-hubs="DXB|IST|DOH|SHJ" data-dest="MLE" style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Через чотири хаби</span>
+      <h2 class="rv">Польотна програма<br>до Мальдів</h2>
+      
+      <div class="g2 fu" style="--d:.5s;margin-top:1.2rem">
+        <div class="cd"><span class="k">Дубай · DXB</span><h3>Flydubai — Emirates</h3><p>First · Business · Economy<br>Молдова · Польща · Румунія · Угорщина · Болгарія · Чехія</p></div>
+        <div class="cd"><span class="k">Стамбул · IST</span><h3>Turkish Airlines</h3><p>Business · Economy<br>Молдова · Польща · Румунія · Угорщина · Німеччина · Болгарія · Чехія</p></div>
+        <div class="cd"><span class="k">Доха · DOH</span><h3>Qatar Airways</h3><p>First · Business · Economy<br>Польща · Румунія · Угорщина · Німеччина</p></div>
+        <div class="cd"><span class="k">Шарджа · SHJ</span><h3>Air Arabia</h3><p>Full Economy<br>Польща · Австрія · Німеччина</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s prem" data-b="Мальдіви">
+  <div class="w sp">
+    <div class="gfx fu" data-gfx="docs" data-stamp="30 днів" data-bans="Алкоголь|Вейпи|Дрони" style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Що знати перед вильотом</span>
+      <h2 class="rv">Особливості<br>в'їзду</h2>
+      
+      <ol class="idx fu" style="--d:.4s">
+        <li><span class="n">01</span><span><span class="t">Visa on arrival на 30 днів</span><span class="d">Безкоштовно</span></span></li>
+        <li><span class="n">02</span><span><span class="t">Паспорт — мінімум 30 днів на дату в'їзду</span></span></li>
+        <li><span class="n">03</span><span><span class="t">Health Declaration IMUGA</span><span class="d">Не раніше ніж за 96 годин до прибуття</span></span></li>
+        <li><span class="n">04</span><span><span class="t">Долари нового зразка, з 2009 року</span><span class="d">Обмін валюти не потрібен, банкноти у хорошому стані</span></span></li>
+        <li><span class="n">05</span><span><span class="t">Цигарки — до 200 шт.</span></span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="s prem" data-b="Мальдіви">
+  <div class="w sp rev">
+    <div class="gfx fu" data-gfx="mvtrans"  style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Три способи дістатись острова</span>
+      <h2 class="rv">Трансфери<br>з/до аеропорту</h2>
+      
+      <div class="g3 fu" style="--d:.5s;margin-top:1.2rem">
+        <div class="cd"><span class="k">Seaplane</span><h3>Справжній початок подорожі</h3><p>Тільки протягом світлового дня, з 09:00 до 16:30. Багаж 20 кг + 3 кг ручної поклажі.</p></div>
+        <div class="cd"><span class="k">Domestic flight</span><h3>Комбінується з катером</h3><p>Багаж 20 кг + 5 кг ручної поклажі.</p></div>
+        <div class="cd"><span class="k">Speedboat</span><h3>До найближчих островів</h3><p>Або в комбінації з внутрішнім перельотом.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s prem" data-b="Мальдіви">
+  <div class="w">
+    <span class="lbl fu">Перед тим як підбирати готель</span>
+    <h2 class="rv" style="margin-bottom:1.8rem">«Хочу на Мальдіви»<br>6 запитань туристу</h2>
+    <div class="g3"><div class="cd fu" style="--d:0.25s"><span class="k">Питання 01</span><h3>Хто подорожує</h3><p>Молодята, пара, родина з дітьми</p></div><div class="cd fu" style="--d:0.32s"><span class="k">Питання 02</span><h3>Локація</h3><p>Різні атоли — різний досвід та враження</p></div><div class="cd fu" style="--d:0.39s"><span class="k">Питання 03</span><h3>Трансфер</h3><p>Три варіанти на вибір</p></div><div class="cd fu" style="--d:0.46s"><span class="k">Питання 04</span><h3>Схід / захід сонця</h3><p>Чому Sunset Villa дорожча за Sunrise Villa</p></div><div class="cd fu" style="--d:0.53s"><span class="k">Питання 05</span><h3>Плавання / снорклінг</h3><p>Наявність лагун і рифів</p></div><div class="cd fu" style="--d:0.60s"><span class="k">Питання 06</span><h3>Басейн: так чи ні</h3><p>Наскільки принципово</p></div></div>
+  </div>
+</section>
+
+<section class="s prem" data-b="Мальдіви">
+  <div class="w sp rev" style="grid-template-columns:minmax(0,.32fr) minmax(0,1fr)">
+    <div class="gfx tall fu" data-gfx="atoll" data-hi="3" style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Мальдіви · рекомендовані готелі</span>
+      <h2 class="rv" style="font-size:clamp(1.6rem,3.4vw,2.8rem)">Відпочинок з дітьми</h2>
+      <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>Atmosphere Kanifushi 5*</li><li><b>02</b>Ayada Maldives 5*</li><li><b>03</b>Four Seasons Kuda Huraa 5* Deluxe</li><li><b>04</b>Hard Rock Hotel Maldives 5*</li><li><b>05</b>Hideaway Beach Resort 5*</li><li><b>06</b>Hilton Maldives Amingiri 5*</li><li><b>07</b>Holiday Inn Resort Kandooma 5*</li><li><b>08</b>Kandima Maldives 5*</li><li><b>09</b>Lux* South Ari Atoll 5*</li><li><b>10</b>Meeru Island Resort 5*</li><li><b>11</b>Kuredhivaru Resort & Spa 5*</li><li><b>12</b>Niyama Maldives 5*</li><li><b>13</b>One & Only Reethi Rah 5* Deluxe</li><li><b>14</b>Robinson Club Noonu 5*</li><li><b>15</b>Siyam World Maldives 5*</li><li><b>16</b>Soneva Fushi 5* Deluxe</li><li><b>17</b>The Sun Siyam Iru Fushi 5*</li><li><b>18</b>Waldorf Astoria Ithaafushi 5* Deluxe</li></ul>
+    </div>
+    
+  </div>
+</section>
+
+<section class="s prem" data-b="Мальдіви">
+  <div class="w sp" style="grid-template-columns:minmax(0,1fr) minmax(0,.32fr)">
+    
+    <div>
+      <span class="lbl fu">Мальдіви · рекомендовані готелі</span>
+      <h2 class="rv" style="font-size:clamp(1.6rem,3.4vw,2.8rem)">Преміальні курорти</h2>
+      <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>Anantara Kihavah Villas 5* Deluxe</li><li><b>02</b>Baglioni Resort Maldives 5* Deluxe</li><li><b>03</b>Four Seasons Landaa Giravaru 5* Deluxe</li><li><b>04</b>Joali Being 5* Deluxe</li><li><b>05</b>Joali Maldives 5* Deluxe</li><li><b>06</b>Milaidhoo Island (Adults 9+) 5* Deluxe</li><li><b>07</b>One & Only Reethi Rah 5* Deluxe</li><li><b>08</b>Patina Maldives Fari Islands 5* Deluxe</li><li><b>09</b>Six Senses Laamu 5* Deluxe</li><li><b>10</b>Soneva Fushi 5* Deluxe</li><li><b>11</b>Soneva Jani 5* Deluxe</li><li><b>12</b>The St. Regis Maldives 5* Deluxe</li><li><b>13</b>Waldorf Astoria Ithaafushi 5* Deluxe</li><li><b>14</b>Cheval Blanc Randheli 5* Deluxe</li><li><b>15</b>Velaa Private Island 5* Deluxe</li><li><b>16</b>The Nautilus Maldives 5* Deluxe</li><li><b>17</b>Raffles Maldives Meradhoo 5* Deluxe</li></ul>
+    </div>
+    <div class="gfx tall fu" data-gfx="atoll" data-hi="2" style="--d:.15s"></div>
+  </div>
+</section>
+
+<section class="s prem" data-b="Мальдіви">
+  <div class="w sp rev" style="grid-template-columns:minmax(0,.32fr) minmax(0,1fr)">
+    <div class="gfx tall fu" data-gfx="atoll" data-hi="5" style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Мальдіви · рекомендовані готелі</span>
+      <h2 class="rv" style="font-size:clamp(1.6rem,3.4vw,2.8rem)">Курорти Adults Only</h2>
+      <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>Anantara Veli Resort (18+) 5*</li><li><b>02</b>Baros Maldives (8+) 5* Deluxe</li><li><b>03</b>Finolhu Maldives 5* Deluxe</li><li><b>04</b>Centara Ras Fushi (12+) 4*</li><li><b>05</b>Coco Palm Dhuni Kolhu 4*</li><li><b>06</b>Hurawalhi Island Resort (15+) 5*</li><li><b>07</b>Emerald Faarufushi 5*</li><li><b>08</b>Kagi Maldives SPA Island (12+) 5*</li><li><b>09</b>Kandolhu Island (6+) 5*</li><li><b>10</b>Komandoo Island Resort (18+) 4*</li><li><b>11</b>Mercure Maldives Kooddoo (18+) 4*</li><li><b>12</b>Milaidhoo Island (9+) 5* Deluxe</li><li><b>13</b>Nakai Dhiggiri Resort (12+) 4*</li><li><b>14</b>Robinson Club Maldives (18+) 5*</li><li><b>15</b>W Maldives 5* Deluxe</li><li><b>16</b>You & Me by Cocoon (16+) 5*</li></ul>
+    </div>
+    
+  </div>
+</section>
+
+<section class="s prem" data-b="Мальдіви">
+  <div class="w sp" style="grid-template-columns:minmax(0,1fr) minmax(0,.32fr)">
+    
+    <div>
+      <span class="lbl fu">Мальдіви · рекомендовані готелі</span>
+      <h2 class="rv" style="font-size:clamp(1.6rem,3.4vw,2.8rem)">Курорти для дайвінгу</h2>
+      <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>Adaaran Club Rannalhi 4*</li><li><b>02</b>Adaaran Select Meedhupparu 4*</li><li><b>03</b>Bandos Island Resort 4*</li><li><b>04</b>Dhawa Ihuru (ex. Angsana Ihuru) 5*</li><li><b>05</b>Equator Village 3*</li><li><b>06</b>Kihaa Maldives 5*</li><li><b>07</b>Lily Beach Resort & Spa 5*</li><li><b>08</b>Meeru Island Resort 5*</li><li><b>09</b>Mirihi Island Resort 5*</li><li><b>10</b>Park Hyatt Maldives Hadahaa 5*</li><li><b>11</b>Reethi Beach Resort 4*</li><li><b>12</b>Sun Siyam Vilu Reef 5*</li></ul>
+    </div>
+    <div class="gfx tall fu" data-gfx="atoll" data-hi="4" style="--d:.15s"></div>
+  </div>
+</section>
+
+<section class="s prem" data-b="Мальдіви">
+  <div class="w sp rev" style="grid-template-columns:minmax(0,.32fr) minmax(0,1fr)">
+    <div class="gfx tall fu" data-gfx="atoll" data-hi="6" style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Мальдіви · рекомендовані готелі</span>
+      <h2 class="rv" style="font-size:clamp(1.6rem,3.4vw,2.8rem)">Курорти для снорклінгу</h2>
+      <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>Anantara Kihavah Maldives 5*</li><li><b>02</b>Dusit Thani Maldives 5*</li><li><b>03</b>W Maldives 5*</li><li><b>04</b>Hurawalhi Island Resort 5*</li><li><b>05</b>Park Hyatt Maldives Hadahaa 5*</li><li><b>06</b>Sun Siyam Vilu Reef 5*</li><li><b>07</b>Dhawa Ihuru 5*</li><li><b>08</b>Meeru Island Resort 5*</li><li><b>09</b>Kandolhu Maldives 5*</li><li><b>10</b>Outrigger Konotta Maldives 5*</li><li><b>11</b>Vakkaru Maldives 5*</li><li><b>12</b>Dhigali Maldives 5*</li><li><b>13</b>Six Senses Laamu 5*</li><li><b>14</b>Kuramathi Maldives 4*</li><li><b>15</b>Robinson Club Maldives 4*</li><li><b>16</b>Adaaran Select Meedhupparu 4*</li><li><b>17</b>Bandos Island Resort 4*</li></ul>
+    </div>
+    
+  </div>
+</section>
+
+<section class="s prem" data-b="Маврикій">
+  <div class="w sp rev">
+    <div class="gfx fu" data-gfx="hub" data-hubs="DXB|IST|VIE|FRA" data-dest="MRU" style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Через чотири хаби</span>
+      <h2 class="rv">Польотна програма<br>до Маврикію</h2>
+      <div class="g2 fu" style="--d:.5s;margin-top:1.2rem">
+        <div class="cd"><span class="k">Дубай · DXB</span><h3>Flydubai — Emirates</h3><p>First · Business · Economy<br>Молдова · Польща · Румунія · Угорщина · Болгарія · Чехія</p></div>
+        <div class="cd"><span class="k">Стамбул · IST</span><h3>Turkish Airlines</h3><p>Business · Economy<br>Молдова · Польща · Румунія · Угорщина · Німеччина · Болгарія · Чехія</p></div>
+        <div class="cd"><span class="k">Відень · VIE</span><h3>Austrian Airlines</h3><p>Business · Economy<br>Молдова · Польща · Румунія · Угорщина · Німеччина · Чехія</p></div>
+        <div class="cd"><span class="k">Франкфурт · FRA</span><h3>Condor + Lufthansa</h3><p>Business · Economy<br>Молдова · Польща · Румунія · Угорщина · Австрія · Чехія</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s prem" data-b="Маврикій">
+  <div class="w sp">
+    <div>
+      <span class="lbl fu">Що знати перед вильотом</span>
+      <h2 class="rv">Особливості<br>в'їзду</h2>
+      <ol class="idx fu" style="--d:.4s">
+        <li><span class="n">01</span><span><span class="t">Безвізовий в'їзд для громадян України</span></span></li>
+        <li><span class="n">02</span><span><span class="t">Паспорт має діяти весь період перебування</span></span></li>
+        <li><span class="n">03</span><span><span class="t">All-in-One Travel Form</span><span class="d">Заповнюється онлайн перед вильотом, форму з QR краще роздрукувати</span></span></li>
+        <li><span class="n">04</span><span><span class="t">Tourist Fee — 3 EUR за добу</span><span class="d">З 1 жовтня 2025, на особу 12+, незалежно від категорії готелю. Сплачується в готелі</span></span></li>
+        <li><span class="n">05</span><span><span class="t">Валюта — маврикійська рупія</span><span class="d">$1 ≈ 4,7 MRU. Основні кредитні картки плюс невелика сума готівкою</span></span></li>
+      </ol>
+    </div>
+    <div class="gfx fu" data-gfx="docs" data-stamp="Безвіз" data-bans="Tourist Fee|QR-форма" style="--d:.2s"></div>
+  </div>
+</section>
+
+<section class="s prem" data-b="Маврикій">
+  <div class="w sp rev" style="grid-template-columns:minmax(0,.55fr) minmax(0,1fr)">
+    <div class="gfx tall fu" data-gfx="mauritius" data-coast="" style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Маврикій</span>
+      <h2 class="rv" style="font-size:clamp(1.6rem,3.4vw,2.9rem)">Як обрати<br>узбережжя</h2>
+      
+      <div class="g2 fu" style="--d:.45s;margin-top:1rem">
+        <div class="cd"><span class="k">Північ</span><p>Найбільш «живий» Маврикій: дуже хороші пляжі, добре захищені лагуни, багато ресторанів, барів і магазинів поза готелем.</p></div>
+        <div class="cd"><span class="k">Схід</span><p>Пляжний Маврикій з листівок: довгі широкі пляжі зі світлим піском і бірюзова лагуна. Мінус — вітер з червня по вересень.</p></div>
+        <div class="cd"><span class="k">Захід</span><p>Найкомфортніше узбережжя: захищене від вітрів, спокійніша вода, красивий sunset і пейзаж із горою Morne Brabant.</p></div>
+        <div class="cd"><span class="k">Південь</span><p>Дика й драматична природа, менше забудови. Не всі ділянки однаково придатні для класичного купання.</p></div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<section class="s prem" data-b="Маврикій">
+  <div class="w sp" style="grid-template-columns:minmax(0,1fr) minmax(0,.55fr)">
+    
+    <div>
+      <span class="lbl fu">Grand Baie — Trou aux Biches — Grand Gaube</span>
+      <h2 class="rv" style="font-size:clamp(1.6rem,3.4vw,2.9rem)">Північ</h2>
+      
+      <p class="sm fu" style="--d:.45s;margin:.8rem 0 1rem">Універсальний вибір: тепло, переважно спокійний океан, широкий вибір готелів, ресторани та розваги за межами готелів.</p>
+      <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>LUX Grand Baie 5* — boutique-style luxury</li><li><b>02</b>LUX Grand Gaube 5* — універсальний</li><li><b>03</b>Trou aux Biches Beachcomber 5* — один з найкращих пляжів</li><li><b>04</b>Paradise Cove 5* — для пар та родин</li><li><b>05</b>The Westin Turtle Bay — преміум, для родин</li><li><b>06</b>20 Degrees Sud — бутік, для пар</li></ul>
+    </div>
+    <div class="gfx tall fu" data-gfx="mauritius" data-coast="N" style="--d:.15s"></div>
+  </div>
+</section>
+
+<section class="s prem" data-b="Маврикій">
+  <div class="w sp rev" style="grid-template-columns:minmax(0,.55fr) minmax(0,1fr)">
+    <div class="gfx tall fu" data-gfx="mauritius" data-coast="W" style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Le Morne — Flic-en-Flac — Tamarin</span>
+      <h2 class="rv" style="font-size:clamp(1.6rem,3.4vw,2.9rem)">Захід</h2>
+      
+      <p class="sm fu" style="--d:.45s;margin:.8rem 0 1rem">Регіон популярний завдяки захищеності від вітрів, красивим sunset та комфортному пляжному відпочинку.</p>
+      <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>LUX Le Morne 5* — локація плюс преміум сегмент</li><li><b>02</b>La Pirogue Mauritius 5* — найкраща «ціна-якість»</li><li><b>03</b>Sugar Beach Mauritius 5* — преміум сегмент</li><li><b>04</b>Dinarobin Beachcomber 5* — преміум сегмент</li><li><b>05</b>Sands Suite Resort & SPA 5* — релакс-атмосфера</li><li><b>06</b>Hilton Mauritius Resort & SPA 5* — універсальний</li></ul>
+    </div>
+    
+  </div>
+</section>
+
+<section class="s prem" data-b="Маврикій">
+  <div class="w sp" style="grid-template-columns:minmax(0,1fr) minmax(0,.55fr)">
+    
+    <div>
+      <span class="lbl fu">Belle Mare — Poste de Flacq — Palmar</span>
+      <h2 class="rv" style="font-size:clamp(1.6rem,3.4vw,2.9rem)">Схід</h2>
+      
+      <p class="sm fu" style="--d:.45s;margin:.8rem 0 1rem">Класичний Маврикій «з листівки»: широкі пляжі з красивими лагунами та найбільша концентрація luxury resorts.</p>
+      <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>LUX Belle Mare 5* — один з найкращих на узбережжі</li><li><b>02</b>C Mauritius 5* — чудова «ціна-якість»</li><li><b>03</b>Ambre Mauritius 5* — Adults Only, чудовий пляж</li><li><b>04</b>Constance Belle Mare Plage 5* — преміум сегмент</li><li><b>05</b>Long Beach Mauritius 5* — для родин та активного відпочинку</li></ul>
+    </div>
+    <div class="gfx tall fu" data-gfx="mauritius" data-coast="E" style="--d:.15s"></div>
+  </div>
+</section>
+
+<section class="s prem" data-b="Маврикій">
+  <div class="w sp rev" style="grid-template-columns:minmax(0,.55fr) minmax(0,1fr)">
+    <div class="gfx tall fu" data-gfx="mauritius" data-coast="S" style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Blue Bay — Bel Ombre</span>
+      <h2 class="rv" style="font-size:clamp(1.6rem,3.4vw,2.9rem)">Південь</h2>
+      
+      <p class="sm fu" style="--d:.45s;margin:.8rem 0 1rem">«Дикий», менш урбанізований і спокійніший Маврикій. Найкращий вибір для активного відпочинку та зближення з природою.</p>
+      <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>Heritage Le Telfair Golf & Wellness 5* — «ціна-якість»</li><li><b>02</b>Shandrani Beachcomber Resort & Spa 5* — родини, снорклінг</li><li><b>03</b>Outrigger Mauritius Beach Resort 5* — сімейний</li><li><b>04</b>SO/Mauritius 5* — преміум сегмент</li></ul>
+    </div>
+    
+  </div>
+</section>
+
+<section class="s prem" data-b="Маврикій">
+  <div class="w sp rev" style="grid-template-columns:minmax(0,.5fr) minmax(0,1fr)">
+    <div class="gfx tall fu" data-gfx="mauritius" style="--d:.15s"></div>
+    <div>
+      <span class="lbl fu">Mauritius Tourism Authority · Five Star Luxury</span>
+      <h2 class="rv" style="font-size:clamp(1.6rem,3.4vw,2.9rem)">Top 10 Luxury Hotel</h2>
+      <p class="sm fu" style="--d:.45s;margin:.8rem 0 1.2rem">Критерії: рівень сервісу, приватність, бренд, пляж і локація, гастрономія та wow-фактор.</p>
+      <div class="g3 fu" style="--d:.55s">
+        <div class="cd"><span class="k">Схід</span><p>One&amp;Only Le Saint Geran<br>Four Seasons at Anahita<br>Constance Prince Maurice<br>Shangri-La Le Touessrok</p></div>
+        <div class="cd"><span class="k">Захід</span><p>The St. Regis Le Morne<br>JW Marriott Mauritius<br>Maradiva Villas Resort</p></div>
+        <div class="cd"><span class="k">Північ</span><p>Royal Palm Beachcomber<br>The Oberoi Beach Resort<br>LUX Grand Baie</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s ph prem" data-b="Premium">
   <div class="bg"><img src="assets/premium-leaves.jpg" alt=""></div>
   <div class="w" style="text-align:center;justify-items:center">
-    <span class="lbl fu">«Travelon Premium»</span>
-    <h1 class="rv big">24<em style="opacity:.45">/</em>7</h1>
-    <p class="lead fu" style="--d:.5s;margin:1.4rem auto 0;color:rgba(255,255,255,.9)">На зв'язку — завжди.</p>
-    <div class="fu" style="--d:.65s;margin-top:2rem;width:min(190px,44vw);background:#fff;padding:.9rem;border-radius:6px">
-      <img src="assets/qr-premium.png" alt="QR: Travelon Premium у телеграм" style="width:100%;display:block">
+    <span class="lbl fu">«Travelon Premium» · на зв'язку 24/7</span>
+    <h1 class="rv">Дякуємо за увагу<br>та бажаємо<br>успішного сезону</h1>
+    <div class="fu" style="--d:.6s;margin-top:1.8rem;width:min(180px,42vw);background:#fff;padding:.9rem;border-radius:6px">
+      <img src="assets/prem/qr.png" alt="QR: Travelon Premium" style="width:100%;display:block">
     </div>
+    <p class="phone fu" style="--d:.75s;margin-top:1.4rem">+38 093 777 04 77</p>
   </div>
 </section>
 
@@ -1197,7 +1592,6 @@ body.moved .bot .hint{opacity:0}
   /* ══ ФОНОВА ГРАФІКА РОЗДІЛІВ ══════════════════════════════════════
      Кожен розділ отримує свій візуальний мотив. На дивайдерах він
      повний, на контентних секціях того ж розділу — приглушений.     */
-  var LEAF = 'M30 2 C48 12 52 38 41 60 C34 74 18 80 8 74 C-2 68 -3 44 6 26 C13 12 22 4 30 2 Z';
 
   var DECO = {
     /* Чартерні польоти — дуги маршрутів, по яких летять логомарки */
@@ -1210,7 +1604,7 @@ body.moved .bot .hint{opacity:0}
       arcs.forEach(function(a,i){
         o += '<path d="'+a[0]+'" fill="none" stroke="var(--dc2)" stroke-width="2" stroke-dasharray="10 12" class="a-draw" style="--len:'+a[1]+';--ad:'+(i*.35)+'s"/>';
         o += '<g class="a-fly" style="offset-path:path(\''+a[0]+'\');--fd:'+a[2]+'s;--ad:'+(i*2.2)+'s">'
-           + '<path d="'+LEAF+'" fill="var(--dc)" transform="translate(-22,-30) scale(.9)"/></g>';
+           + '<use href="#lm" fill="var(--dc)" transform="scale(.145)"/></g>';
       });
       return o;
     },
@@ -1245,7 +1639,7 @@ body.moved .bot .hint{opacity:0}
       });
       o += '<g class="a-spin" style="--fd:30s"><circle r="215" fill="none" stroke="var(--dc)" stroke-width="4" stroke-linecap="round" stroke-dasharray="340 1010"/></g>';
       o += '<g class="a-spin-r" style="--fd:22s"><circle r="150" fill="none" stroke="var(--dc)" stroke-width="4" stroke-linecap="round" stroke-dasharray="180 760"/></g>';
-      o += '<path d="'+LEAF+'" fill="var(--dc)" transform="translate(-24,-34) scale(1.3)" class="a-pulse" style="--fd:4.5s"/></g>';
+      o += '<use href="#lm" fill="var(--dc)" transform="scale(.22)" class="a-pulse" style="--fd:4.5s"/></g>';
       return o;
     },
     /* Співпраця — дві дуги, що сходяться в одну точку */
@@ -1297,7 +1691,7 @@ body.moved .bot .hint{opacity:0}
       for(var i=0;i<14;i++){
         var x=40+((i*173)%960), sc=(0.5+((i*37)%70)/100).toFixed(2);
         o += '<g class="a-rise" style="--fd:'+(12+i%7*2.5)+'s;--ad:'+(i*1.15)+'s">'
-           + '<path d="'+LEAF+'" fill="var(--dc'+(i%2?'2':'')+')" transform="translate('+x+',780) scale('+sc+')"/></g>';
+           + '<use href="#lm" fill="var(--dc'+(i%2?'2':'')+')" transform="translate('+x+',800) scale('+(sc*0.19).toFixed(3)+') rotate(-8)"/></g>';
       }
       return o;
     }
@@ -1323,6 +1717,7 @@ body.moved .bot .hint{opacity:0}
     sec.insertBefore(d, sec.firstChild);
   });
 
+  var ISL = {"mu": {"w": 560, "h": 652, "d": "M513.3 300.2L511.6 324.5L506.9 352.2L496.7 383.1L494.5 398.9L499.8 414.4L476.7 422.1L450.3 442.9L434.2 466.7L441.5 483.3L442.2 490.5L447.3 499.1L448.0 504.6L444.7 513.9L439.3 515.8L433.3 515.5L428.1 518.5L415.4 541.5L408.1 551.7L396.2 559.8L316.8 585.2L236.4 597.9L208.0 595.6L163.7 581.3L137.5 578.3L117.4 587.4L62.9 538.1L50.8 524.0L46.7 510.6L61.7 504.6L85.2 509.5L98.1 507.0L103.8 494.0L108.8 465.6L107.7 455.2L97.4 449.4L105.0 424.7L105.9 369.0L110.3 338.4L116.8 320.8L138.3 277.9L146.2 269.5L148.1 266.3L169.1 248.7L178.2 244.3L198.7 238.4L208.0 234.3L224.2 217.4L227.1 198.7L227.7 179.9L242.1 153.4L253.8 117.2L259.6 106.3L263.8 100.2L289.9 79.0L296.4 76.1L309.1 75.1L314.6 71.9L318.8 64.7L324.5 57.6L334.5 54.4L349.5 56.7L392.0 69.2L403.3 75.1L408.2 86.3L402.9 103.7L406.6 113.3L413.3 122.9L420.4 139.9L428.5 154.3L430.9 166.0L435.7 172.3L439.6 173.1L450.8 171.3L454.5 172.3L465.0 181.3L467.8 187.8L464.7 220.5L472.1 231.0L481.9 238.9L491.0 267.7L509.2 289.5L513.3 300.2Z", "coasts": {"N": "M224.2 217.4L227.1 198.7L227.7 179.9L242.1 153.4L253.8 117.2L259.6 106.3L263.8 100.2L289.9 79.0L296.4 76.1L309.1 75.1L314.6 71.9L318.8 64.7L324.5 57.6L334.5 54.4L349.5 56.7L392.0 69.2L403.3 75.1L408.2 86.3L402.9 103.7L406.6 113.3L413.3 122.9L420.4 139.9L428.5 154.3L430.9 166.0L435.7 172.3L439.6 173.1L450.8 171.3L454.5 172.3", "E": "M513.3 300.2L511.6 324.5L506.9 352.2L496.7 383.1L494.5 398.9L499.8 414.4L476.7 422.1L450.3 442.9L465.0 181.3L467.8 187.8L464.7 220.5L472.1 231.0L481.9 238.9L491.0 267.7L509.2 289.5L513.3 300.2", "W": "M62.9 538.1L50.8 524.0L46.7 510.6L61.7 504.6L85.2 509.5L98.1 507.0L103.8 494.0L108.8 465.6L107.7 455.2L97.4 449.4L105.0 424.7L105.9 369.0L110.3 338.4L116.8 320.8L138.3 277.9L146.2 269.5L148.1 266.3L169.1 248.7L178.2 244.3L198.7 238.4L208.0 234.3", "S": "M434.2 466.7L441.5 483.3L442.2 490.5L447.3 499.1L448.0 504.6L444.7 513.9L439.3 515.8L433.3 515.5L428.1 518.5L415.4 541.5L408.1 551.7L396.2 559.8L316.8 585.2L236.4 597.9L208.0 595.6L163.7 581.3L137.5 578.3L117.4 587.4"}, "mark": {"N": [347.2, 118.9], "E": [488.4, 309.7], "W": [116.6, 390.0], "S": [353.2, 538.1]}}, "mv": {"w": 300, "h": 1425, "dots": [[140.6, 1397.2, 1.8], [146.3, 1395.6, 1.8], [133.4, 1392.9, 1.8], [152.5, 1387.1, 2.1], [154.4, 1380.2, 2.4], [188.6, 1328.2, 1.8], [129.0, 1237.9, 1.8], [148.8, 1235.1, 1.8], [118.1, 1230.2, 1.8], [177.5, 1226.6, 1.8], [108.9, 1223.5, 1.8], [201.0, 1208.9, 1.8], [104.3, 1206.5, 1.8], [100.9, 1190.1, 1.8], [197.9, 1188.0, 1.8], [179.4, 1164.5, 1.8], [176.7, 1143.1, 1.8], [173.4, 1128.3, 1.8], [82.0, 660.2, 1.8], [75.4, 659.1, 1.8], [97.5, 652.9, 1.8], [101.4, 641.2, 1.8], [57.8, 622.6, 1.8], [194.6, 584.4, 1.8], [59.4, 573.7, 1.8], [200.4, 556.2, 1.8], [106.7, 527.3, 1.8], [234.5, 497.5, 1.8], [234.7, 494.1, 1.8], [177.4, 491.0, 1.8], [182.5, 462.6, 1.8], [197.4, 447.1, 1.8], [107.1, 417.0, 1.8], [97.5, 415.6, 1.8], [189.2, 402.6, 1.8], [95.9, 392.1, 1.8], [98.7, 391.7, 1.8], [119.3, 376.6, 1.8], [120.1, 374.9, 1.8], [127.3, 369.8, 1.8], [130.3, 367.6, 1.8], [86.8, 356.3, 1.8], [134.6, 355.1, 1.8], [199.0, 354.6, 1.8], [213.6, 348.7, 1.9], [131.1, 345.5, 1.8], [193.7, 343.7, 1.8], [221.7, 339.4, 1.8], [224.6, 337.5, 1.8], [103.2, 336.1, 1.8], [181.4, 334.7, 1.8], [168.4, 333.4, 1.8], [172.6, 322.7, 1.8], [205.5, 318.6, 1.8], [175.1, 316.8, 1.8], [101.1, 316.0, 1.8], [113.8, 311.7, 1.8], [192.2, 302.4, 1.8], [111.9, 272.8, 1.8], [102.9, 161.0, 1.8], [93.0, 143.2, 1.8], [129.7, 1382.9, 5.2], [176.2, 962.6, 1.8], [181.5, 960.2, 1.8], [191.5, 956.1, 1.8], [200.2, 954.4, 2.1], [205.3, 948.7, 1.8], [155.0, 944.0, 1.8], [207.7, 940.5, 3.1], [208.0, 930.3, 1.8], [167.5, 927.3, 1.8], [206.8, 920.9, 1.8], [179.4, 919.7, 1.8], [208.6, 911.5, 1.8], [212.0, 906.8, 2.3], [118.7, 896.1, 1.8], [129.5, 892.7, 1.8], [131.9, 890.7, 1.8], [102.2, 877.1, 1.8], [98.4, 868.4, 1.8], [171.8, 864.4, 1.8], [174.9, 852.5, 3.8], [166.6, 837.5, 1.8], [136.7, 828.2, 1.8], [94.4, 805.7, 1.8], [88.9, 804.1, 1.8], [116.2, 794.8, 1.8], [173.3, 788.9, 1.8], [181.0, 787.5, 1.8], [208.0, 768.5, 1.8], [174.8, 766.8, 1.8], [113.3, 758.4, 1.8], [210.4, 757.9, 1.8], [213.8, 756.5, 1.8], [88.4, 755.6, 1.8], [94.5, 735.2, 1.8], [218.9, 731.1, 1.8], [107.7, 730.6, 1.8], [119.1, 713.8, 1.8], [117.2, 705.5, 1.8], [82.4, 695.1, 1.8], [202.4, 686.2, 1.8], [243.1, 670.5, 1.8], [200.5, 661.8, 1.8], [103.2, 621.0, 1.8], [102.1, 614.3, 1.8], [101.9, 602.8, 1.8], [187.8, 600.8, 1.8], [189.1, 587.8, 1.8], [171.9, 583.5, 1.8], [185.5, 553.0, 1.8], [202.0, 538.4, 7], [103.2, 527.3, 1.8], [215.6, 513.6, 1.8], [218.7, 510.3, 1.8], [223.2, 509.0, 1.8], [228.6, 505.1, 1.8], [103.1, 498.1, 1.8], [208.5, 465.2, 1.8], [222.5, 326.8, 2.4], [112.0, 316.7, 1.8], [90.7, 311.4, 1.8], [114.4, 289.7, 1.8], [113.7, 279.2, 1.8], [179.1, 270.7, 2.1], [108.9, 263.1, 1.8], [178.5, 258.9, 1.8], [107.0, 255.5, 1.8], [189.3, 250.5, 1.8], [105.2, 246.8, 1.8], [186.6, 238.2, 1.8], [99.1, 228.2, 1.8], [179.9, 228.2, 1.8], [96.3, 225.6, 1.8], [155.3, 207.6, 1.8], [155.4, 202.7, 1.8], [150.0, 199.0, 1.8], [158.6, 195.0, 1.8], [149.7, 191.9, 1.8], [158.7, 189.4, 1.8], [117.2, 183.2, 1.8], [153.8, 180.8, 1.8], [133.6, 172.0, 1.8], [148.8, 171.0, 1.8], [125.8, 168.1, 1.8], [146.3, 165.2, 1.8], [133.0, 163.8, 1.8], [143.8, 160.7, 1.8], [115.3, 157.7, 1.8], [56.8, 149.9, 1.8], [94.8, 145.3, 1.8], [119.6, 145.2, 1.8], [104.4, 123.9, 1.8], [98.4, 123.2, 1.8], [116.6, 120.2, 1.8], [118.9, 112.9, 1.8], [123.1, 104.8, 1.8], [129.2, 98.2, 1.8], [117.8, 89.0, 1.8], [96.7, 88.0, 1.8], [138.5, 87.6, 5.7], [144.2, 76.8, 1.8], [110.3, 74.4, 1.8], [136.4, 74.0, 1.8], [107.1, 72.7, 1.8], [128.3, 72.4, 1.8], [104.8, 71.0, 1.8], [130.0, 65.0, 1.8], [148.2, 62.7, 2.7], [98.5, 54.1, 1.8], [145.6, 53.6, 1.8], [92.5, 48.3, 1.8], [107.9, 42.2, 1.8], [102.7, 36.6, 1.8], [95.8, 30.4, 1.8], [91.2, 27.8, 1.8]]}};
   var MAPS = {"eu": "M22 682L22 687L22 715L-33 714L-32 761L-48 763L-52 772L-49 798L-114 798L-118 804L-117 796L-79 795L-77 788L-70 780L-65 755L-42 736L-34 712L-29 711L-23 696L-9 694L-3 697L4 697L10 693L20 692L20 682L22 682Z M1623 217L1610 234L1596 236L1595 261L1586 272L1553 264L1541 307L1532 313L1499 322L1514 362L1503 368L1504 381L1494 378L1486 370L1461 367L1433 367L1427 369L1404 360L1394 364L1391 378L1364 370L1353 373L1349 383L1340 387L1318 403L1311 419L1304 419L1300 408L1279 408L1275 389L1267 389L1268 367L1248 350L1220 352L1200 355L1184 334L1171 325L1145 308L1142 306L1099 320L1099 405L1091 406L1079 388L1068 382L1049 387L1042 394L1041 389L1045 379L1042 371L1022 364L1015 343L1006 337L1005 329L1021 332L1022 314L1036 311L1051 314L1054 291L1051 276L1034 277L1020 271L1001 282L985 287L977 283L978 270L968 254L955 255L941 238L951 219L946 213L959 185L976 200L978 181L1013 152L1039 151L1076 170L1095 180L1113 169L1139 169L1161 182L1166 175L1189 176L1193 163L1166 145L1182 132L1179 124L1195 117L1183 98L1191 88L1253 78L1261 71L1303 60L1318 48L1348 55L1353 85L1370 78L1392 87L1390 103L1406 101L1448 74L1442 83L1463 105L1501 174L1509 160L1532 175L1556 169L1566 173L1574 189L1585 194L1592 205L1614 201L1623 217Z M576 1024L563 1017L558 1012L557 1007L559 1000L559 993L550 982L548 975L548 971L542 966L542 956L538 949L532 950L534 944L538 937L536 930L542 925L538 921L543 910L550 897L565 898L564 829L564 822L583 821L583 786L650 786L715 786L781 786L786 803L783 807L785 825L791 846L798 850L807 857L798 867L786 870L781 875L779 887L772 912L774 919L771 934L764 950L754 959L747 972L746 979L738 984L733 1001L733 1017L733 1003L730 1003L731 995L729 989L720 982L718 970L720 957L712 956L711 960L701 961L705 966L707 976L698 985L689 998L681 999L667 989L660 993L659 998L650 1001L649 1004L633 1004L631 1001L619 1000L613 1003L608 1002L599 992L597 987L584 990L580 998L576 1013L570 1016L565 1018L576 1024Z M564 829L565 898L550 897L543 910L538 921L542 925L536 930L538 937L534 944L532 950L538 949L542 956L542 966L548 971L548 975L537 978L529 985L517 1003L501 1011L485 1010L480 1012L482 1017L473 1023L466 1030L445 1036L441 1033L438 1032L435 1037L421 1038L424 1033L419 1022L416 1015L409 1012L399 1002L403 994L410 996L415 994L424 995L415 979L416 968L415 957L408 946L410 938L399 937L399 926L392 920L400 897L421 881L422 858L428 822L432 815L425 809L425 803L418 798L414 770L431 760L497 795L564 829Z M985 287L977 301L961 305L945 329L960 351L958 367L976 393L966 402L964 408L956 407L945 393L940 392L930 387L925 378L909 373L899 377L896 372L873 362L849 358L835 354L833 357L811 337L792 328L778 314L790 311L804 291L795 281L819 271L819 266L804 270L804 259L813 252L829 250L832 242L828 228L835 215L834 207L810 199L800 199L790 187L777 191L756 182L756 176L750 165L737 164L736 155L740 150L729 135L712 137L707 136L703 142L696 141L692 123L688 114L692 112L705 113L712 107L707 99L696 94L697 89L690 84L679 65L683 57L681 44L665 36L656 40L654 33L636 25L631 7L630 -7L621 -15L629 -24L624 -54L636 -73L633 -78L652 -97L635 -113L670 -157L686 -177L692 -196L667 -221L674 -246L659 -275L670 -309L651 -356L666 -389L641 -419L643 -451L657 -455L685 -474L702 -491L730 -462L775 -451L838 -399L851 -378L852 -350L834 -328L806 -317L732 -349L720 -343L747 -313L748 -294L749 -254L771 -242L784 -232L786 -251L776 -267L786 -282L827 -258L841 -267L829 -296L868 -337L884 -334L899 -320L909 -348L895 -374L903 -400L891 -428L938 -413L947 -389L926 -383L926 -359L939 -345L965 -354L969 -381L1004 -402L1062 -441L1075 -439L1058 -411L1079 -407L1091 -422L1122 -423L1147 -442L1166 -415L1185 -445L1167 -472L1176 -488L1225 -474L1248 -459L1309 -406L1320 -430L1303 -454L1302 -464L1282 -469L1288 -492L1279 -531L1278 -547L1309 -594L1320 -644L1332 -656L1376 -641L1380 -610L1364 -566L1375 -550L1380 -515L1376 -449L1394 -421L1387 -391L1355 -330L1374 -324L1380 -339L1399 -350L1403 -371L1418 -392L1408 -417L1416 -447L1397 -451L1393 -477L1407 -527L1385 -568L1415 -604L1411 -644L1419 -645L1428 -614L1421 -563L1439 -553L1432 -591L1460 -612L1494 -615L1525 -584L1510 -630L1509 -691L1538 -703L1578 -700L1614 -708L1600 -740L1619 -782L1639 -784L1671 -816L1715 -825L1721 -844L1764 -851L1778 -835L1815 -872L1846 -871L1851 -902L1867 -934L1906 -966L1934 -940L1912 -922L1950 -910L1954 -875L1969 -892L2018 -891L2056 -856L2069 -831L2065 -796L2046 -776L2003 -741L1990 -723L2011 -714L2035 -699L2050 -711L2059 -673L2066 -688L2093 -697L2146 -687L2150 -660L2220 -652L2221 -696L2256 -686L2283 -686L2310 -655L2318 -620L2308 -597L2329 -555L2355 -534L2371 -589L2398 -565L2426 -579L2458 -563L2471 -578L2498 -571L2486 -621L2508 -645L2658 -609L2673 -577L2716 -537L2783 -547L2817 -539L2831 -518L2828 -482L2849 -468L2871 -478L2901 -479L2932 -470L2964 -475L2993 -434L3014 -448L3000 -479L3008 -500L3061 -487L3095 -489L3143 -467L3167 -446L3167 -276L3145 -259L3124 -261L3139 -241L3148 -210L3156 -200L3158 -185L3154 -175L3123 -183L3076 -156L3061 -152L3036 -128L3012 -107L3006 -92L2982 -115L2938 -89L2931 -101L2915 -87L2892 -91L2887 -70L2867 -39L2868 -26L2887 -19L2884 25L2869 27L2862 51L2869 64L2839 79L2834 111L2809 117L2804 145L2780 170L2774 152L2767 112L2757 49L2765 7L2779 -11L2780 -26L2806 -33L2836 -73L2865 -107L2894 -134L2908 -184L2888 -181L2878 -152L2835 -114L2822 -157L2779 -145L2737 -88L2751 -68L2714 -59L2688 -56L2689 -79L2663 -84L2642 -68L2591 -74L2537 -64L2483 -3L2419 67L2445 71L2453 89L2469 95L2480 81L2498 83L2522 114L2523 137L2510 164L2509 196L2501 236L2476 272L2470 289L2448 317L2425 344L2414 357L2392 371L2382 371L2371 360L2349 377L2346 384L2344 380L2344 369L2352 368L2355 341L2350 321L2365 313L2385 317L2396 294L2402 267L2408 258L2417 236L2390 243L2375 253L2350 253L2343 229L2323 211L2294 203L2288 177L2282 161L2276 150L2266 122L2251 112L2226 104L2204 104L2183 109L2170 123L2179 130L2179 145L2170 153L2155 182L2155 193L2131 209L2111 200L2091 202L2083 193L2073 190L2048 208L2026 213L2011 219L1990 215L1975 215L1964 202L1948 190L1931 186L1910 190L1895 194L1871 183L1868 164L1848 157L1833 154L1814 142L1797 170L1804 186L1788 204L1764 197L1747 196L1736 184L1718 184L1704 176L1679 188L1647 210L1629 215L1623 217L1614 201L1592 205L1585 194L1574 189L1566 173L1556 169L1532 175L1509 160L1501 174L1463 105L1442 83L1448 74L1406 101L1390 103L1392 87L1370 78L1353 85L1348 55L1318 48L1303 60L1261 71L1253 78L1191 88L1183 98L1195 117L1179 124L1182 132L1166 145L1193 163L1189 176L1166 175L1161 182L1139 169L1113 169L1095 180L1076 170L1039 151L1013 152L978 181L976 200L959 185L946 213L951 219L941 238L955 255L968 254L978 270L977 283L985 287Z M546 79L515 79L494 76L498 64L521 54L539 59L546 64L544 72L546 79Z M724 297L728 291L740 296L746 297L748 302L750 303L750 305L759 310L775 309L772 318L754 322L731 335L722 330L726 319L708 312L711 308L726 300L724 297Z M685 -474L657 -455L643 -451L650 -484L629 -503L603 -487L595 -452L579 -432L561 -443L539 -440L521 -465L511 -453L500 -451L498 -421L467 -428L462 -403L446 -403L435 -372L418 -325L393 -268L399 -255L393 -240L376 -241L366 -205L367 -157L377 -140L372 -100L358 -77L350 -58L339 -78L306 -41L284 -34L261 -50L255 -85L250 -164L265 -187L309 -217L342 -257L373 -312L413 -394L441 -428L486 -487L523 -508L550 -505L576 -547L606 -545L636 -555L688 -518L667 -504L685 -474Z M-613 -1457L-557 -1538L-498 -1531L-477 -1585L-418 -1599L-285 -1580L-181 -1470L-212 -1420L-275 -1415L-365 -1403L-357 -1381L-298 -1394L-247 -1353L-215 -1390L-201 -1347L-219 -1282L-177 -1323L-96 -1368L-46 -1345L-37 -1297L-105 -1222L-114 -1199L-167 -1182L-129 -1177L-148 -1109L-162 -1052L-161 -961L-141 -911L-167 -908L-195 -885L-164 -848L-160 -790L-178 -784L-156 -730L-193 -726L-174 -701L-179 -680L-203 -671L-226 -671L-205 -632L-205 -608L-238 -631L-247 -616L-224 -602L-202 -570L-196 -528L-226 -519L-238 -538L-259 -568L-253 -533L-273 -506L-229 -504L-206 -502L-250 -460L-296 -423L-345 -408L-363 -408L-380 -391L-403 -345L-439 -316L-451 -314L-473 -304L-497 -295L-511 -270L-511 -243L-520 -219L-547 -189L-540 -161L-548 -132L-556 -99L-580 -97L-604 -125L-638 -125L-654 -144L-665 -178L-694 -224L-702 -249L-705 -284L-728 -321L-722 -352L-733 -367L-716 -418L-691 -435L-685 -455L-681 -492L-700 -475L-709 -468L-724 -461L-745 -477L-746 -510L-739 -536L-724 -537L-690 -524L-718 -556L-733 -574L-750 -566L-764 -579L-745 -630L-755 -651L-769 -691L-789 -756L-810 -781L-810 -808L-854 -848L-890 -853L-934 -850L-975 -845L-994 -867L-1023 -913L-980 -937L-946 -941L-1017 -961L-1055 -993L-1053 -1025L-990 -1066L-929 -1108L-922 -1142L-967 -1176L-953 -1215L-895 -1289L-871 -1301L-878 -1351L-838 -1383L-787 -1402L-736 -1403L-717 -1365L-673 -1433L-633 -1386L-610 -1377L-575 -1339L-615 -1403L-613 -1457Z M270 211L278 217L302 222L293 239L291 257L287 261L279 259L279 265L267 279L267 290L275 286L281 297L280 303L285 312L279 320L283 338L292 341L291 351L275 364L243 357L218 365L216 378L197 381L178 371L172 376L142 366L135 357L144 343L147 296L130 271L117 258L92 249L90 230L112 225L140 231L134 202L150 214L189 193L194 172L209 167L211 176L219 176L226 187L238 199L247 197L261 209L265 211L270 211Z M312 375L323 366L326 386L320 403L313 398L309 383L312 375Z M-25 953L-24 947L-26 941L-32 936L-35 926L-36 916L-31 912L-28 902L-22 902L-11 907L-1 903L5 904L7 901L74 900L78 888L75 886L67 810L59 732L85 732L141 772L197 811L201 819L211 824L219 827L219 838L238 836L238 877L229 888L227 899L212 902L190 903L184 909L173 910L162 910L158 907L149 909L133 917L130 922L117 930L115 934L108 938L100 935L95 939L93 951L80 965L80 971L75 978L77 988L70 991L66 993L63 985L58 987L56 987L52 992L40 992L35 989L33 991L28 986L29 981L27 979L23 981L24 975L27 971L20 964L18 959L15 955L11 955L7 957L2 959L-3 963L-10 962L-15 957L-17 957L-22 959L-24 959L-25 953Z M-118 804L-114 798L-49 798L-52 772L-48 763L-32 761L-33 714L22 715L22 687L85 732L59 732L67 810L75 886L78 888L74 900L7 901L5 904L-1 903L-11 907L-22 902L-28 902L-31 912L-36 916L-47 904L-57 891L-68 886L-76 881L-86 881L-94 885L-102 884L-108 889L-109 880L-105 871L-102 855L-104 837L-106 829L-105 820L-109 811L-118 804Z M414 770L418 798L425 803L425 809L432 815L428 822L422 858L421 881L400 897L392 920L399 926L399 937L410 938L408 946L404 947L403 952L400 952L389 934L385 933L372 943L359 938L350 937L345 939L335 939L325 946L317 946L297 937L289 942L280 941L274 935L257 928L239 930L235 934L233 944L228 951L227 966L214 956L208 956L203 961L203 950L184 946L183 938L174 926L172 919L173 910L184 909L190 903L212 902L227 899L229 888L238 877L238 836L261 829L310 794L367 759L393 767L402 777L414 770Z M762 584L759 591L753 588L750 601L754 603L750 606L749 611L757 608L757 616L749 647L747 642L738 614L743 607L746 597L749 582L752 577L758 577L759 573L764 573L764 581L762 584Z M764 573L759 573L758 577L752 577L758 561L766 546L774 547L777 555L768 562L764 573Z M757 608L749 611L750 606L754 603L750 601L753 588L759 591L759 603L757 608Z M325 631L318 596L307 588L307 584L294 572L292 557L302 545L306 529L304 509L307 498L325 490L337 492L336 503L350 495L352 499L343 509L343 519L349 524L347 542L336 552L339 563L348 563L352 573L358 576L357 591L349 597L344 603L333 611L334 619L333 627L325 631Z M22 687L22 683L22 659L49 645L66 642L79 637L86 628L105 620L106 606L116 604L123 597L145 593L148 586L144 581L138 560L137 548L131 535L147 524L165 520L175 512L191 505L219 502L247 500L255 503L271 495L289 495L296 500L307 498L304 509L306 529L302 545L292 557L294 572L307 584L307 588L318 596L325 631L330 648L331 657L328 673L329 681L327 692L329 703L322 711L332 725L332 732L338 743L346 739L359 748L367 759L310 794L261 829L238 836L219 838L219 827L211 824L201 819L197 811L141 772L85 732L22 687Z M759 591L762 584L781 592L813 571L820 595L817 598L783 608L800 627L794 631L792 637L779 640L775 647L768 653L749 650L749 647L757 616L757 608L759 603L759 591Z M1026 745L1029 744L1030 749L1043 746L1057 747L1067 747L1078 735L1091 723L1101 712L1104 718L1107 733L1098 733L1097 745L1100 747L1092 751L1092 758L1087 766L1087 773L1083 777L1033 768L1027 749L1026 745Z M1014 736L1012 722L1017 713L1021 711L1026 717L1027 727L1023 738L1019 739L1014 736Z M966 638L970 646L968 651L974 665L962 665L958 656L943 655L955 636L966 638Z M820 595L813 571L850 550L856 526L855 511L864 505L872 492L880 489L899 492L905 497L913 494L924 518L935 525L936 537L927 544L924 559L935 578L956 589L964 604L961 618L967 618L967 629L976 639L966 638L955 636L943 655L912 653L865 614L840 601L820 595Z M1087 773L1087 766L1092 758L1092 751L1100 747L1097 745L1098 733L1107 733L1114 745L1123 752L1136 754L1145 758L1153 768L1158 774L1163 776L1163 780L1157 791L1155 796L1148 802L1141 814L1134 813L1130 817L1128 826L1130 838L1128 840L1121 840L1110 847L1109 855L1105 859L1094 859L1088 863L1088 870L1080 875L1071 873L1060 879L1052 880L1046 868L1033 839L1083 822L1094 786L1087 773Z M1042 394L1049 387L1068 382L1079 388L1091 406L1099 405L1118 404L1116 393L1130 385L1144 372L1166 384L1168 402L1174 407L1192 406L1198 410L1206 432L1225 447L1236 457L1254 468L1276 477L1275 490L1270 489L1262 483L1260 491L1246 495L1242 512L1233 518L1220 521L1216 530L1204 533L1187 525L1185 508L1173 507L1154 489L1141 486L1122 476L1110 474L1103 478L1092 477L1080 489L1065 493L1062 478L1065 456L1052 449L1056 434L1045 433L1049 414L1064 420L1079 412L1067 399L1062 386L1049 392L1047 408L1042 394Z M976 639L967 629L967 618L961 618L964 604L956 589L935 578L924 559L927 544L936 537L935 525L924 518L913 494L904 477L907 470L902 446L913 440L916 448L924 458L936 460L942 460L961 444L968 442L973 449L967 459L977 470L981 469L987 485L1002 489L1014 500L1038 503L1064 498L1065 493L1080 489L1092 477L1103 478L1110 474L1122 476L1141 486L1154 489L1173 507L1185 508L1187 525L1180 551L1175 565L1183 568L1176 579L1181 595L1182 607L1195 611L1196 623L1181 641L1189 651L1196 662L1212 670L1213 687L1221 690L1222 699L1198 708L1192 730L1160 724L1142 720L1123 718L1116 695L1108 692L1095 695L1079 704L1058 698L1041 683L1025 678L1014 660L1002 634L993 638L982 631L976 639Z M762 584L764 581L764 573L768 562L777 555L774 547L767 546L765 530L769 522L774 517L778 513L779 501L784 505L803 499L812 503L825 503L845 495L854 496L872 492L864 505L855 511L856 526L850 550L813 571L781 592L762 584Z M942 460L936 460L929 448L929 445L922 445L917 439L913 440L907 433L894 428L896 417L893 409L916 406L920 412L926 416L923 421L932 429L927 435L934 441L941 445L942 460Z M350 -58L358 -77L372 -100L377 -140L367 -157L366 -205L376 -241L393 -240L399 -255L393 -268L418 -325L435 -372L446 -403L462 -403L467 -428L498 -421L500 -451L511 -453L533 -430L559 -399L559 -333L565 -317L536 -306L520 -278L523 -254L496 -223L464 -191L452 -141L464 -117L480 -98L464 -61L447 -54L441 -1L431 27L411 24L402 48L382 49L377 21L363 -14L350 -58Z M636 25L654 33L656 40L665 36L681 44L683 57L679 65L690 84L697 89L696 94L707 99L712 107L705 113L692 112L688 114L692 123L696 141L682 143L677 149L676 162L669 159L654 161L650 154L644 159L637 155L624 155L606 148L589 146L576 147L567 154L559 155L558 143L553 130L563 125L563 114L559 103L558 91L574 91L592 80L596 64L610 55L608 42L618 37L636 25Z M696 141L703 142L707 136L712 137L729 135L740 150L736 155L737 164L750 165L756 176L756 182L777 191L790 187L800 199L810 199L834 207L835 215L828 228L832 242L829 250L813 252L804 259L804 270L790 272L779 280L764 281L749 290L750 303L748 302L746 297L740 296L728 291L724 297L722 294L696 288L695 279L679 282L673 296L660 313L652 309L645 313L637 309L641 306L644 298L649 290L648 286L651 284L653 287L663 288L667 286L664 284L665 280L659 274L657 264L651 260L652 251L645 245L638 244L625 236L614 238L610 242L603 242L599 248L587 250L581 254L573 248L563 248L552 245L545 250L544 244L535 237L538 227L543 220L546 222L542 210L557 189L565 186L567 178L559 155L567 154L576 147L589 146L606 148L624 155L637 155L644 159L650 154L654 161L669 159L676 162L677 149L682 143L696 141Z M558 91L559 103L563 114L563 125L553 130L558 143L559 155L567 178L565 186L557 189L542 210L546 222L543 220L527 210L515 214L507 211L497 217L489 208L482 211L473 197L461 195L459 187L448 184L445 191L436 186L437 178L425 176L417 168L410 151L411 141L407 127L401 117L406 109L402 95L413 87L439 74L460 64L477 69L478 76L494 76L515 79L546 79L554 82L558 91Z M450 244L448 255L439 255L442 260L437 276L434 280L419 281L411 286L397 284L373 278L369 269L353 274L351 278L341 275L332 274L325 270L327 264L327 259L332 258L340 265L342 258L357 259L369 255L377 256L382 261L384 257L381 240L387 237L393 225L406 234L415 223L421 221L434 229L442 228L449 233L448 236L450 244Z M535 237L544 244L545 250L535 256L527 272L517 289L504 293L493 292L480 299L474 302L461 298L448 287L443 284L440 276L437 276L442 260L439 255L448 255L450 244L458 251L464 254L478 250L480 245L486 245L494 241L496 242L504 239L508 233L513 232L531 240L535 237Z M610 242L614 238L625 236L638 244L645 245L652 251L651 260L657 264L659 274L665 280L664 284L667 286L663 288L653 287L651 284L648 286L649 290L644 298L641 306L637 309L634 298L636 287L635 277L626 262L621 252L615 244L610 242Z M637 309L645 313L652 309L660 313L660 319L652 324L647 322L643 350L633 348L621 339L601 345L593 351L568 350L556 346L549 348L544 338L541 334L545 330L541 327L536 332L526 326L525 316L515 310L513 303L504 293L517 289L527 272L535 256L545 250L552 245L563 248L573 248L581 254L587 250L599 248L603 242L610 242L615 244L621 252L626 262L635 277L636 287L634 298L637 309Z M608 42L610 55L596 64L592 80L574 91L558 91L554 82L546 79L544 72L546 64L539 59L521 54L518 29L537 20L565 22L581 19L583 25L592 27L608 42Z M621 -15L630 -7L631 7L636 25L618 37L608 42L592 27L583 25L581 19L565 22L537 20L518 29L518 7L526 -13L542 -23L555 -0L569 -1L572 -25L586 -30L593 -26L608 -15L621 -15Z M633 -78L636 -73L624 -54L629 -24L621 -15L608 -15L593 -26L586 -30L572 -25L574 -43L568 -39L557 -50L556 -69L577 -78L598 -83L616 -77L633 -78Z M402 95L406 109L401 117L407 127L411 141L410 151L417 168L410 170L405 167L401 172L389 178L383 184L371 190L374 198L375 208L384 215L393 225L387 237L381 240L384 257L382 261L377 256L369 255L357 259L342 258L340 265L332 258L327 259L309 252L305 257L291 257L293 239L302 222L278 217L270 211L271 199L267 193L269 176L266 148L276 148L281 138L285 112L282 103L285 97L299 95L302 102L313 88L310 77L309 61L321 65L332 60L332 71L349 78L349 88L366 83L375 75L394 86L402 95Z M544 338L549 348L556 346L568 350L593 351L601 345L621 339L633 348L643 350L634 360L628 376L633 389L619 386L602 393L602 404L587 406L575 398L562 405L549 404L548 389L540 382L542 379L541 376L543 369L550 362L542 352L540 343L544 338Z M605 532L603 538L579 540L579 537L559 533L562 524L571 531L584 530L596 531L596 535L605 532Z M549 404L562 405L575 398L587 406L602 404L602 393L610 399L605 413L601 415L591 415L582 413L562 418L573 431L565 434L556 434L547 423L544 428L547 441L556 451L550 456L559 465L567 472L567 483L552 478L557 489L546 491L553 509L542 509L528 500L522 484L519 470L512 460L504 448L503 441L510 431L511 424L517 421L517 415L528 413L534 408L543 409L546 405L549 404Z M913 494L905 497L899 492L880 489L872 492L854 496L845 495L825 503L812 503L803 499L784 505L779 501L778 513L774 517L769 522L763 512L769 504L759 506L745 501L734 513L708 516L695 505L677 504L673 513L662 515L646 504L627 504L617 484L605 472L613 455L603 445L621 424L647 423L654 407L686 409L706 395L725 389L753 388L782 404L806 413L825 409L840 411L859 400L877 398L893 409L896 417L894 428L907 433L913 440L902 446L907 470L904 477L913 494Z M602 393L619 386L633 389L635 398L650 405L647 410L627 411L620 418L606 430L601 420L601 415L605 413L610 399L602 393Z M517 415L517 421L511 424L510 431L503 441L500 440L499 435L490 428L489 417L490 402L492 395L490 392L488 385L496 374L497 378L501 376L505 382L509 384L510 392L508 400L510 409L517 415Z M443 284L448 287L461 298L474 302L480 299L485 308L490 315L483 323L476 318L464 319L450 315L442 315L439 320L433 315L429 324L437 335L441 343L449 351L455 356L461 366L476 374L474 378L458 370L449 362L434 355L420 338L423 336L415 326L415 318L404 315L399 325L394 317L395 309L407 309L410 305L416 309L422 309L422 303L428 300L429 291L443 284Z M327 259L327 264L325 270L332 274L341 275L339 285L332 289L320 286L316 296L308 296L305 292L296 301L288 302L281 297L275 286L267 290L267 279L279 265L279 259L287 261L291 257L305 257L309 252L327 259Z M267 193L271 199L270 211L265 211L261 209L263 194L267 193Z M269 176L267 193L263 194L261 209L247 197L238 199L226 187L219 176L211 176L209 167L222 161L234 163L250 158L260 170L269 176Z M282 103L285 112L281 138L276 148L266 148L269 176L260 170L250 158L234 163L222 161L231 154L245 114L268 102L282 103Z M16 392L22 386L29 383L33 394L43 394L46 391L56 392L60 403L52 409L52 426L50 429L49 440L42 441L48 454L44 468L50 475L47 480L41 488L42 495L36 501L27 498L18 500L21 484L19 471L12 469L8 461L9 446L16 439L17 430L21 417L20 407L17 399L16 392Z M42 495L41 488L47 480L50 475L44 468L48 454L42 441L49 440L50 429L52 426L52 409L60 403L56 392L46 391L43 394L33 394L29 383L22 386L16 392L17 376L10 366L34 349L54 354L76 353L94 357L108 356L135 357L142 366L172 376L178 371L197 381L216 378L217 392L202 406L180 411L179 418L168 431L162 448L169 461L159 470L155 484L143 488L131 504L110 504L94 504L83 511L77 519L69 517L63 510L58 498L42 495Z M63 92L66 112L54 137L24 153L0 149L14 120L5 92L28 69L40 56L44 71L40 87L51 86L63 92Z M341 275L351 278L353 274L369 269L373 278L397 284L395 296L399 306L386 303L372 311L373 323L371 330L376 341L392 353L400 372L419 390L432 390L436 395L431 399L446 407L459 414L473 426L475 430L472 437L462 427L448 424L441 438L453 446L451 457L444 458L435 477L428 478L428 472L432 460L435 456L429 443L424 432L417 430L412 420L401 416L394 407L381 406L368 396L353 381L342 368L337 345L328 343L315 335L307 338L298 349L291 351L292 341L283 338L279 320L285 312L280 303L281 297L288 302L296 301L305 292L308 296L316 296L320 286L332 289L339 285L341 275Z M413 473L425 471L419 488L422 494L418 505L406 497L397 495L374 484L376 474L396 475L413 473Z M312 414L320 407L330 422L328 451L320 450L313 457L307 451L306 425L303 412L312 414Z M332 60L321 65L309 61L302 44L301 14L304 6L309 -3L324 -5L330 -14L343 -23L342 -7L338 3L339 12L349 16L344 28L339 25L327 46L332 60Z M373 27L378 42L368 65L351 49L348 37L373 27Z M63 92L51 86L40 87L44 71L40 56L54 55L72 72L63 92Z M115 105L118 89L106 71L86 66L82 58L88 45L83 37L74 51L73 22L64 7L70 -25L83 -51L96 -48L117 -51L99 -17L116 -21L134 -21L130 4L115 31L132 33L133 36L148 70L159 75L170 107L174 118L195 124L193 141L184 149L191 163L176 177L154 176L125 184L117 179L106 191L91 188L79 198L70 193L95 165L110 159L84 155L79 144L96 136L87 121L90 103L115 105Z M940 392L945 393L956 407L964 408L966 402L976 393L985 405L994 421L1001 422L1007 428L993 429L990 446L987 454L981 459L981 469L977 470L967 459L973 449L968 442L961 444L942 460L941 445L934 441L927 435L932 429L923 421L926 416L920 412L916 406L920 402L933 409L942 410L944 407L936 395L940 392Z M936 460L924 458L916 448L913 440L917 439L922 445L929 445L929 448L936 460Z M833 357L835 354L849 358L873 362L896 372L899 377L909 373L925 378L930 387L940 392L936 395L944 407L942 410L933 409L920 402L916 406L893 409L877 398L859 400L862 390L858 375L848 366L839 364L833 357Z M397 284L411 286L419 281L434 280L437 276L440 276L443 284L429 291L428 300L422 303L422 309L416 309L410 305L407 309L395 308L399 306L395 296L397 284Z M643 -451L641 -419L666 -389L651 -356L670 -309L659 -275L674 -246L667 -221L692 -196L686 -177L670 -157L634 -113L604 -110L575 -98L548 -91L538 -109L522 -120L526 -154L518 -186L526 -208L541 -231L579 -273L590 -281L588 -298L565 -317L559 -333L559 -399L533 -430L511 -453L521 -465L539 -440L561 -443L579 -432L595 -452L603 -487L629 -503L650 -484L643 -451Z M543 220L538 227L535 237L531 240L513 232L508 233L504 239L496 242L494 241L486 245L480 245L478 250L464 254L458 251L450 244L448 236L449 233L452 227L459 227L465 225L465 222L468 221L470 215L473 214L476 210L481 210L489 208L497 217L507 211L515 214L527 210L543 220Z M417 168L425 176L437 178L436 186L445 191L448 184L459 187L461 195L473 197L481 210L476 210L473 214L470 215L468 221L465 222L465 225L459 227L452 227L449 233L442 228L434 229L421 221L415 223L406 234L393 225L384 215L375 208L374 198L371 190L383 184L389 178L401 172L405 167L410 170L417 168Z M749 650L768 653L775 647L779 640L792 637L794 631L800 627L783 608L817 598L820 595L840 601L865 614L912 653L943 655L958 656L962 665L974 665L980 681L988 686L991 692L1003 700L1004 708L1002 714L1004 720L1009 725L1011 731L1014 736L1019 739L1023 738L1026 745L1027 749L1033 768L1083 777L1087 773L1094 786L1083 822L1033 839L985 846L970 854L958 872L950 875L946 869L939 870L923 868L920 867L901 867L897 869L890 864L885 873L887 880L880 886L877 878L872 873L871 866L863 860L854 845L849 831L837 818L830 816L819 799L817 786L818 775L808 755L800 748L791 744L786 734L787 730L782 720L777 716L771 702L761 687L752 674L744 674L746 664L747 657L749 650Z M712 536L716 531L728 531L743 525L732 533L733 537L731 537L728 538L725 538L723 535L720 535L715 537L712 536Z M712 536L715 537L720 535L723 535L725 538L728 538L731 537L733 537L716 547L708 544L704 536L712 536Z M131 535L137 548L138 560L144 581L148 586L145 593L123 597L116 604L106 606L105 620L86 628L79 637L66 642L49 645L22 659L22 682L20 682L20 692L10 693L4 697L-3 697L-9 694L-23 696L-29 711L-34 712L-42 736L-65 755L-70 780L-77 788L-79 795L-117 796L-116 788L-110 783L-104 774L-105 767L-100 755L-90 743L-85 740L-80 729L-80 720L-74 708L-63 701L-52 682L-44 675L-28 673L-15 660L-7 655L7 639L3 614L9 598L12 587L22 574L39 565L51 556L63 535L68 523L80 523L90 532L106 530L123 535L131 535Z M781 786L715 786L650 786L583 786L583 719L583 652L578 636L583 625L580 616L586 607L608 607L624 612L641 617L649 620L661 614L668 609L683 607L695 610L699 619L703 613L717 617L730 619L738 614L747 642L749 647L744 655L740 669L736 679L732 682L726 676L719 668L707 640L705 642L712 662L722 681L735 710L741 720L747 731L762 751L758 754L759 766L778 782L781 786Z M583 786L583 821L564 822L564 829L497 795L431 760L414 770L402 777L393 767L367 759L359 748L346 739L338 743L332 732L332 725L322 711L329 703L327 692L329 681L328 673L331 657L330 648L325 631L333 627L334 619L333 611L344 603L349 597L357 591L358 576L378 583L385 581L399 584L421 593L429 611L444 614L467 623L485 632L493 627L501 618L497 603L502 594L514 584L526 582L548 586L554 595L560 595L565 598L582 600L586 607L580 616L583 625L578 636L583 652L583 719L583 786Z M476 374L461 366L455 356L449 351L441 343L437 335L429 324L433 315L439 320L442 315L450 315L464 319L476 318L483 323L489 323L485 334L493 343L491 354L487 355L484 357L478 362L476 374Z M540 382L548 389L549 404L546 405L543 409L534 408L528 413L517 415L510 409L508 400L510 392L512 393L513 388L523 384L526 384L532 382L540 382Z M480 299L493 292L504 293L513 303L515 310L525 316L526 326L536 332L541 327L545 330L541 334L544 338L540 343L542 352L550 362L543 369L541 376L542 379L540 382L532 382L526 384L528 379L530 374L527 374L524 370L521 369L519 365L516 364L514 360L511 362L508 369L504 371L506 369L499 364L494 362L491 358L487 355L491 354L493 343L485 334L489 323L483 323L490 315L485 308L480 299Z M501 376L497 378L496 374L488 385L490 392L486 390L481 383L474 378L476 374L478 362L484 357L487 355L491 358L494 362L499 364L506 369L504 371L501 376Z M510 392L509 384L505 382L501 376L504 371L508 369L511 362L514 360L516 364L519 365L521 369L524 370L527 374L530 374L528 379L526 382L523 384L513 388L512 393L510 392Z", "asia": "M274 693L311 714L311 720L326 729L321 741L322 747L328 751L325 759L326 762L325 767L329 773L333 783L336 785L329 791L318 795L312 795L309 798L302 798L299 799L287 796L280 797L277 784L274 779L272 776L262 774L257 771L251 770L247 768L243 765L237 753L232 747L230 742L231 737L229 728L233 727L236 724L240 718L243 716L243 713L240 711L240 707L243 706L243 700L239 695L243 693L254 694L274 693Z M798 128L790 138L782 139L782 154L776 160L757 155L750 181L745 184L725 189L734 213L727 217L728 224L722 222L717 218L703 216L686 216L683 217L669 212L663 214L662 222L646 218L639 220L637 225L631 228L618 237L614 246L610 246L608 240L595 240L593 229L588 229L589 216L577 206L561 207L549 209L540 197L532 191L517 181L489 188L490 238L485 239L478 228L471 225L460 227L456 232L455 229L458 223L456 218L445 214L440 202L435 198L434 194L444 195L444 185L453 183L461 185L463 171L461 162L451 163L443 159L432 166L423 169L418 166L419 159L412 149L405 150L397 140L402 129L400 125L407 109L417 118L419 106L439 89L454 89L476 100L487 106L498 100L513 99L526 107L529 103L543 103L545 96L529 85L539 77L537 73L546 69L539 58L543 52L580 46L585 42L610 36L618 28L636 32L639 50L649 46L662 51L661 60L670 59L695 44L691 49L704 62L726 102L731 94L745 103L759 99L764 102L769 111L776 114L780 120L792 118L798 128Z M490 238L489 188L515 180L532 191L540 197L549 209L561 207L577 206L589 216L588 229L593 229L595 240L608 240L610 246L614 246L618 237L631 228L637 225L640 227L632 235L639 240L646 237L657 244L645 253L637 252L633 252L632 249L634 243L621 246L618 254L613 261L605 260L602 266L610 269L612 278L606 291L599 288L593 288L594 280L581 275L570 269L564 263L553 254L548 241L545 239L534 239L530 236L529 226L516 219L508 227L499 231L501 238L490 238Z M1097 643L1091 652L1099 661L1097 666L1108 675L1096 676L1093 682L1093 691L1084 698L1084 708L1080 723L1078 719L1067 724L1063 718L1056 717L1052 714L1040 718L1036 713L1030 713L1022 712L1020 699L1015 696L1011 688L1009 679L1010 670L1016 664L1018 670L1025 676L1031 674L1037 675L1043 670L1048 669L1057 671L1065 669L1070 656L1074 652L1077 641L1088 641L1097 643Z M964 694L966 701L969 706L977 707L981 713L979 726L979 741L968 741L959 733L947 725L943 719L935 711L930 704L923 690L914 682L911 673L908 666L899 659L894 651L887 645L876 635L875 630L882 630L897 632L906 642L913 648L919 652L928 663L938 663L946 670L952 678L959 682L955 690L961 694L964 694Z M229 728L231 737L230 742L232 747L237 753L243 765L239 764L226 766L223 767L220 774L222 778L221 790L219 800L222 802L229 806L232 804L232 815L225 814L221 809L217 805L210 803L207 798L202 801L194 800L190 795L184 794L180 795L179 791L176 791L171 791L165 792L161 792L159 781L156 777L155 771L156 765L154 761L154 755L142 755L143 752L138 752L132 754L129 760L128 762L122 761L119 762L112 763L109 758L106 754L104 749L101 741L72 741L69 742L66 742L62 743L61 740L63 739L63 735L65 732L69 730L71 731L75 728L80 728L80 730L84 732L90 726L96 721L98 718L98 710L102 701L107 695L113 691L114 688L114 684L116 681L115 675L117 666L119 660L122 655L122 649L123 642L127 637L132 634L140 637L146 641L154 642L161 644L164 638L170 638L180 633L184 635L188 635L189 633L193 632L200 633L206 633L210 632L215 640L220 641L223 640L227 640L233 638L235 642L243 649L243 660L247 662L244 665L240 668L236 673L234 678L234 685L231 689L231 697L228 699L228 705L226 711L228 716L229 728Z M349 700L343 692L343 656L352 645L354 642L360 642L369 635L382 634L410 605L417 596L421 590L421 585L421 575L421 571L424 571L429 569L434 568L439 565L442 565L442 567L442 573L442 579L440 582L437 593L432 604L426 617L418 631L409 642L398 655L388 663L373 673L364 681L353 692L351 698L349 700Z M326 729L311 720L311 714L275 694L273 682L276 678L281 672L285 665L280 653L279 649L275 642L281 636L287 629L292 631L292 637L296 640L303 640L315 648L318 648L322 649L329 650L332 646L341 642L345 645L352 645L343 656L343 692L349 700L342 704L340 708L336 709L335 716L331 720L329 726L326 729Z M182 602L175 598L171 595L171 592L172 588L172 584L166 578L165 574L162 568L162 562L160 558L156 559L157 555L160 551L159 547L162 544L160 541L162 535L167 528L175 528L175 488L175 483L186 483L186 462L226 462L264 462L303 462L306 473L304 474L305 485L309 498L312 500L318 504L313 510L306 512L302 515L302 522L297 536L298 541L297 549L293 559L287 564L283 572L282 576L277 579L274 589L274 598L274 590L273 585L272 582L267 578L266 571L267 563L262 562L256 565L258 568L259 574L253 580L249 587L244 588L235 582L232 584L231 587L225 589L215 591L207 588L203 590L201 589L196 584L194 581L187 582L184 587L182 596L178 598L175 599L182 602Z M175 488L175 528L167 528L162 535L160 541L162 544L159 547L160 551L157 555L156 559L160 558L162 562L162 568L165 571L159 575L154 579L147 590L138 595L128 594L126 595L127 598L121 602L117 606L105 610L103 607L99 610L91 610L93 608L89 601L88 597L84 595L78 589L80 585L85 586L87 585L93 585L87 576L88 569L87 563L83 556L84 552L78 551L78 545L74 541L78 528L91 518L91 505L95 484L97 479L93 476L93 472L89 470L87 453L97 447L136 468L175 488Z M423 169L418 177L409 179L399 194L408 207L407 216L417 231L412 237L410 240L406 239L399 231L396 231L390 228L387 222L378 219L372 222L370 219L357 213L342 210L334 208L320 198L309 193L301 185L308 183L316 171L311 165L325 159L325 156L316 159L316 152L321 148L331 147L332 142L330 134L334 126L334 122L320 117L314 117L308 110L300 112L288 107L288 104L285 97L277 96L276 91L278 88L272 79L262 81L259 80L256 84L253 83L250 73L248 67L258 66L262 63L259 58L252 55L253 52L249 49L243 38L245 34L244 26L234 21L229 24L228 19L217 15L214 4L213 -4L209 -9L213 -14L210 -32L217 -43L216 -46L227 -57L216 -66L237 -92L246 -104L250 -115L236 -130L240 -145L231 -162L237 -182L226 -210L235 -229L220 -246L221 -265L229 -268L246 -279L256 -289L272 -272L299 -265L336 -235L344 -223L344 -206L333 -193L317 -186L274 -205L267 -202L282 -184L283 -173L284 -149L296 -142L304 -137L305 -148L299 -157L306 -166L329 -152L338 -157L331 -174L354 -198L363 -197L372 -188L378 -205L370 -220L374 -235L367 -252L395 -243L400 -229L388 -225L388 -211L396 -203L411 -208L413 -224L434 -237L468 -259L475 -258L466 -242L478 -239L485 -248L503 -249L518 -260L529 -244L540 -262L530 -278L535 -287L564 -279L577 -270L613 -239L619 -253L609 -267L609 -273L597 -276L601 -289L595 -312L595 -322L613 -350L620 -379L627 -386L653 -377L655 -359L646 -333L652 -323L655 -303L653 -264L663 -247L659 -230L640 -194L651 -191L655 -199L666 -206L668 -218L677 -230L671 -245L676 -263L665 -265L663 -281L671 -310L658 -334L675 -356L673 -379L678 -379L683 -361L679 -331L690 -325L685 -348L702 -360L722 -362L740 -344L731 -370L731 -406L748 -413L771 -412L792 -417L784 -435L796 -460L807 -461L826 -480L852 -486L855 -497L881 -500L889 -491L911 -513L929 -512L932 -531L941 -549L964 -568L981 -553L968 -542L990 -536L993 -514L1002 -525L1030 -524L1052 -504L1060 -489L1058 -468L1047 -457L1021 -436L1014 -425L1026 -420L1040 -411L1049 -418L1054 -396L1059 -405L1074 -410L1106 -404L1108 -388L1149 -383L1150 -409L1170 -403L1186 -404L1202 -386L1206 -364L1201 -351L1213 -327L1228 -314L1238 -346L1254 -333L1270 -341L1289 -331L1296 -340L1312 -336L1305 -365L1318 -379L1407 -358L1415 -339L1441 -316L1480 -322L1500 -317L1508 -305L1507 -283L1519 -275L1532 -281L1550 -282L1568 -276L1587 -280L1604 -255L1616 -264L1608 -282L1612 -294L1644 -286L1664 -288L1692 -274L1706 -262L1706 -162L1693 -152L1681 -154L1689 -142L1695 -123L1700 -118L1701 -109L1698 -103L1680 -108L1653 -92L1644 -90L1629 -75L1615 -63L1611 -54L1597 -68L1572 -52L1567 -59L1558 -51L1545 -54L1541 -41L1530 -23L1530 -15L1541 -11L1540 15L1531 16L1526 30L1531 38L1513 46L1510 65L1495 69L1492 85L1478 100L1475 89L1471 66L1465 29L1470 4L1478 -7L1479 -15L1494 -19L1511 -43L1528 -63L1546 -79L1554 -108L1542 -107L1536 -89L1511 -67L1503 -92L1478 -85L1453 -52L1461 -40L1439 -35L1424 -33L1425 -47L1410 -50L1397 -40L1368 -43L1335 -38L1304 -2L1266 40L1281 42L1286 52L1296 56L1302 48L1313 49L1327 67L1327 81L1320 97L1319 115L1314 139L1300 160L1296 170L1283 186L1270 202L1263 210L1250 218L1244 218L1238 212L1225 222L1223 226L1222 224L1222 217L1227 217L1228 201L1226 189L1234 184L1246 186L1253 173L1256 157L1260 152L1265 139L1249 143L1240 149L1225 149L1221 135L1210 124L1193 119L1189 104L1186 95L1182 88L1176 72L1167 66L1153 61L1140 61L1127 64L1119 72L1125 76L1125 85L1119 90L1111 107L1111 114L1097 123L1085 117L1073 119L1068 114L1062 112L1048 123L1035 125L1026 129L1014 126L1005 127L999 119L989 112L979 109L967 111L958 114L944 108L942 96L930 92L921 90L910 84L900 100L904 109L895 120L881 116L871 116L864 108L854 108L845 103L831 111L812 124L801 126L798 128L792 118L780 120L776 114L769 111L764 102L759 99L745 103L731 94L726 102L704 62L691 49L695 44L670 59L661 60L662 51L649 46L639 50L636 32L618 28L610 36L585 42L580 46L543 52L539 58L546 69L537 73L539 77L529 85L545 96L543 103L529 103L526 107L513 99L498 100L487 106L476 100L454 89L439 89L419 106L417 118L407 109L400 125L402 129L397 140L405 150L412 149L419 159L418 166L423 169Z M164 46L146 47L134 45L136 37L150 32L160 35L164 38L163 42L164 46Z M269 175L272 171L279 174L282 175L283 178L289 183L299 182L297 187L287 189L273 197L268 194L270 188L259 184L261 181L270 176Z M246 -279L229 -268L221 -265L226 -285L213 -296L198 -286L193 -266L184 -254L173 -260L160 -259L149 -274L144 -266L138 -265L136 -247L118 -252L115 -237L106 -237L99 -219L89 -191L74 -158L78 -150L74 -141L65 -141L58 -121L59 -93L65 -82L62 -59L54 -45L49 -34L43 -46L23 -24L10 -20L-3 -29L-7 -50L-10 -96L-1 -110L25 -128L44 -151L62 -184L86 -232L102 -252L129 -286L151 -299L167 -297L182 -322L200 -320L217 -326L248 -305L235 -297L246 -279Z M2 124L6 128L21 131L16 141L14 151L12 154L7 152L8 156L0 164L0 170L5 168L8 174L8 178L11 184L7 188L10 199L15 200L14 206L5 214L-14 210L-28 215L-30 223L-41 224L-52 218L-56 221L-74 215L-77 210L-72 202L-71 174L-81 159L-88 152L-103 146L-104 136L-91 132L-75 136L-78 119L-69 126L-46 114L-43 101L-34 98L-33 103L-28 104L-24 110L-17 117L-12 116L-3 123L2 124Z M27 221L33 215L35 227L32 237L27 234L25 226L27 221Z M-172 560L-171 557L-172 553L-176 551L-178 545L-178 539L-175 537L-173 531L-170 530L-163 533L-158 531L-154 532L-152 530L-113 530L-111 522L-117 477L-122 431L-107 430L-74 454L-41 477L-39 482L-33 485L-28 486L-28 493L-17 492L-17 516L-22 523L-23 529L-32 531L-45 531L-49 535L-55 535L-61 535L-64 533L-69 535L-78 539L-80 542L-88 547L-89 549L-93 551L-98 550L-101 553L-102 559L-110 568L-110 571L-112 575L-112 581L-116 583L-118 584L-120 580L-122 581L-126 584L-134 583L-136 582L-141 580L-140 577L-143 577L-143 574L-141 571L-145 567L-146 564L-148 562L-153 563L-156 564L-158 566L-163 566L-165 563L-170 564L-172 560Z M-32 622L-41 623L-43 616L-43 594L-44 592L-45 587L-48 583L-51 580L-50 575L-47 574L-45 569L-40 569L-38 566L-34 563L-31 563L-23 568L-24 572L-22 578L-24 582L-22 584L-27 590L-30 593L-32 600L-32 606L-32 622Z M87 453L89 470L93 472L93 476L97 479L95 484L91 505L91 518L78 528L74 541L78 545L78 551L84 552L83 556L81 557L80 560L72 549L62 555L54 552L49 551L46 552L40 552L35 556L30 557L18 551L13 554L8 554L4 550L-5 546L-16 547L-19 550L-20 555L-23 559L-23 568L-31 563L-34 563L-38 566L-37 559L-49 556L-49 551L-55 545L-56 540L-55 535L-49 535L-45 531L-32 531L-23 529L-22 523L-17 516L-17 492L-3 487L25 467L59 447L74 451L80 457L87 453Z M-32 622L-32 606L-32 600L-30 593L-27 590L-22 584L-24 582L-22 578L-24 572L-23 568L-23 559L-20 555L-19 550L-16 547L-5 546L4 550L8 554L13 554L18 551L30 557L35 556L40 552L46 552L49 551L54 552L62 555L69 549L78 560L84 564L83 569L74 577L72 583L70 588L68 591L66 598L61 602L59 607L57 611L56 615L50 618L44 614L40 614L35 620L32 620L27 630L25 637L14 640L11 640L7 642L-1 642L-6 635L-9 628L-16 622L-24 622L-32 622Z M83 556L87 563L88 569L87 576L93 585L87 585L85 586L80 585L78 589L84 595L88 597L89 601L93 608L91 610L86 620L84 622L83 630L84 634L83 637L88 642L89 646L92 651L97 654L97 658L98 661L97 666L90 664L82 662L69 661L62 662L56 661L52 661L36 661L37 653L33 647L29 645L27 641L24 639L25 637L27 630L32 620L35 620L40 614L44 614L50 618L56 615L57 611L59 607L61 602L66 598L68 591L70 588L72 583L74 577L83 569L83 566L80 560L81 557L83 556Z M-112 581L-112 575L-110 571L-110 568L-102 559L-101 553L-98 550L-93 551L-89 549L-88 547L-80 542L-78 539L-69 535L-64 533L-61 535L-55 535L-56 540L-55 545L-49 551L-49 556L-37 559L-38 566L-40 569L-45 569L-47 574L-50 575L-59 575L-63 574L-66 576L-71 575L-88 575L-88 581L-87 588L-93 586L-98 586L-101 589L-106 587L-107 583L-112 581Z M210 632L206 633L200 633L193 632L189 633L188 635L184 635L180 633L170 638L165 637L161 644L154 642L146 641L140 637L132 634L127 637L123 642L122 649L116 649L109 647L103 652L98 661L97 658L97 654L92 651L89 646L88 642L83 637L84 634L83 630L84 622L86 620L91 610L99 610L101 607L105 610L117 606L121 602L127 598L126 595L128 594L138 595L147 590L154 579L159 575L165 574L166 578L172 584L172 588L171 592L171 595L175 598L182 602L187 606L187 610L194 615L198 619L201 625L208 629L210 632Z M122 649L122 655L119 660L117 666L115 675L116 681L114 684L114 688L113 691L107 695L102 701L98 710L98 718L96 721L90 726L84 732L80 730L80 728L75 728L71 731L69 730L65 727L62 729L58 733L50 722L57 717L54 711L57 708L64 707L64 703L70 707L78 708L81 703L83 697L82 689L77 683L81 672L79 670L71 671L69 665L69 661L82 662L90 664L97 666L98 661L103 652L109 647L116 649L122 649Z M52 661L56 661L62 662L68 661L69 665L71 671L79 670L81 672L77 683L82 689L83 697L81 703L78 708L70 707L64 703L64 707L57 708L54 711L57 717L50 722L40 713L33 704L27 694L28 691L30 688L32 681L34 674L38 673L52 673L52 661Z M36 661L52 661L52 673L38 673L34 674L36 661Z M240 707L240 711L243 713L243 716L240 718L236 724L233 727L229 728L228 716L226 711L232 712L235 706L240 707Z M291 344L290 347L286 346L284 354L287 355L284 356L284 359L288 358L288 362L284 381L283 378L277 361L280 357L282 351L284 342L285 339L289 339L292 337L293 342Z M292 337L290 337L286 339L289 330L294 321L299 322L300 326L295 331L292 337Z M34 371L30 351L24 346L24 343L16 336L15 327L21 321L23 311L22 299L24 293L34 288L41 290L41 296L49 291L45 300L45 305L48 308L47 319L41 325L43 331L48 331L50 337L54 339L53 348L48 351L45 355L39 359L40 364L39 369L34 371Z M-144 404L-144 401L-144 388L-128 380L-118 378L-110 375L-106 369L-95 365L-95 356L-89 355L-84 351L-72 349L-70 344L-72 342L-76 330L-76 322L-80 315L-71 308L-60 306L-54 301L-44 297L-28 295L-12 294L-7 296L3 291L13 291L17 294L24 293L22 299L23 311L21 321L15 327L16 336L24 343L24 346L30 351L34 371L37 381L38 387L36 396L37 401L36 407L36 414L33 418L38 426L39 431L42 437L47 435L55 440L59 447L25 467L-3 487L-17 492L-28 493L-28 486L-33 485L-39 482L-41 477L-74 454L-107 430L-144 404Z M290 347L291 344L302 348L321 336L325 350L304 358L314 369L310 371L309 375L301 376L299 380L295 384L284 382L288 362L288 358L290 355L290 347Z M447 438L449 441L457 439L465 439L471 440L477 432L485 425L491 419L493 422L494 431L489 431L488 438L486 442L486 446L483 450L482 455L480 457L451 452L447 441Z M412 375L414 380L413 383L416 391L409 391L406 386L398 385L405 374L412 375Z M325 350L321 336L343 324L347 309L346 300L351 297L356 290L361 288L372 289L375 292L380 290L386 305L393 309L394 316L389 320L386 329L393 340L405 347L410 355L409 364L412 364L412 370L417 376L412 375L405 374L398 385L380 384L352 361L337 353L325 350Z M482 455L483 450L486 446L486 442L490 440L489 431L494 431L498 438L504 442L511 444L517 446L521 452L524 455L528 457L524 465L522 468L518 472L515 479L510 478L508 481L507 486L508 493L502 494L496 498L495 503L493 505L487 505L483 508L483 512L478 515L473 514L466 517L462 518L459 511L451 494L480 483L487 462L482 455Z M947 563L945 551L951 543L964 541L973 542L981 546L985 539L994 543L996 549L995 562L979 569L983 575L973 576L964 580L956 579L952 573L947 563Z M973 542L964 541L951 543L945 551L947 563L938 558L930 559L931 551L923 551L922 562L916 576L913 585L914 592L920 593L924 602L926 610L932 616L937 617L943 622L939 626L933 628L932 622L924 618L919 616L917 611L912 606L907 601L905 607L903 601L905 595L907 586L912 575L918 566L914 557L914 552L913 547L906 538L904 533L907 532L911 523L907 516L901 508L896 499L900 498L904 486L911 486L917 481L923 479L927 482L928 488L934 489L932 500L932 509L942 503L945 505L951 504L953 501L960 502L968 510L968 520L976 529L976 537L973 542Z M994 543L985 539L981 546L973 542L976 537L976 529L968 520L968 510L960 502L953 501L951 504L945 505L942 503L932 509L932 500L934 489L928 488L927 482L923 479L925 475L933 468L934 471L939 471L938 459L943 457L949 466L953 475L965 475L969 484L963 487L960 491L972 497L980 509L986 518L993 525L996 533L994 543Z M923 479L917 481L911 486L904 486L900 498L896 499L901 508L907 516L911 523L907 532L904 533L906 538L913 547L914 552L914 557L918 566L912 575L907 586L906 578L909 571L906 565L907 554L903 548L900 536L898 523L894 515L887 520L876 527L871 526L865 524L868 511L866 502L858 490L859 486L854 485L847 476L846 468L850 469L850 462L855 459L854 455L856 451L856 440L864 443L868 434L869 428L874 419L874 413L886 405L893 407L893 401L896 399L895 394L901 394L904 400L909 403L909 411L909 420L899 429L898 442L908 440L911 450L917 452L914 461L921 465L926 467L933 464L933 468L925 475L923 479Z M964 580L973 576L983 575L979 569L995 562L996 549L994 543L996 533L993 525L986 518L980 509L972 497L960 491L963 487L969 484L965 475L953 475L949 466L943 457L948 455L956 455L965 454L974 448L979 452L988 454L986 460L991 464L1000 467L987 476L979 486L977 493L985 504L994 517L1003 524L1009 532L1013 551L1012 568L1004 575L992 581L984 590L972 599L969 592L971 586L964 580Z M801 126L812 124L831 111L845 103L854 108L864 108L871 116L881 116L895 120L904 109L900 100L910 84L921 90L930 92L942 96L944 108L958 114L967 111L979 109L989 112L999 119L1005 127L1014 126L1026 129L1035 125L1048 123L1062 112L1068 114L1073 119L1085 117L1080 129L1073 144L1076 150L1081 148L1091 150L1099 145L1107 149L1115 159L1114 165L1107 163L1092 165L1085 169L1078 178L1063 184L1054 191L1043 188L1038 187L1033 196L1036 201L1038 206L1031 210L1024 217L1012 222L997 223L982 227L970 234L966 230L954 230L940 222L930 220L917 222L897 219L886 219L880 211L876 199L869 197L858 189L844 187L833 184L829 178L833 162L826 150L812 145L804 137L801 126Z M895 394L896 399L893 401L893 407L886 405L874 413L874 419L869 428L868 434L864 443L856 440L856 451L854 455L855 459L850 462L845 445L842 445L840 452L835 446L838 440L842 440L847 430L841 429L832 429L823 427L822 420L817 419L809 414L806 422L813 428L807 432L805 436L811 438L809 445L813 453L814 462L813 466L806 465L794 468L794 475L789 482L775 489L764 501L757 507L747 514L747 519L742 521L733 525L729 526L726 533L728 546L728 555L724 564L724 581L719 582L715 589L718 593L709 595L705 602L701 605L692 596L688 582L684 572L680 567L675 557L673 545L671 539L662 525L658 505L655 491L655 479L653 469L639 475L632 474L619 461L624 457L621 453L610 444L616 437L638 437L636 428L630 422L629 414L623 409L633 397L645 398L655 387L661 375L671 364L671 356L679 349L671 343L668 335L664 325L669 320L684 323L695 321L704 311L715 325L714 334L718 340L717 346L710 345L713 358L723 365L736 373L730 378L726 388L736 393L745 398L758 404L771 406L777 411L785 412L796 415L805 415L806 410L804 403L805 399L811 396L812 405L821 411L827 410L835 410L843 410L844 403L840 400L848 398L857 390L868 383L877 386L884 381L888 388L885 393L895 394Z M850 462L850 469L846 468L847 476L844 471L843 465L842 460L837 454L828 454L829 458L826 464L822 462L818 463L814 462L813 453L809 445L811 438L805 436L807 432L813 428L806 422L809 414L817 419L822 420L823 427L832 429L841 429L847 430L842 440L838 440L835 446L840 452L842 445L845 445L850 462Z M840 400L844 403L843 410L835 410L827 410L821 411L812 407L818 397L824 394L831 397L836 397L840 400Z M805 399L804 403L806 410L805 415L796 415L785 412L777 411L771 406L758 404L745 398L736 393L726 388L730 378L736 373L740 370L748 374L758 381L764 383L767 388L775 390L783 395L794 398L805 399Z M704 311L695 321L684 323L669 320L664 325L668 335L671 343L679 349L671 356L671 364L661 375L655 387L645 398L633 397L623 409L629 414L630 422L636 428L638 437L616 437L610 444L602 442L599 434L592 426L574 428L558 428L544 429L548 417L562 411L561 406L556 404L556 394L547 390L543 383L538 377L554 383L564 381L570 382L572 380L579 381L592 376L592 366L597 360L605 360L606 357L613 355L617 356L621 353L620 346L624 339L631 336L627 328L636 329L639 324L638 320L643 315L642 309L640 304L646 298L656 296L667 294L672 292L678 291L685 297L688 306L704 311Z M593 288L599 288L606 291L609 292L616 288L620 291L623 285L629 285L631 278L635 274L641 277L640 281L643 281L642 292L646 296L649 293L653 292L659 286L666 287L676 287L678 291L672 292L667 294L656 296L646 298L640 304L642 309L643 315L638 320L639 324L636 329L627 328L631 336L624 339L620 346L621 353L617 356L613 355L606 357L605 360L597 360L592 366L592 376L579 381L572 380L570 382L564 381L554 383L538 377L547 367L546 359L539 357L538 350L535 341L539 334L535 332L537 324L541 309L551 313L559 312L561 306L568 305L574 301L576 291L584 289L586 284L590 288L593 288Z M606 291L612 278L610 269L602 266L605 260L613 261L618 254L621 246L634 243L632 249L633 252L637 252L634 256L623 254L622 261L633 260L645 264L663 262L666 274L669 273L675 275L675 280L676 287L666 287L659 286L653 292L649 293L646 296L642 292L643 281L640 281L641 277L635 274L631 278L630 283L623 285L620 291L616 288L609 292L606 291Z M637 225L639 220L646 218L662 222L663 214L669 212L683 217L686 216L703 216L717 218L722 222L728 224L727 227L711 234L708 240L695 241L691 249L681 248L674 250L665 256L666 259L663 262L645 264L633 260L622 261L623 254L634 256L637 252L645 253L657 244L646 237L639 240L632 235L640 227L637 225Z M456 232L460 227L471 225L478 228L485 239L490 238L501 238L499 231L508 227L516 219L529 226L530 236L534 239L545 239L548 241L553 254L564 263L570 269L581 275L594 280L593 288L590 288L586 284L584 289L576 291L574 301L568 305L561 306L559 312L551 313L541 309L540 299L533 298L522 287L514 286L503 280L496 279L492 281L485 281L478 288L470 290L468 281L469 268L462 264L464 255L458 254L460 244L469 247L478 243L471 235L468 227L460 231L459 240L456 232Z M417 376L412 370L412 364L409 364L410 355L405 347L393 340L386 329L389 320L394 316L393 309L386 305L380 290L375 280L377 277L374 262L380 259L382 263L387 269L394 271L397 270L409 261L412 260L415 264L412 270L418 277L424 285L433 288L440 294L454 296L469 293L470 290L478 288L485 281L492 281L496 279L503 280L514 286L522 287L533 298L540 299L541 309L537 324L535 332L539 334L535 341L538 350L539 357L546 359L547 367L538 377L543 383L547 390L556 394L556 404L561 406L562 411L548 417L544 429L526 426L515 424L504 422L500 409L495 407L487 409L478 414L466 410L456 402L446 399L440 388L433 373L427 375L421 371L417 376Z M291 344L292 337L295 331L300 326L299 322L294 321L293 312L296 307L298 304L301 302L301 295L305 297L315 294L321 296L329 296L340 291L345 292L356 290L351 297L346 300L347 309L343 324L321 336L302 348L291 344Z M397 270L394 271L390 264L385 262L382 258L376 255L369 252L370 245L368 241L382 239L384 242L388 244L386 248L391 252L388 256L392 260L397 262L397 270Z M49 -34L54 -45L62 -59L65 -82L59 -93L58 -121L65 -141L74 -141L78 -150L74 -158L89 -191L99 -219L106 -237L115 -237L118 -252L136 -247L138 -265L144 -266L157 -253L172 -235L172 -196L176 -187L159 -180L149 -163L151 -149L135 -131L116 -113L109 -83L116 -69L125 -58L116 -36L106 -32L102 -1L97 16L85 14L79 28L68 29L65 12L57 -8L49 -34Z M217 15L228 19L229 24L234 21L244 26L245 34L243 38L249 49L253 52L252 55L259 58L262 63L258 66L250 66L250 73L253 83L244 84L241 87L241 95L237 94L228 95L225 91L222 94L218 91L210 91L199 87L189 86L182 86L177 91L172 91L172 84L169 77L175 73L175 67L172 61L171 53L181 54L192 47L194 38L202 32L201 24L207 22L217 15Z M253 83L256 84L259 80L262 81L272 79L278 88L276 91L277 96L285 97L288 104L288 107L300 112L308 110L314 117L320 117L334 122L334 126L330 134L332 142L331 147L321 148L316 152L316 159L308 160L302 164L292 165L284 170L284 178L282 175L279 174L272 171L269 175L252 170L252 164L243 166L239 174L231 184L227 182L222 184L218 182L220 180L222 175L225 171L224 168L227 169L233 169L236 168L234 165L231 161L230 155L226 153L227 148L222 144L218 143L211 139L204 140L202 142L198 142L196 146L188 147L185 149L180 146L174 146L168 144L164 147L163 143L158 139L160 133L162 130L162 124L171 111L176 109L177 105L172 91L177 91L182 86L189 86L199 87L210 91L218 91L222 94L225 91L228 95L237 94L241 95L241 87L244 84L253 83Z M171 53L172 61L175 67L175 73L169 77L172 84L172 91L177 105L176 109L171 111L162 124L164 130L153 124L146 126L141 124L136 128L131 122L127 124L121 116L114 115L113 110L107 108L105 112L100 109L100 105L93 104L88 99L84 89L85 83L83 75L79 69L82 64L80 56L86 51L102 43L114 38L124 40L124 45L134 45L146 47L164 46L169 48L171 53Z M108 144L107 150L101 150L103 153L100 162L98 165L90 165L85 168L77 167L63 163L60 158L51 161L49 164L44 162L39 161L34 159L36 155L38 152L43 156L45 152L53 153L60 150L65 150L68 153L69 151L67 141L71 139L74 133L82 137L87 131L91 130L98 135L103 134L107 137L108 144Z M158 139L163 143L164 147L158 150L153 160L147 170L139 173L133 172L126 176L122 178L114 175L107 169L104 167L102 162L103 153L101 150L107 150L108 144L113 148L116 149L124 147L125 144L129 144L134 142L140 141L142 137L145 136L156 141Z M202 142L204 140L211 139L218 143L222 144L227 148L226 153L230 155L231 161L234 165L236 168L233 169L227 169L224 168L225 171L222 175L220 180L218 182L216 175L217 169L217 163L211 154L208 148L205 144L202 142Z M218 182L222 184L227 182L231 184L232 188L227 191L224 190L221 206L215 205L208 200L197 203L192 206L177 206L170 203L166 204L163 199L162 196L164 194L161 192L158 196L153 192L152 186L146 183L145 178L139 173L147 170L153 160L158 150L164 147L168 144L174 146L180 146L185 149L188 147L196 146L198 142L202 142L205 144L208 148L211 154L217 163L217 169L216 175L218 182Z M201 24L202 32L194 38L192 47L181 54L171 53L169 48L164 46L163 42L164 38L160 35L150 32L148 17L159 12L175 13L185 11L186 15L192 16L201 24Z M209 -9L213 -4L214 4L217 15L207 22L201 24L192 16L186 15L185 11L175 13L159 12L148 17L148 4L153 -7L162 -14L170 -0L178 -0L180 -14L188 -18L192 -15L201 -9L209 -9Z M216 -46L217 -43L210 -32L213 -14L209 -9L201 -9L192 -15L188 -18L180 -14L181 -25L177 -23L171 -30L170 -41L182 -46L195 -49L205 -46L216 -46Z M80 56L82 64L79 69L83 75L85 83L84 89L88 99L84 100L81 98L79 101L72 104L68 108L61 112L63 116L64 123L69 126L74 133L71 139L67 141L69 151L68 153L65 150L60 150L53 153L45 152L43 156L38 152L35 153L25 148L23 151L14 151L16 141L21 131L6 128L2 124L2 117L0 114L2 103L-0 87L6 87L8 81L11 66L9 61L11 57L19 56L21 60L27 52L25 45L25 36L32 38L38 35L39 42L49 46L48 52L58 49L64 44L75 51L80 56Z M163 199L166 204L170 203L177 206L192 206L197 203L208 200L215 205L221 206L216 212L212 221L216 229L207 227L197 231L197 238L188 239L181 234L173 238L166 238L166 229L161 225L161 221L163 217L167 213L162 207L161 202L163 199Z M166 238L173 238L181 234L188 239L197 238L197 231L202 235L199 243L197 244L191 244L186 243L174 246L180 253L175 255L170 255L165 249L163 252L165 259L170 265L166 268L172 274L177 277L177 284L168 281L171 287L164 289L168 300L162 300L154 294L150 285L148 276L144 270L139 263L139 260L143 253L144 249L147 247L147 244L154 243L157 240L163 240L164 238Z M380 290L375 292L372 289L361 288L356 290L345 292L340 291L329 296L321 296L315 294L305 297L301 295L301 302L298 304L296 307L292 301L296 297L290 298L282 295L275 302L260 303L252 297L241 296L239 301L232 303L223 296L212 297L206 284L199 278L204 268L198 262L209 249L224 249L228 239L247 241L258 232L270 229L286 228L303 238L317 243L329 241L337 242L349 235L359 234L368 241L370 245L369 252L376 255L380 259L374 262L377 277L375 280L380 290Z M197 231L207 227L216 229L217 234L225 238L224 241L212 242L208 246L200 253L197 247L197 244L199 243L202 235L197 231Z M147 244L147 247L144 249L143 253L139 260L137 256L131 252L131 246L131 237L133 233L131 231L130 226L135 220L138 221L140 225L142 226L143 231L142 235L143 241L147 244Z M104 167L107 169L114 175L122 178L126 176L128 181L131 185L128 190L123 187L116 187L108 185L103 185L101 188L98 185L96 191L100 197L103 202L107 207L111 210L114 215L123 220L113 218L107 213L98 209L90 199L87 192L87 187L81 185L78 191L75 186L75 182L82 182L84 179L88 182L91 182L91 178L95 177L96 171L104 167Z M35 153L34 159L39 161L44 162L43 168L38 170L31 168L29 174L24 174L23 172L17 177L12 178L8 174L5 168L0 170L0 164L8 156L7 152L12 154L14 151L23 151L25 148L35 153Z M2 103L0 114L-2 114L-3 123L-12 116L-17 117L-24 110L-28 104L-33 103L-34 98L-26 95L-19 96L-10 93L-4 100L2 103Z M9 61L11 66L8 81L6 87L-0 87L2 103L-4 100L-10 93L-19 96L-26 95L-21 91L-13 67L1 60L9 61Z M-132 291L-133 287L-129 283L-128 279L-131 275L-128 267L-132 260L-128 259L-128 253L-126 241L-121 237L-124 230L-130 230L-137 232L-140 225L-144 227L-147 230L-147 221L-151 215L-137 206L-125 208L-112 208L-101 210L-93 209L-77 210L-74 215L-56 221L-52 218L-41 224L-30 223L-29 230L-38 239L-51 242L-52 246L-58 253L-62 264L-58 271L-63 276L-66 285L-73 287L-80 296L-92 297L-102 296L-108 301L-112 305L-116 304L-120 300L-123 293L-132 291Z M743 609L742 620L737 623L729 625L724 617L723 603L727 587L734 592L738 599L743 609Z M1014 502L1006 499L1006 490L1011 485L1022 482L1027 482L1030 486L1025 491L1023 497L1014 502Z M728 224L727 217L734 213L725 189L745 184L750 181L757 155L776 160L782 154L782 139L790 138L798 128L801 126L804 137L812 145L826 150L833 162L829 178L833 184L844 187L858 189L869 197L876 199L880 211L886 219L897 219L917 222L930 220L940 222L954 230L966 230L970 234L982 227L997 223L1012 222L1024 217L1031 210L1038 206L1036 201L1033 196L1038 187L1043 188L1054 191L1063 184L1078 178L1085 169L1092 165L1107 163L1114 165L1115 159L1107 149L1099 145L1091 150L1081 148L1076 150L1073 144L1080 129L1085 117L1097 123L1111 114L1111 107L1119 90L1125 85L1125 76L1119 72L1127 64L1140 61L1153 61L1167 66L1176 72L1182 88L1186 95L1189 104L1193 119L1210 124L1221 135L1225 149L1240 149L1249 143L1265 139L1260 152L1256 157L1253 173L1246 186L1234 184L1226 189L1228 201L1227 217L1222 217L1222 224L1216 216L1212 223L1197 229L1198 236L1190 235L1185 231L1178 241L1167 248L1159 256L1146 260L1139 265L1128 269L1133 263L1131 258L1139 249L1134 243L1125 247L1114 256L1108 264L1098 265L1093 271L1099 279L1107 281L1107 287L1115 291L1126 282L1134 287L1141 287L1142 293L1128 297L1124 303L1114 309L1109 318L1120 324L1124 336L1130 347L1136 356L1136 364L1130 367L1132 373L1138 377L1137 386L1134 395L1129 396L1122 408L1114 422L1104 435L1091 445L1077 454L1066 455L1060 460L1057 456L1051 462L1038 467L1027 469L1024 480L1019 480L1016 473L1018 469L1005 465L1000 467L991 464L986 460L988 454L979 452L974 448L965 454L956 455L948 455L943 457L938 459L939 471L934 471L933 468L933 464L926 467L921 465L914 461L917 452L911 450L908 440L898 442L899 429L909 420L909 411L909 403L904 400L901 394L895 394L885 393L888 388L884 381L877 386L868 383L857 390L848 398L840 400L836 397L831 397L824 394L818 397L812 405L811 396L805 399L794 398L783 395L775 390L767 388L764 383L758 381L748 374L740 370L736 373L723 365L713 358L710 345L717 346L718 340L714 334L715 325L704 311L688 306L685 297L678 291L676 287L675 280L675 275L669 273L666 274L663 262L666 259L665 256L674 250L681 248L691 249L695 241L708 240L711 234L727 227L728 224Z M44 162L49 164L51 161L60 158L63 163L77 167L75 174L78 180L70 178L62 183L63 190L61 194L65 201L74 208L79 219L90 229L97 229L100 232L97 235L106 240L113 244L121 250L122 253L121 257L115 251L107 249L102 258L110 262L108 269L104 270L99 280L95 281L95 277L97 271L99 268L95 261L92 254L88 253L85 247L79 245L75 240L68 239L60 233L51 224L44 217L41 203L36 202L28 197L24 199L18 205L14 206L15 200L10 199L7 188L11 184L8 178L8 174L12 178L17 177L23 172L24 174L29 174L31 168L38 170L43 168L44 162Z M86 278L93 277L90 287L91 291L89 297L82 293L77 291L63 285L64 279L76 280L86 278Z M27 243L31 239L37 248L36 265L32 265L28 269L24 265L23 250L21 243L27 243Z M38 35L32 38L25 36L21 26L20 8L22 3L25 -2L34 -3L37 -8L45 -13L45 -4L42 2L43 7L48 10L46 16L43 14L36 27L38 35Z M62 16L66 25L60 38L49 29L48 22L62 16Z M396 231L399 231L406 239L410 240L412 237L417 231L423 238L428 248L432 248L435 252L427 253L425 263L424 267L420 270L420 276L412 270L415 264L412 260L409 261L397 270L397 262L392 260L388 256L391 252L386 248L388 244L384 242L382 239L384 237L392 240L397 241L394 233L396 231Z M333 210L342 210L357 213L370 219L372 222L378 219L387 222L390 228L396 231L394 233L398 240L392 240L384 237L382 239L368 241L359 234L349 235L350 229L348 220L342 215L336 214L333 210Z M922 620L932 622L933 628L939 626L943 622L951 629L955 636L955 642L954 647L955 650L956 656L959 659L963 667L963 671L956 671L947 664L935 656L934 651L928 645L927 637L923 631L925 624L922 620Z M1097 643L1088 641L1077 641L1074 652L1070 656L1065 669L1057 671L1048 669L1043 670L1037 675L1031 674L1025 676L1018 670L1016 664L1023 667L1031 665L1033 657L1037 655L1049 653L1056 645L1061 639L1065 644L1067 641L1072 641L1073 635L1073 630L1081 623L1086 615L1090 615L1095 620L1095 625L1101 627L1110 630L1109 634L1102 635L1104 639L1097 643Z M77 167L85 168L90 165L98 165L100 162L104 167L96 171L95 177L91 178L91 182L88 182L84 179L82 182L76 181L75 174L77 167Z M221 -265L220 -246L235 -229L226 -210L237 -182L231 -162L240 -145L236 -130L250 -115L246 -104L237 -92L216 -66L199 -65L181 -57L165 -53L160 -64L150 -71L152 -91L148 -110L152 -122L161 -136L184 -161L190 -165L189 -175L176 -187L172 -196L172 -235L157 -253L144 -266L149 -274L160 -259L173 -260L184 -254L193 -266L198 -286L213 -296L226 -285L221 -265Z M162 130L160 133L158 139L145 136L142 137L140 141L135 143L129 144L125 144L124 147L116 149L113 148L108 144L107 139L109 134L113 134L117 132L119 130L119 127L123 123L126 123L131 122L136 128L141 124L146 126L153 124L162 130Z M88 99L93 104L100 105L100 109L105 112L107 108L113 110L114 115L121 116L126 123L123 123L122 126L119 130L117 132L113 134L109 134L107 137L103 134L98 135L91 130L87 131L82 137L74 133L69 126L64 123L63 116L61 112L68 108L72 104L79 101L81 98L84 100L88 99Z M298 541L297 536L302 522L302 515L306 512L313 510L318 504L323 516L326 525L332 530L345 540L350 546L356 551L359 555L364 558L361 560L356 559L353 556L349 550L345 547L342 544L334 540L327 539L325 537L319 540L313 535L310 543L298 541Z M451 494L459 511L462 518L455 521L453 525L453 529L443 533L427 538L418 545L414 545L411 545L405 549L399 551L391 551L386 555L384 555L382 558L377 558L374 559L367 559L365 553L365 547L364 544L362 537L359 533L360 527L361 521L365 518L364 513L366 508L371 511L373 510L384 510L396 512L400 511L402 515L407 513L414 502L423 498L451 494Z M284 382L295 384L299 380L301 376L309 375L310 371L314 369L304 358L324 352L337 353L352 361L380 384L398 385L406 386L409 391L416 391L420 401L425 403L426 407L433 412L433 416L432 420L434 424L437 427L438 430L439 433L442 435L445 434L447 438L451 452L480 457L482 455L487 462L480 483L451 494L423 498L414 502L407 513L402 515L400 511L396 512L386 511L373 510L371 511L366 508L364 513L365 518L361 521L359 517L356 513L356 509L351 506L345 497L343 489L336 481L331 480L325 470L324 462L324 456L319 444L314 440L309 438L305 432L303 424L300 421L297 413L291 404L286 397L281 397L282 391L283 387L284 382Z M303 462L264 462L226 462L186 462L186 423L186 383L183 374L186 367L184 362L188 357L201 357L210 360L220 363L225 365L232 361L236 358L245 357L252 359L255 364L257 361L265 363L272 364L277 361L283 378L284 381L281 385L279 393L276 399L274 401L270 398L266 393L259 377L262 389L268 401L276 418L279 424L282 430L291 442L289 444L289 451L301 460L303 462Z M186 462L186 483L175 483L175 488L136 468L97 447L87 453L80 457L74 451L59 447L55 440L47 435L42 437L39 431L38 426L33 418L36 414L36 407L37 401L36 396L38 387L37 381L34 371L39 369L40 364L39 359L45 355L48 351L53 348L54 339L65 343L69 342L78 344L91 349L95 359L104 361L118 366L128 372L133 369L138 364L135 355L139 349L146 344L152 342L166 345L169 350L173 350L176 352L186 353L188 357L184 362L186 367L183 374L186 383L186 423L186 462Z M410 605L382 634L369 635L360 642L354 642L352 645L345 645L341 642L332 646L329 650L322 649L318 648L315 648L303 640L296 640L292 637L292 631L287 629L281 619L277 616L275 612L270 608L264 607L268 601L273 601L274 598L274 589L277 579L282 576L283 572L287 564L293 559L297 549L298 541L310 543L313 535L319 540L325 537L327 539L334 540L342 544L345 547L349 550L353 556L356 559L353 564L350 569L350 571L351 574L356 575L361 576L358 579L362 585L366 589L369 593L401 605L410 605Z M356 559L361 560L364 558L366 561L366 565L360 568L364 570L361 576L358 574L351 574L350 571L350 569L353 564L356 559Z M421 571L421 575L421 585L421 590L417 596L410 605L401 605L369 593L366 589L362 585L358 579L361 576L364 570L367 572L369 576L374 580L379 580L388 578L398 577L407 574L412 573L415 571L421 571Z M274 693L254 694L243 693L239 695L234 698L231 689L234 685L234 678L236 673L240 668L244 665L247 662L243 660L243 649L248 646L254 649L262 646L269 646L275 642L279 649L280 653L285 665L281 672L276 678L273 682L274 693Z M239 695L243 700L243 706L240 707L235 706L232 712L226 711L227 706L228 699L231 697L239 695Z M123 220L114 215L111 210L107 207L103 202L100 197L96 191L98 185L101 188L103 185L108 185L116 187L123 187L128 190L131 190L129 196L133 202L132 208L128 210L125 213L123 220Z M161 225L166 229L166 238L163 240L157 240L154 243L147 244L143 241L142 235L143 231L145 228L151 226L156 225L161 225Z M126 176L133 172L139 173L145 178L146 183L152 186L153 192L158 196L161 192L164 194L162 196L163 199L161 202L162 207L167 213L163 217L161 221L161 225L156 225L153 226L154 223L155 220L151 217L148 215L145 212L142 217L137 214L134 213L130 209L133 202L129 196L131 190L128 190L131 185L128 181L126 176Z M138 221L135 222L130 226L131 231L126 225L122 223L125 213L128 210L132 211L137 214L141 217L138 221Z M143 231L142 226L140 225L138 221L140 218L143 213L147 214L150 217L153 220L154 223L153 226L145 228L144 231Z M243 649L235 642L233 638L227 640L223 640L220 641L215 640L210 632L208 629L201 625L198 619L194 615L187 610L187 606L182 602L175 599L178 598L182 596L184 587L187 582L194 581L196 584L201 589L203 590L207 588L214 589L225 591L231 587L232 584L235 582L244 588L249 587L253 580L259 574L258 568L256 565L262 565L267 563L266 571L267 578L272 582L273 585L273 590L274 598L273 601L268 601L264 607L270 608L275 612L277 616L281 619L287 629L281 636L275 642L269 646L262 646L254 649L248 646L243 649Z"};
   var MPTS = {"eu": {"RMO": ["Кишинів", 647.7, 272.0], "OTP": ["Бухарест", 601.7, 333.6], "WAW": ["Варшава", 516.8, 137.5], "KRK": ["Краків", 499.0, 195.2], "KTW": ["Катовіце", 483.7, 189.9], "RZE": ["Жешув", 533.3, 195.7], "POZ": ["Познань", 448.8, 132.6], "GDN": ["Гданськ", 477.5, 78.4], "CLJ": ["Клуж-Напока", 560.0, 277.8], "TSR": ["Тімішоара", 520.5, 302.4], "IAS": ["Ясси", 626.5, 268.3], "SCV": ["Сучава", 604.2, 256.2], "OMR": ["Орадя", 532.0, 271.0], "TAT": ["Татри", 504.0, 220.6], "PRG": ["Прага", 407.3, 194.6], "BTS": ["Братислава", 451.8, 243.8], "BUD": ["Будапешт", 484.0, 259.9], "VIE": ["Відень", 439.5, 242.3], "BER": ["Берлін", 390.0, 129.6], "HAM": ["Гамбург", 333.2, 101.0], "MUC": ["Мюнхен", 359.7, 244.0], "FRA": ["Франкфурт", 311.3, 193.9], "DUS": ["Дюссельдорф", 279.7, 164.4], "CGN": ["Кельн", 282.7, 172.1], "LEJ": ["Лейпциг", 372.8, 161.5], "SSH": ["Шарм-ель-Шейх", 738.8, 677.1], "HRG": ["Хургада", 730.2, 689.3], "AYT": ["Анталія", 678.5, 499.5], "HKT": ["Пхукет", 1806.5, 1030.1], "UTP": ["Паттайя", 1848.0, 944.5], "PQC": ["Фу Кок", 1899.3, 990.6]}, "asia": {"RMO": ["Кишинів", 224.1, 160.0], "OTP": ["Бухарест", 197.1, 196.2], "WAW": ["Варшава", 147.2, 80.9], "KRK": ["Краків", 136.7, 114.8], "KTW": ["Катовіце", 127.6, 111.7], "RZE": ["Жешув", 156.9, 115.1], "POZ": ["Познань", 107.2, 78.0], "GDN": ["Гданськ", 124.0, 46.1], "CLJ": ["Клуж-Напока", 172.5, 163.4], "TSR": ["Тімішоара", 149.3, 177.9], "IAS": ["Ясси", 211.7, 157.8], "SCV": ["Сучава", 198.5, 150.7], "OMR": ["Орадя", 156.1, 159.4], "TAT": ["Татри", 139.6, 129.8], "PRG": ["Прага", 82.7, 114.5], "BTS": ["Братислава", 108.9, 143.4], "BUD": ["Будапешт", 127.8, 152.9], "VIE": ["Відень", 101.7, 142.5], "BER": ["Берлін", 72.5, 76.2], "HAM": ["Гамбург", 39.1, 59.4], "MUC": ["Мюнхен", 54.7, 143.5], "FRA": ["Франкфурт", 26.3, 114.0], "DUS": ["Дюссельдорф", 7.6, 96.7], "CGN": ["Кельн", 9.4, 101.2], "LEJ": ["Лейпциг", 62.5, 95.0], "SSH": ["Шарм-ель-Шейх", 277.7, 398.3], "HRG": ["Хургада", 272.6, 405.5], "AYT": ["Анталія", 242.3, 293.8], "HKT": ["Пхукет", 905.8, 605.9], "UTP": ["Паттайя", 930.2, 555.6], "PQC": ["Фу Кок", 960.4, 582.7]}};
 
@@ -1395,12 +1790,187 @@ body.moved .bot .hint{opacity:0}
     arcs.forEach(function(d,k){
       if(k % 3) return;
       svg += '<g class="plane" style="offset-path:path(\''+d+'\');--fd:'+(8+k*1.4)+'s;--ad:'+(1.6+k*0.7)+'s">'
-           + '<path d="'+LEAF+'" fill="var(--arc)" transform="translate(-9,-12) scale(.38)"/></g>';
+           + '<use href="#lm" fill="var(--arc)" transform="scale(.062)"/></g>';
     });
 
     el.innerHTML = svg + '</svg>';
   }
   document.querySelectorAll('.map[data-map]').forEach(buildMap);
+
+
+  /* ══ ГРАФІКА PREMIUM ══════════════════════════════════════════════
+     Замінює фото, що повторювались на 11 слайдах поспіль.           */
+  function svgWrap(w,h,inner){
+    return '<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMidYMid meet">'+inner+'</svg>';
+  }
+
+  var GFX = {
+    /* Palm Jumeirah — стовбур, 16 гілок, півмісяць хвилеріза */
+    palm: function(){
+      var W=760,H=700,cx=380,base=650,top=250,o='';
+      /* хвилеріз-півмісяць */
+      o += '<path class="ln" style="--len:1700;--ad:.25s" d="M70 470 A 320 320 0 1 1 690 470" '
+         + 'stroke="rgba(255,128,0,.45)" stroke-width="10" stroke-linecap="round"/>';
+      /* стовбур */
+      o += '<path class="hl" style="--len:420" d="M'+cx+' '+base+' L '+cx+' '+top+'"/>';
+      /* гілки — від стовбура вгору й назовні */
+      for(var i=0;i<9;i++){
+        var y = base - 40 - i*42;
+        var sp = 74 + Math.sin((i+1)/10*Math.PI)*104;
+        var dr = 78 + Math.sin((i+1)/10*Math.PI)*46;
+        [-1,1].forEach(function(sgn,k){
+          o += '<path class="ln" style="--len:230;--ad:'+(0.55+i*0.08+k*0.035).toFixed(2)+'s" '
+             + 'd="M'+cx+' '+y+' Q '+(cx+sgn*sp*0.42).toFixed(0)+' '+(y-dr*0.86).toFixed(0)
+             + ' '+(cx+sgn*sp).toFixed(0)+' '+(y-dr).toFixed(0)+'" stroke-width="3"/>';
+        });
+      }
+      o += '<circle class="mk" cx="'+cx+'" cy="'+top+'" r="10" style="--ad:1.5s"/>';
+      o += '<text class="lbt" x="'+cx+'" y="'+(base+38)+'" text-anchor="middle" style="--ad:1.6s">Palm Jumeirah</text>';
+      return svgWrap(W,H,o);
+    },
+
+    /* Saadiyat / Абу-Дабі — берегова лінія з маркерами резортів */
+    coast: function(){
+      var W=760,H=520,o='';
+      o += '<path class="ol" d="M-20 380 C 140 330, 250 300, 360 250 C 470 200, 600 160, 790 130 L 790 540 L -20 540 Z"/>';
+      o += '<path class="hl" style="--len:900" d="M-20 380 C 140 330, 250 300, 360 250 C 470 200, 600 160, 790 130"/>';
+      for(var i=0;i<5;i++){
+        var t=0.14+i*0.18, x=-20+810*t, y=380-250*t*t-40*t;
+        o += '<circle class="mk" cx="'+x.toFixed(0)+'" cy="'+y.toFixed(0)+'" r="8" style="--ad:'+(0.9+i*0.12)+'s"/>';
+        o += '<line class="ln" style="--len:60;--ad:'+(1+i*0.12)+'s" x1="'+x.toFixed(0)+'" y1="'+y.toFixed(0)+'" x2="'+x.toFixed(0)+'" y2="'+(y-52).toFixed(0)+'"/>';
+      }
+      o += '<text class="lbs" x="20" y="470" style="--ad:1.5s">Персидська затока</text>';
+      return svgWrap(W,H,o);
+    },
+
+    /* Фуджейра — хребет Хаджар і узбережжя */
+    ridge: function(){
+      var W=760,H=520,o='';
+      o += '<path class="ol" d="M-20 300 L 90 190 L 190 265 L 290 130 L 400 250 L 500 175 L 620 265 L 790 165 L 790 540 L -20 540 Z"/>';
+      o += '<path class="hl" style="--len:1100" d="M-20 300 L 90 190 L 190 265 L 290 130 L 400 250 L 500 175 L 620 265 L 790 165"/>';
+      for(var i=0;i<4;i++){
+        var y=400+i*36;
+        o += '<path class="ln" style="--len:820;--ad:'+(1+i*0.14)+'s" d="M-20 '+y+' q 60 -16 120 0 t 120 0 t 120 0 t 120 0 t 120 0 t 120 0"/>';
+      }
+      o += '<circle class="mk" cx="290" cy="130" r="8" style="--ad:1.4s"/>';
+      o += '<text class="lbs" x="20" y="500" style="--ad:1.6s">Гори Хаджар · Оманська затока</text>';
+      return svgWrap(W,H,o);
+    },
+
+    /* Рас-аль-Хайма — намивні острови Al Marjan */
+    marjan: function(){
+      var W=760,H=520,o='';
+      o += '<path class="ol" d="M-20 120 C 180 150, 380 210, 560 300 C 660 350, 720 420, 790 500 L 790 -20 L -20 -20 Z"/>';
+      for(var i=0;i<4;i++){
+        var x=190+i*140, y=250+i*52;
+        o += '<path class="ln" style="--len:420;--ad:'+(0.5+i*0.16)+'s" d="M'+x+' '+y+' q -46 62 -12 116 q 60 34 104 -14 q 22 -70 -92 -102 Z"/>';
+        o += '<circle class="mk" cx="'+(x+6)+'" cy="'+(y+64)+'" r="7" style="--ad:'+(1.1+i*0.13)+'s"/>';
+      }
+      o += '<text class="lbs" x="20" y="480" style="--ad:1.6s">Al Marjan Island · казино 2027</text>';
+      return svgWrap(W,H,o);
+    },
+
+    /* Хаб-схема перельоту: міста → пересадка → напрямок */
+    hub: function(el){
+      var W=760,H=520;
+      var hubs=(el.dataset.hubs||'DXB|IST').split('|');
+      var dest=el.dataset.dest||'MLE';
+      var o='';
+      var hy=H/(hubs.length+1);
+      hubs.forEach(function(h,i){
+        var y=hy*(i+1);
+        o += '<path class="ln" style="--len:340;--ad:'+(0.3+i*0.12)+'s" d="M60 '+(H/2)+' C 190 '+(H/2)+', 240 '+y+', 360 '+y+'"/>';
+        o += '<path class="ln" style="--len:340;--ad:'+(0.5+i*0.12)+'s" d="M360 '+y+' C 500 '+y+', 560 '+(H/2)+', 690 '+(H/2)+'"/>';
+        o += '<circle class="mk" cx="360" cy="'+y+'" r="9" style="--ad:'+(0.9+i*0.12)+'s"/>';
+        o += '<text class="lbt" x="360" y="'+(y-20)+'" text-anchor="middle" style="--ad:'+(1+i*0.12)+'s">'+h+'</text>';
+      });
+      o += '<circle class="mk" cx="60" cy="'+(H/2)+'" r="11" style="--ad:.5s"/>';
+      o += '<text class="lbs" x="60" y="'+(H/2+34)+'" text-anchor="middle" style="--ad:1.1s">Європа</text>';
+      o += '<circle class="mk" cx="690" cy="'+(H/2)+'" r="15" style="--ad:1.3s"/>';
+      o += '<text class="lbt" x="690" y="'+(H/2+40)+'" text-anchor="middle" style="--ad:1.4s">'+dest+'</text>';
+      return svgWrap(W,H,o);
+    },
+
+    /* Правила в'їзду — паспорт, штамп і заборони */
+    docs: function(el){
+      var W=760,H=520,o='';
+      o += '<rect class="ol" x="70" y="90" width="300" height="340" rx="16"/>';
+      o += '<path class="hl" style="--len:1300" d="M70 106 A 16 16 0 0 1 86 90 L 354 90 A 16 16 0 0 1 370 106 L 370 414 A 16 16 0 0 1 354 430 L 86 430 A 16 16 0 0 1 70 414 Z"/>';
+      o += '<line class="ln" style="--len:340;--ad:.9s" x1="220" y1="90" x2="220" y2="430"/>';
+      for(var i=0;i<5;i++){
+        o += '<line class="ln" style="--len:120;--ad:'+(1+i*0.08)+'s" x1="248" y1="'+(150+i*46)+'" x2="345" y2="'+(150+i*46)+'"/>';
+      }
+      o += '<g transform="translate(150,250)"><use href="#lm" fill="rgba(255,128,0,.5)" transform="scale(.22)"/></g>';
+      o += '<g transform="translate(300,150) rotate(-16)"><circle class="rg" r="52" stroke-dasharray="7 6"/>'
+         + '<text class="lbt" y="7" text-anchor="middle" style="--ad:1.5s;font-size:19px">'+(el.dataset.stamp||'VISA')+'</text></g>';
+      var bans=(el.dataset.bans||'').split('|').filter(Boolean);
+      bans.forEach(function(b,i){
+        var x=470+ (i%2)*150, y=140+Math.floor(i/2)*140;
+        o += '<g transform="translate('+x+','+y+')">'
+           + '<circle class="rg" r="46"/>'
+           + '<line class="ln" style="--len:130;--ad:'+(1.1+i*0.1)+'s" x1="-33" y1="33" x2="33" y2="-33" stroke="var(--orange)" stroke-width="4"/>'
+           + '<text class="lbs" y="72" text-anchor="middle" style="--ad:'+(1.3+i*0.1)+'s">'+b+'</text></g>';
+      });
+      return svgWrap(W,H,o);
+    },
+
+    /* Мальдіви — три типи трансферу від MLE */
+    mvtrans: function(){
+      var W=760,H=520,o='';
+      var kinds=[['Seaplane',120,'M40 260 C 240 120, 460 100, 700 130'],
+                 ['Domestic flight',260,'M40 260 C 240 220, 460 230, 700 270'],
+                 ['Speedboat',400,'M40 260 C 220 340, 450 390, 700 420']];
+      kinds.forEach(function(k,i){
+        o += '<path class="ln" style="--len:760;--ad:'+(0.3+i*0.2)+'s" d="'+k[2]+'" stroke-dasharray="'+(i===2?'8 8':'0')+'"/>';
+        o += '<circle class="mk" cx="700" cy="'+[130,270,420][i]+'" r="8" style="--ad:'+(1+i*0.15)+'s"/>';
+        o += '<text class="lbt" x="690" y="'+([130,270,420][i]-18)+'" text-anchor="end" style="--ad:'+(1.1+i*0.15)+'s">'+k[0]+'</text>';
+      });
+      o += '<circle class="mk" cx="40" cy="260" r="13" style="--ad:.4s"/>';
+      o += '<text class="lbt" x="40" y="300" text-anchor="middle" style="--ad:.9s">MLE</text>';
+      o += '<text class="lbs" x="40" y="322" text-anchor="middle" style="--ad:1s">Мале</text>';
+      return svgWrap(W,H,o);
+    },
+
+    /* Мальдіви — справжній ланцюг атолів */
+    atoll: function(el){
+      var m=ISL.mv, o='', hi=parseInt(el.dataset.hi||'4',10);
+      m.dots.forEach(function(p,i){
+        var on = (i % hi === 0);
+        o += '<circle class="isl" cx="'+p[0]+'" cy="'+p[1]+'" r="'+(on?Math.max(p[2]*1.7,6):Math.max(p[2]*1.5,3))+'"'
+           + ' fill="'+(on?'var(--red)':'var(--orange)')+'"'
+           + ' style="--ad:'+(0.25+(i%40)*0.022).toFixed(2)+'s;--op:'+(on?1:0.42)+'"/>';
+      });
+      return svgWrap(m.w, m.h, o);
+    },
+
+    /* Маврикій — контур із підсвіченим узбережжям */
+    mauritius: function(el){
+      var m=ISL.mu, o='', side=el.dataset.coast||'';
+      o += '<path class="ol" d="'+m.d+'"/>';
+      if(side && m.coasts[side]){
+        o += '<path class="hl" style="--len:2600" d="'+m.coasts[side]+'"/>';
+      } else {
+        ['N','E','S','W'].forEach(function(k,i){
+          if(m.coasts[k]) o += '<path class="ln" style="--len:2600;--ad:'+(0.3+i*0.22)+'s" d="'+m.coasts[k]+'" stroke="var(--orange)" stroke-width="6" stroke-linecap="round"/>';
+        });
+      }
+      var NM={N:'Північ',E:'Схід',S:'Південь',W:'Захід'};
+      ['N','E','S','W'].forEach(function(k,i){
+        var p=m.mark[k]; if(!p) return;
+        var on = !side || side===k;
+        o += '<circle class="mk" cx="'+p[0]+'" cy="'+p[1]+'" r="'+(on?9:6)+'"'
+           + ' fill="'+(on?'var(--red)':'rgba(255,128,0,.45)')+'" style="--ad:'+(0.8+i*0.12)+'s"/>';
+        o += '<text class="lbt" x="'+p[0]+'" y="'+(p[1]-20)+'" text-anchor="middle"'
+           + ' style="--ad:'+(1+i*0.12)+'s;opacity:'+(on?1:0.45)+'">'+NM[k]+'</text>';
+      });
+      return svgWrap(m.w, m.h, o);
+    }
+  };
+
+  document.querySelectorAll('.gfx[data-gfx]').forEach(function(el){
+    var f = GFX[el.dataset.gfx];
+    if(f) el.innerHTML = f(el);
+  });
 
   /* ── рейка секцій ── */
   slides.forEach(function(s,i){
@@ -1476,18 +2046,6 @@ body.moved .bot .hint{opacity:0}
   px();
   addEventListener('scroll', function(){ if(!tick){ tick=true; requestAnimationFrame(px); } }, {passive:true});
 
-  /* ── TRIONN: курсор ── */
-  var c = document.getElementById('cur'), cx=innerWidth/2, cy=innerHeight/2, tx=cx, ty=cy;
-  addEventListener('mousemove', function(e){ tx=e.clientX; ty=e.clientY; }, {passive:true});
-  (function loop(){
-    cx += (tx-cx)*0.18; cy += (ty-cy)*0.18;
-    c.style.transform = 'translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';
-    requestAnimationFrame(loop);
-  })();
-  document.addEventListener('mouseover', function(e){
-    var t = e.target.closest('a, .roll, .rail b, .cities span, li');
-    c.classList.toggle('big', !!t);
-  });
 
   /* ── клавіатура ── */
   document.addEventListener('keydown', function(e){
@@ -1507,22 +2065,9 @@ body.moved .bot .hint{opacity:0}
     addEventListener(ev, function(){ document.body.classList.add('moved'); }, {once:true, passive:true});
   });
 
-  /* ── TRIONN: прелоадер з лічильником ── */
-  var pre=document.getElementById('pre'), pn=document.getElementById('preN'), pb=document.getElementById('preBar');
-  var v=0, dur = reduce ? 1 : 1500, t0=null;
-  requestAnimationFrame(function step(ts){
-    if(!t0) t0=ts;
-    var p=Math.min(1,(ts-t0)/dur), e=1-Math.pow(1-p,2.2);
-    v=Math.round(100*e);
-    pn.textContent = (v<10?'00':v<100?'0':'')+v;
-    pb.style.width = (e*100)+'%';
-    if(p<1) requestAnimationFrame(step);
-    else setTimeout(function(){
-      pre.classList.add('gone');
-      setTimeout(function(){ pre.remove(); }, 1200);
-      slides[0].classList.add('in'); count(slides[0]);
-    }, 220);
-  });
+  /* перша секція показується одразу */
+  slides[0].classList.add('in');
+  count(slides[0]);
 
   setActive(0);
 })();
