@@ -363,6 +363,18 @@ body.moved .bot .hint{opacity:0}
 .air.big{height:3.4rem}
 .airs.fu{transition-delay:var(--d,0s)}
 
+/* ═════════ ШІ-КОНСЬЄРЖ ═════════ */
+.chats .strip-t img{height:clamp(220px,46vh,460px);width:auto;border-radius:12px;background:#fff;
+  box-shadow:0 18px 40px -24px rgba(23,23,23,.45)}
+.chats .strip-t{gap:1.4rem}
+.chats .strip-t > figure{margin:0;flex:none}
+.chats figcaption{margin-top:.6rem;font-weight:800;font-size:.9rem;color:var(--fg);text-align:center}
+.qs{display:grid;gap:.6rem;margin-top:1.4rem}
+.qs span{display:inline-block;justify-self:start;border-radius:100px 100px 100px 6px;padding:.55em 1.1em;
+  background:#fff;border:1px solid var(--line);font-weight:600;font-size:1rem;
+  opacity:0;transform:translateX(-14px);transition:.6s var(--ease) var(--cd,0s)}
+.s.in .qs span{opacity:1;transform:none}
+
 /* ═════════ ІКОНКИ ТРАНСФЕРУ ═════════ */
 .cd .k .ti{display:inline-block;width:1.5em;height:1.5em;vertical-align:-.45em;margin-left:.5em}
 .legend{display:flex;flex-wrap:wrap;gap:1.6rem;margin-top:1.4rem;font-size:.82rem;color:var(--fg-2);align-items:center}
@@ -1239,6 +1251,42 @@ body.moved .bot .hint{opacity:0}
       <li><span class="n">04</span><span><span class="t">Вкажіть прізвище туриста з неї</span><span class="d">Латиницею</span></span></li>
     </ol>
   </div>
+</section>
+
+<!-- ══ ШІ-КОНСЬЄРЖ · ДЛЯ ТУРИСТА ══ -->
+<section class="s" data-b="Сайт">
+  <div class="w sp" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+    <div>
+      <img src="assets/ai-copilot.png" alt="Travelon Concierge" class="fu" style="width:min(180px,30vw);display:block;margin-bottom:1.2rem">
+      <span class="lbl fu">Безкоштовний AI-асистент для туриста</span>
+      <h2 class="rv">ШІ-консьєрж<br>Travelon</h2>
+      <p class="lead fu" style="--d:.45s;margin-top:1rem">Втомились відповідати на типові питання від туристів, які вже на валізах?</p>
+      <div class="qs fu" style="--d:.5s"><span style="--cd:0.35s">а о котрій виліт?</span><span style="--cd:0.47s">а нас точно зустрінуть?</span><span style="--cd:0.59s">а що брати в аптечку?</span><span style="--cd:0.71s">а екскурсії в готелі будуть?</span></div>
+    </div>
+    <div>
+      <ol class="idx fu" style="--d:.3s">
+        <li><span class="n">01</span><span><span class="t">98% найпоширеніших запитань туристів</span></span></li>
+        <li><span class="n">02</span><span><span class="t">Надішле документи по туру</span><span class="d">Ваучер, страховка, авіаквитки, пам'ятка — або все разом</span></span></li>
+        <li><span class="n">03</span><span><span class="t">Підкаже, як швидше дістатись аеропорту</span></span></li>
+        <li><span class="n">04</span><span><span class="t">Пояснить, як діяти у страховому випадку</span></span></li>
+        <li><span class="n">05</span><span><span class="t">І багато іншого</span><span class="d">Рейс, погода, приймаюча сторона, зворотній трансфер</span></span></li>
+      </ol>
+      <div class="cd box fu" style="--d:.7s;margin-top:1.4rem;border-top-color:var(--red)">
+        <span class="k">Важливо</span>
+        <p>Асистент не замінить повноцінної комунікації з агентом, але точно зможе трішки розвантажити вас. Турист знаходить його за QR-кодом у ваучері — тому він працює лише з тими напрямками, де у ваучері є QR.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ШІ-КОНСЬЄРЖ · ПРИКЛАДИ ══ -->
+<section class="s tint" data-b="Сайт">
+  <div class="w">
+    <span class="lbl fu">Так це виглядає для туриста</span>
+    <h2 class="rv" style="margin-bottom:1.4rem">Що відповідає консьєрж</h2>
+  </div>
+  <div class="strip chats fu" style="--d:.3s;--dur:75s"><div class="strip-t"><figure><img src="assets/ai/chat-docs.jpg" alt="Документи заявки" loading="lazy"><figcaption>Документи заявки</figcaption></figure><figure><img src="assets/ai/chat-flight.jpg" alt="О котрій мій рейс?" loading="lazy"><figcaption>О котрій мій рейс?</figcaption></figure><figure><img src="assets/ai/chat-meet.jpg" alt="Хто мене зустрічає?" loading="lazy"><figcaption>Хто мене зустрічає?</figcaption></figure><figure><img src="assets/ai/chat-weather.jpg" alt="Яка погода?" loading="lazy"><figcaption>Яка погода?</figcaption></figure><figure><img src="assets/ai/chat-transfer.jpg" alt="Зворотній трансфер" loading="lazy"><figcaption>Зворотній трансфер</figcaption></figure><figure><img src="assets/ai/chat-rights.jpg" alt="Якщо гід тисне" loading="lazy"><figcaption>Якщо гід тисне</figcaption></figure><figure><img src="assets/ai/chat-docs.jpg" alt="Документи заявки" loading="lazy"><figcaption>Документи заявки</figcaption></figure><figure><img src="assets/ai/chat-flight.jpg" alt="О котрій мій рейс?" loading="lazy"><figcaption>О котрій мій рейс?</figcaption></figure><figure><img src="assets/ai/chat-meet.jpg" alt="Хто мене зустрічає?" loading="lazy"><figcaption>Хто мене зустрічає?</figcaption></figure><figure><img src="assets/ai/chat-weather.jpg" alt="Яка погода?" loading="lazy"><figcaption>Яка погода?</figcaption></figure><figure><img src="assets/ai/chat-transfer.jpg" alt="Зворотній трансфер" loading="lazy"><figcaption>Зворотній трансфер</figcaption></figure><figure><img src="assets/ai/chat-rights.jpg" alt="Якщо гід тисне" loading="lazy"><figcaption>Якщо гід тисне</figcaption></figure></div></div>
+  <div class="w"><p class="phone fu" style="--d:.6s;margin-top:1.6rem;font-size:clamp(1.2rem,2.4vw,1.9rem)">@travelon_concierge_bot</p></div>
 </section>
 
 <!-- ══ 46 ДИВАЙДЕР КОМАНДА ══ -->
