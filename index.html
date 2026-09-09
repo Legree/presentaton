@@ -532,6 +532,57 @@ body.moved .bot .hint{opacity:0}
 @keyframes hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .gfx .hl[fill]{fill:var(--g3)}
 
+
+/* ═════════ WINTERON — ЗИМА, ЩО ПЕРЕТІКАЄ В ЛІТО ═════════ */
+.s.wo{--bg:#F2F2F2;--fg:var(--ink);--fg-2:rgba(23,23,23,.65);--fg-3:rgba(23,23,23,.45);
+  --line:rgba(23,23,23,.14);--accent:var(--ink);--card:transparent;overflow:hidden}
+.s.wo .wl{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  transition:opacity 1.2s var(--ease) 2.6s}
+.s.wo.in .wl{opacity:0}
+.s.wo .wl i{position:absolute;top:-4vh;border-radius:50%;background:rgba(23,23,23,.22);
+  animation:snowfall var(--fd,9s) linear infinite var(--ad,0s);animation-play-state:paused}
+.s.wo.in .wl i{animation-play-state:running}
+@keyframes snowfall{from{transform:translateY(0) translateX(0)}50%{transform:translateY(55vh) translateX(2vw)}to{transform:translateY(112vh) translateX(-1vw)}}
+.s.wo .sl{position:absolute;inset:-2px;z-index:1;pointer-events:none;
+  background:linear-gradient(160deg,var(--orange) 0%,var(--coral) 46%,var(--red) 100%);
+  clip-path:circle(0% at 50% 104%)}
+.s.wo.in .sl{animation:thaw 2.4s cubic-bezier(.16,1,.3,1) 2.4s forwards}
+@keyframes thaw{to{clip-path:circle(160% at 50% 104%)}}
+.s.wo .sl::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22440%22 viewBox=%220 0 320 440%22%3E%3Cg fill=%22none%22 stroke=%22#fff%22 stroke-width=%225%22 stroke-linejoin=%22round%22%3E%3Cg transform=%22translate(30,20) scale(.3)%22%3E%3Cpath d=%22M325.61 356.136C327.791 346.67 323.824 336.85 315.681 331.553L232.494 277.452C223.173 271.39 210.66 276.402 208.101 287.222L170.996 444.093C168.674 453.911 176.122 463.326 186.212 463.324C250.849 463.056 310.806 418.7 325.61 356.136Z%22/%3E%3Cpath d=%22M108.395 508.409C106.68 515.657 100.21 520.775 92.7622 520.776L86.1263 520.776C33.2179 520.11 -10.1163 462.083 2.072 410.36L22.294 325.657C24.4412 316.663 31.0771 309.413 39.8465 306.481L138.82 273.386C150.761 269.393 162.446 280.065 159.549 292.318L133.191 403.815C131.754 409.893 128.238 415.278 123.25 419.037L82.6996 449.602C81.3701 450.604 80.5823 452.167 80.568 453.832L80.5334 457.84C80.5078 460.815 82.9127 463.241 85.8884 463.241H112.312C115.768 463.241 118.319 466.466 117.524 469.829L108.395 508.409Z%22/%3E%3Cpath d=%22M291.002 0.000771553L286.093 0.000923456C278.646 0.00115386 272.176 5.11833 270.46 12.3643L228.555 189.323C226.917 196.238 228.816 203.515 233.623 208.749L325.504 308.787C328.408 311.949 333.666 310.579 334.659 306.402L381.99 107.123C394.292 54.6362 348.419 -0.237247 291.002 0.000771553Z%22/%3E%3Cpath d=%22M59.0945 167.591L35.7093 266.058C34.6623 270.467 39.1818 274.103 43.2332 272.074C68.2682 259.535 133.84 226.232 174.155 201.528C178.904 198.618 182.212 193.914 183.497 188.494L211.001 72.4638C212.872 64.5695 206.88 56.9988 198.767 57.0077C133.977 56.1926 74.0161 104.538 59.0945 167.591Z%22/%3E%3C/g%3E%3Cg transform=%22translate(190,240) scale(.3)%22%3E%3Cpath d=%22M325.61 356.136C327.791 346.67 323.824 336.85 315.681 331.553L232.494 277.452C223.173 271.39 210.66 276.402 208.101 287.222L170.996 444.093C168.674 453.911 176.122 463.326 186.212 463.324C250.849 463.056 310.806 418.7 325.61 356.136Z%22/%3E%3Cpath d=%22M108.395 508.409C106.68 515.657 100.21 520.775 92.7622 520.776L86.1263 520.776C33.2179 520.11 -10.1163 462.083 2.072 410.36L22.294 325.657C24.4412 316.663 31.0771 309.413 39.8465 306.481L138.82 273.386C150.761 269.393 162.446 280.065 159.549 292.318L133.191 403.815C131.754 409.893 128.238 415.278 123.25 419.037L82.6996 449.602C81.3701 450.604 80.5823 452.167 80.568 453.832L80.5334 457.84C80.5078 460.815 82.9127 463.241 85.8884 463.241H112.312C115.768 463.241 118.319 466.466 117.524 469.829L108.395 508.409Z%22/%3E%3Cpath d=%22M291.002 0.000771553L286.093 0.000923456C278.646 0.00115386 272.176 5.11833 270.46 12.3643L228.555 189.323C226.917 196.238 228.816 203.515 233.623 208.749L325.504 308.787C328.408 311.949 333.666 310.579 334.659 306.402L381.99 107.123C394.292 54.6362 348.419 -0.237247 291.002 0.000771553Z%22/%3E%3Cpath d=%22M59.0945 167.591L35.7093 266.058C34.6623 270.467 39.1818 274.103 43.2332 272.074C68.2682 259.535 133.84 226.232 174.155 201.528C178.904 198.618 182.212 193.914 183.497 188.494L211.001 72.4638C212.872 64.5695 206.88 56.9988 198.767 57.0077C133.977 56.1926 74.0161 104.538 59.0945 167.591Z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  background-size:min(22vw,300px) auto;opacity:.12}
+.s.wo .sl .disc{position:absolute;left:50%;bottom:-30vh;width:min(74vh,82vw);aspect-ratio:1;
+  transform:translateX(-50%) translateY(30vh);border-radius:50%;
+  background:radial-gradient(circle at 50% 46%, #FFF8F1 0%, rgba(255,248,241,.75) 32%, rgba(255,128,0,.45) 58%, rgba(255,76,0,0) 72%)}
+.s.wo.in .sl .disc{animation:sunrise2 2.2s var(--ease) 2.6s forwards}
+@keyframes sunrise2{to{transform:translateX(-50%) translateY(0)}}
+/* кольори тексту перемикаються слідом за сонцем */
+.s.wo.in{--fg:#FFF8F1;--fg-2:rgba(255,248,241,.9);--fg-3:rgba(255,248,241,.7);--line:rgba(255,255,255,.3);--accent:#FFF8F1}
+.s.wo .lbl,.s.wo .stat .l,.s.wo .cd h3,.s.wo .cd p,.s.wo .cd .k{transition:color .9s var(--ease) 3.2s}
+.s.wo .cd{transition:border-color .9s var(--ease) 3.2s}
+.s.wo .stat .v{transition:color .9s var(--ease) 3.2s;color:var(--ink)}
+.s.wo.in .stat .v{color:#FFF8F1}
+.s.wo .rv .ln > i{transition:transform 1.05s var(--ease) var(--d,0s),color .9s var(--ease) 3.2s}
+.s.wo .toggle{font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700;margin-bottom:1.4rem;display:inline-flex;gap:1.2em}
+.s.wo .toggle b{opacity:.35;transition:opacity .8s var(--ease) 3.2s}
+.s.wo .toggle b:first-child{opacity:1}
+.s.wo.in .toggle b:first-child{opacity:.4}
+.s.wo.in .toggle b:last-child{opacity:1}
+
+/* ═════════ PREMIUM — ЗОЛОТИСТИЙ ЛОСК ═════════ */
+:root{--gold:#D8AE5A}
+.s.prem{
+  --bg:radial-gradient(120% 80% at 85% -10%, rgba(216,174,90,.30) 0%, rgba(216,174,90,0) 55%),
+       radial-gradient(90% 70% at 5% 105%, rgba(255,128,0,.16) 0%, rgba(255,128,0,0) 60%),
+       linear-gradient(180deg,#1B1815 0%,#171717 40%,#171717 100%);
+}
+.s.prem::after{content:"";position:absolute;left:6vw;right:6vw;top:0;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(216,174,90,.55) 30%,rgba(216,174,90,.55) 70%,transparent)}
+.s.prem .lbl{color:var(--gold)}
+.s.prem em{color:var(--gold)}
+.s.prem .cd{border-top-color:rgba(216,174,90,.7)}
+.s.prem .cd .k{color:var(--gold)}
+.s.prem.ph .bg::after{background:linear-gradient(105deg,rgba(23,23,23,.86),rgba(23,23,23,.55) 55%,rgba(216,174,90,.22))}
+
 /* ═════════ АДАПТИВ ═════════ */
 @media (max-width:1100px){
   .sp,.sp.rev,.sp.eq{grid-template-columns:1fr;gap:2.4rem}
@@ -852,8 +903,11 @@ body.moved .bot .hint{opacity:0}
 </section>
 
 <!-- ══ WINTERON · ОБЕРИ СВОЮ ЗИМУ ══ -->
-<section class="s coral" data-b="WinterOn">
+<section class="s wo" data-b="WinterOn">
+  <div class="wl" aria-hidden="true"><i style="left:0vw;width:4px;height:4px;--fd:7.0s;--ad:-0.0s"></i><i style="left:37vw;width:6px;height:6px;--fd:8.4s;--ad:-1.3s"></i><i style="left:74vw;width:8px;height:8px;--fd:9.8s;--ad:-2.6s"></i><i style="left:11vw;width:10px;height:10px;--fd:11.2s;--ad:-3.9s"></i><i style="left:48vw;width:4px;height:4px;--fd:12.6s;--ad:-5.2s"></i><i style="left:85vw;width:6px;height:6px;--fd:14.0s;--ad:-6.5s"></i><i style="left:22vw;width:8px;height:8px;--fd:7.0s;--ad:-7.8s"></i><i style="left:59vw;width:10px;height:10px;--fd:8.4s;--ad:-9.1s"></i><i style="left:96vw;width:4px;height:4px;--fd:9.8s;--ad:-10.4s"></i><i style="left:33vw;width:6px;height:6px;--fd:11.2s;--ad:-11.7s"></i><i style="left:70vw;width:8px;height:8px;--fd:12.6s;--ad:-13.0s"></i><i style="left:7vw;width:10px;height:10px;--fd:14.0s;--ad:-14.3s"></i><i style="left:44vw;width:4px;height:4px;--fd:7.0s;--ad:-15.6s"></i><i style="left:81vw;width:6px;height:6px;--fd:8.4s;--ad:-16.9s"></i><i style="left:18vw;width:8px;height:8px;--fd:9.8s;--ad:-18.2s"></i><i style="left:55vw;width:10px;height:10px;--fd:11.2s;--ad:-19.5s"></i><i style="left:92vw;width:4px;height:4px;--fd:12.6s;--ad:-20.8s"></i><i style="left:29vw;width:6px;height:6px;--fd:14.0s;--ad:-22.1s"></i><i style="left:66vw;width:8px;height:8px;--fd:7.0s;--ad:-23.4s"></i><i style="left:3vw;width:10px;height:10px;--fd:8.4s;--ad:-24.7s"></i><i style="left:40vw;width:4px;height:4px;--fd:9.8s;--ad:-26.0s"></i><i style="left:77vw;width:6px;height:6px;--fd:11.2s;--ad:-27.3s"></i><i style="left:14vw;width:8px;height:8px;--fd:12.6s;--ad:-28.6s"></i><i style="left:51vw;width:10px;height:10px;--fd:14.0s;--ad:-29.9s"></i><i style="left:88vw;width:4px;height:4px;--fd:7.0s;--ad:-31.2s"></i><i style="left:25vw;width:6px;height:6px;--fd:8.4s;--ad:-32.5s"></i></div>
+  <div class="sl" aria-hidden="true"><div class="disc"></div></div>
   <div class="w">
+    <div class="toggle fu"><b>❄ Грудень удома</b><b>☀ Грудень на морі</b></div>
     <span class="lbl fu">WinterOn · сезон зимівлі 2026/27 · грудень — березень</span>
     <h1 class="rv" style="font-size:clamp(2.4rem,7.4vw,6rem)">Обери<br>свою зиму</h1>
     <div class="fu" style="--d:.5s;margin-top:1.6rem;display:flex;gap:2.6rem;flex-wrap:wrap">
@@ -2097,7 +2151,7 @@ body.moved .bot .hint{opacity:0}
   };
 
   slides.forEach(function(sec){
-    if(sec.classList.contains('ph')) return;              // фото-секції не чіпаємо
+    if(sec.classList.contains('ph') || sec.classList.contains('wo')) return;   // фото-секції та зима→літо не чіпаємо
     var kind = BLOCK[sec.dataset.b];
     if(!kind || !DECO[kind]) return;
     var isDivider = !!sec.querySelector('h1');            // дивайдер — повна яскравість
@@ -2650,6 +2704,7 @@ body.moved .bot .hint{opacity:0}
     nameEl.textContent = slides[i].dataset.b || '';
     var cl = slides[i].classList;
     document.body.classList.toggle('on-dark', cl.contains('coral') || cl.contains('prem') || cl.contains('ph'));
+    if(cl.contains('wo')){ var me=i; setTimeout(function(){ if(cur===me) document.body.classList.add('on-dark'); }, 3200); }
     numEl.textContent  = pad(i+1)+' / '+pad(slides.length);
     prog.style.width   = (i/(slides.length-1)*100)+'%';
   }
