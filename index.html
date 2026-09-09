@@ -142,8 +142,8 @@ strong{font-weight:800}
 }
 .idx li:last-child{border-bottom:1px solid var(--line)}
 .idx .n{font-size:.78rem;font-weight:800;color:var(--accent);letter-spacing:.06em;font-variant-numeric:tabular-nums}
-.idx .t{font-size:1.22rem;font-weight:600;letter-spacing:-.015em}
-.idx .d{font-size:1rem;color:var(--fg);font-weight:600;margin-top:.2rem;opacity:.8}
+.idx .t{display:block;font-size:1.22rem;font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.idx .d{display:block;font-size:.98rem;color:var(--fg);font-weight:400;margin-top:.3rem;opacity:.72;line-height:1.4}
 
 /* міста вильоту */
 .cities{display:flex;flex-wrap:wrap;gap:.6rem}
@@ -902,28 +902,29 @@ body.moved .bot .hint{opacity:0}
   </div>
 </section>
 
-<!-- ══ WINTERON · НАВІЩО І ЯК ══ -->
+<!-- ══ WINTERON · ЧОМУ ЦЕ КРУТО ДЛЯ АГЕНТА ══ -->
 <section class="s" data-b="WinterOn">
   <div class="w sp" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
     <div>
-      <span class="lbl fu">Навіщо це взагалі</span>
-      <h2 class="rv">Більше світла<br>й тепла у своїй зимі</h2>
-      <div class="g2 fu" style="--d:.4s;margin-top:1.4rem">
-        <div class="cd"><span class="k">01</span><h3>Більше сонця</h3><p>Короткий світловий день — сонця справді бракує. Тепло і довший день підтримують настрій.</p></div>
-        <div class="cd"><span class="k">02</span><h3>Менше сезонної хандри</h3><p>Нестача світла впливає на сон і енергію; зміна широти — простий спосіб це виправити.</p></div>
-        <div class="cd"><span class="k">03</span><h3>Низький сезон — нижча ціна</h3><p>У грудні–березні житло й перельоти дешевші, ніж у високий сезон.</p></div>
-        <div class="cd"><span class="k">04</span><h3>Робота не зупиняється</h3><p>Стабільний інтернет, комфортне житло і +20 °C за вікном — робочий ритм звичний.</p></div>
-      </div>
+      <span class="lbl fu">Чому зимівлю варто продавати</span>
+      <h2 class="rv">Одна заявка —<br>місяць продажів</h2>
+      <ol class="idx fu" style="--d:.3s;margin-top:1.2rem">
+        <li><span class="n">01</span><span><span class="t">Чек у 3–4 рази вищий</span><span class="d">30 ночей замість 7 — та сама робота з клієнтом, а комісія з місячного туру</span></span></li>
+        <li><span class="n">02</span><span><span class="t">Заповнює низький сезон</span><span class="d">Грудень–березень, коли літні клієнти мовчать, а вам потрібен оборот</span></span></li>
+        <li><span class="n">03</span><span><span class="t">Клієнт повертається щороку</span><span class="d">Хто перезимував раз, бронює наступну зиму — і приводить знайомих</span></span></li>
+        <li><span class="n">04</span><span><span class="t">Менше рутини на заявку</span><span class="d">Одна довга бронь замість чотирьох коротких: один договір, один трансфер, одна страховка</span></span></li>
+        <li><span class="n">05</span><span><span class="t">Складне беремо на себе</span><span class="d">Ліміт 90/180, візи, страховка на довгий строк, житло з кухнею — ви продаєте, ми рахуємо</span></span></li>
+      </ol>
     </div>
     <div>
-      <span class="lbl fu">Як не порушити правило 90/180</span>
-      <ol class="idx fu" style="--d:.3s">
-        <li><span class="n">01</span><span><span class="t">Шенген рахується спільно</span><span class="d">Іспанія та Болгарія витрачають одні й ті самі 90 днів</span></span></li>
-        <li><span class="n">02</span><span><span class="t">Туреччина, Єгипет, Таїланд, Кіпр — окремо</span><span class="d">На шенгенський ліміт не впливають</span></span></li>
-        <li><span class="n">03</span><span><span class="t">Повна зимівля складається з двох частин</span><span class="d">Грудень–січень у Туреччині, на Кіпрі чи в Таїланді, лютий–березень — на Канарах</span></span></li>
-        <li><span class="n">04</span><span><span class="t">Виліт із сусідніх хабів</span><span class="d">Кишинів · Варшава · Краків · Бухарест · Будапешт — трансфер із Києва підв'язаний під рейс</span></span></li>
-      </ol>
-      <p class="sm fu" style="--d:.7s;margin-top:1.2rem">Календар 90/180 рахуємо разом із вами до бронювання. Усі напрямки — у системі бронювання Travelon: travelon.to/book</p>
+      <span class="lbl fu">Аргументи, які працюють із туристом</span>
+      <div class="g2 fu" style="--d:.45s">
+        <div class="cd"><span class="k">Здоров'я</span><h3>Більше сонця, менше хандри</h3><p>Чотири місяці короткого дня б'ють по настрою і сну. Зміна широти — найпростіший спосіб це виправити.</p></div>
+        <div class="cd"><span class="k">Гроші</span><h3>Дешевше, ніж здається</h3><p>Місяць оренди в Аланії коштує менше за тиждень «все включено». Життя без житла — від €300 на місяць.</p></div>
+        <div class="cd"><span class="k">Робота</span><h3>Не відпустка, а переїзд</h3><p>Стабільний інтернет, комфортне житло і +20 °C за вікном — робочий ритм не змінюється.</p></div>
+        <div class="cd"><span class="k">Родина</span><h3>Діти вчаться онлайн</h3><p>Школа працює всюди, де є інтернет. Документи для виїзду дитини надсилаємо під ситуацію.</p></div>
+      </div>
+      <p class="sm fu" style="--d:.7s;margin-top:1.2rem">Шенген рахується спільно, Туреччина, Єгипет, Таїланд і Кіпр — окремо. Тому повна зимівля складається з двох частин, а календар 90/180 ми рахуємо разом із клієнтом до бронювання.</p>
     </div>
   </div>
 </section>
