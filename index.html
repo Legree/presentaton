@@ -470,7 +470,7 @@ body.moved .bot .hint{opacity:0}
 .a-steam{animation:steam var(--fd,5s) ease-in-out infinite var(--ad,0s);animation-play-state:paused;opacity:0}
 .s.in .a-steam{animation-play-state:running}
 @keyframes steam{0%{transform:translateY(10px);opacity:0}25%{opacity:.8}100%{transform:translateY(-70px);opacity:0}}
-.gfx .a-fly{animation-play-state:paused}
+.gfx .a-fly{animation-play-state:paused;animation-timing-function:linear}
 .s.in .gfx .a-fly{animation-play-state:running}
 
 
@@ -519,6 +519,11 @@ body.moved .bot .hint{opacity:0}
 .phones{display:flex;gap:1.6rem;align-items:flex-end;justify-content:center}
 .phones img{height:min(58vh,560px);width:auto;display:block;border-radius:22px;
   box-shadow:0 30px 60px -30px rgba(23,23,23,.45)}
+
+.a-hover{animation:hover 3.4s ease-in-out infinite;animation-play-state:paused}
+.s.in .a-hover{animation-play-state:running}
+@keyframes hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.gfx .hl[fill]{fill:var(--g3)}
 
 /* ═════════ АДАПТИВ ═════════ */
 @media (max-width:1100px){
@@ -1318,7 +1323,7 @@ body.moved .bot .hint{opacity:0}
 <section class="s ph prem" data-b="Premium">
   <div class="bg"><img src="assets/premium-leaves.jpg" alt=""></div>
   <div class="w">
-    <span class="lbl fu">«Travelon Premium» · Зима 2025-26</span>
+    <span class="lbl fu">«Travelon Premium» · Зима 2026-2027</span>
     <h1 class="rv">Незабутній<br><em>luxury</em> відпочинок<br>починається з Тревелон</h1>
   </div>
 </section>
@@ -1336,7 +1341,7 @@ body.moved .bot .hint{opacity:0}
 
 <section class="s prem" data-b="Premium">
   <div class="w">
-    <span class="lbl fu">Premium · Зима 25-26</span>
+    <span class="lbl fu">Premium · Зима 2026-2027</span>
     <h2 class="rv" style="margin-bottom:1.8rem">Шість напрямків сезону</h2>
     <div class="tiles"><figure class="fu" style="--d:0.20s">
         <div class="med r43"><img src="assets/prem/d-uae.jpg" alt="ОАЕ" loading="lazy"></div>
@@ -1420,12 +1425,12 @@ body.moved .bot .hint{opacity:0}
 
 <section class="s prem" data-b="ОАЕ">
   <div class="w sp rev">
-    <div class="gfx fu" data-gfx="palm"  style="--d:.15s"></div>
+    <div class="gfx fu" data-gfx="trio"  style="--d:.15s"></div>
     <div>
-      <span class="lbl fu">Дубай пляж · рекомендовані готелі</span>
-      <h2 class="rv">Palm<br>Jumeirah</h2>
+      <span class="lbl fu">Дубай · рекомендовані готелі</span>
+      <h2 class="rv">Пляжні готелі<br>Дубая</h2>
       
-      <p class="sm fu" style="--d:.5s;margin:1rem 0 1.2rem">Нещодавно відкриті готелі 2025: Jumeirah Marsa Al Arab — завершення легендарного тріо «Парус — Хвиля — Суперяхта», та Jumeirah Al Naseem.</p>
+      <p class="sm fu" style="--d:.5s;margin:1rem 0 1.2rem">Легендарне тріо Jumeirah: <strong>Burj Al Arab</strong> — «Парус», <strong>Jumeirah Beach Hotel</strong> — «Хвиля» та новий <strong>Jumeirah Marsa Al Arab</strong> — «Суперяхта», відкритий 2025 року разом із Jumeirah Al Naseem.</p>
       <div class="g2 fu" style="--d:.6s">
         <div class="cd"><span class="k">Madinat Jumeirah</span><p>Mina A Salam · Al Qasr · Dar Al Masyaf</p></div>
         <div class="cd"><span class="k">Мережа Marriott</span><p>The Ritz Carlton · Le Royal Meridien · Westin Mina Seyahi · W Dubai Mina Seyahi · W Dubai The Palm</p></div>
@@ -1438,11 +1443,12 @@ body.moved .bot .hint{opacity:0}
 
 <section class="s prem" data-b="ОАЕ">
   <div class="w sp">
-    <div class="gfx fu" data-gfx="coast"  style="--d:.15s"></div>
+    <div class="gfx fu" data-gfx="beach" data-zones="Корніш|Saadiyat" style="--d:.15s"></div>
     <div>
       <span class="lbl fu">Абу-Дабі · рекомендовані готелі</span>
-      <h2 class="rv">Острів<br>Saadiyat</h2>
+      <h2 class="rv">Пляжні готелі<br>Абу-Дабі</h2>
       
+      <p class="sm fu" style="--d:.5s;margin:1rem 0 1rem">Два узбережжя: міський пляж Корніш із палацовими готелями та острів Saadiyat — довгий білий пляж і курорти без міського шуму.</p>
       <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>Mandarin Oriental Emirates Palace</li><li><b>02</b>Rixos Marina Abu Dhabi — дитячий клуб</li><li><b>03</b>St. Regis Saadiyat Island Resort</li><li><b>04</b>Rixos Premium Saadiyat Island — Ultra AI</li><li><b>05</b>Club Prive by Rixos Saadiyat</li><li><b>06</b>Park Hyatt Abu Dhabi</li><li><b>07</b>Jumeirah Saadiyat Island</li><li><b>08</b>Saadiyat Rotana Resort & SPA — AI</li></ul>
     </div>
   </div>
@@ -1463,12 +1469,12 @@ body.moved .bot .hint{opacity:0}
 
 <section class="s prem" data-b="ОАЕ">
   <div class="w sp">
-    <div class="gfx fu" data-gfx="marjan"  style="--d:.15s"></div>
+    <div class="gfx fu" data-gfx="beach" data-zones="Al Marjan|Al Hamra|Mina" style="--d:.15s"></div>
     <div>
       <span class="lbl fu">Рас-аль-Хайма · рекомендовані готелі</span>
-      <h2 class="rv">Al Marjan<br>Island</h2>
+      <h2 class="rv">Пляжні готелі<br>Рас-аль-Хайми</h2>
       
-      <p class="sm fu" style="--d:.5s;margin:1rem 0 1rem">Планується відкриття першого в ОАЕ казино — 2027.</p>
+      <p class="sm fu" style="--d:.5s;margin:1rem 0 1rem">Спокійніший і доступніший за Дубай емірат: широкі пляжі, гори Джебель-Джайс поруч і перше в ОАЕ казино на Al Marjan Island — відкриття планується 2027.</p>
       <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>Waldorf Astoria Ras Al Khaimah</li><li><b>02</b>Anantara Mina Ras Al Khaimah Resort</li><li><b>03</b>The Ritz Carlton Ras Al Khaimah</li><li><b>04</b>Rixos Al Mairid (ex. Hilton RAK)</li><li><b>05</b>Movenpick Resort Al Marjan Island</li><li><b>06</b>Sofitel Al Hamra (ex. Hilton Al Hamra)</li><li><b>07</b>The Cove Rotana Resort</li></ul>
     </div>
   </div>
@@ -1510,17 +1516,16 @@ body.moved .bot .hint{opacity:0}
 </section>
 
 <section class="s prem" data-b="Мальдіви">
-  <div class="w sp rev">
-    <div class="gfx fu" data-gfx="mvtrans"  style="--d:.15s"></div>
-    <div>
-      <span class="lbl fu">Три способи дістатись острова</span>
-      <h2 class="rv">Трансфери<br>з/до аеропорту</h2>
-      
-      <div class="g3 fu" style="--d:.5s;margin-top:1.2rem">
-        <div class="cd"><span class="k">Seaplane</span><h3>Справжній початок подорожі</h3><p>Тільки протягом світлового дня, з 09:00 до 16:30. Багаж 20 кг + 3 кг ручної поклажі.</p></div>
-        <div class="cd"><span class="k">Domestic flight</span><h3>Комбінується з катером</h3><p>Багаж 20 кг + 5 кг ручної поклажі.</p></div>
-        <div class="cd"><span class="k">Speedboat</span><h3>До найближчих островів</h3><p>Або в комбінації з внутрішнім перельотом.</p></div>
-      </div>
+  <div class="w">
+    <span class="lbl fu">Трансфери з/до аеропорту</span>
+    <h2 class="rv" style="margin-bottom:1.6rem">Три способи дістатись островів</h2>
+    <div class="g3">
+      <div class="fu" style="--d:.2s"><div class="gfx" data-gfx="vehicle" data-kind="seaplane"></div>
+        <div class="cd" style="margin-top:1rem"><span class="k">Seaplane</span><h3>Справжній початок подорожі</h3><p>Тільки протягом світлового дня, з 09:00 до 16:30. Багаж 20 кг + 3 кг ручної поклажі.</p></div></div>
+      <div class="fu" style="--d:.35s"><div class="gfx" data-gfx="vehicle" data-kind="plane"></div>
+        <div class="cd" style="margin-top:1rem"><span class="k">Domestic flight</span><h3>Комбінується з катером</h3><p>Внутрішній переліт на далекі атоли. Багаж 20 кг + 5 кг ручної поклажі.</p></div></div>
+      <div class="fu" style="--d:.5s"><div class="gfx" data-gfx="vehicle" data-kind="boat"></div>
+        <div class="cd" style="margin-top:1rem"><span class="k">Speedboat</span><h3>До найближчих островів</h3><p>Швидкий катер від аеропорту Мале — або в комбінації з внутрішнім перельотом.</p></div></div>
     </div>
   </div>
 </section>
@@ -1528,8 +1533,8 @@ body.moved .bot .hint{opacity:0}
 <section class="s prem" data-b="Мальдіви">
   <div class="w">
     <span class="lbl fu">Перед тим як підбирати готель</span>
-    <h2 class="rv" style="margin-bottom:1.8rem">«Хочу на Мальдіви»<br>6 запитань туристу</h2>
-    <div class="g3"><div class="cd fu" style="--d:0.25s"><span class="k">Питання 01</span><h3>Хто подорожує</h3><p>Молодята, пара, родина з дітьми</p></div><div class="cd fu" style="--d:0.32s"><span class="k">Питання 02</span><h3>Локація</h3><p>Різні атоли — різний досвід та враження</p></div><div class="cd fu" style="--d:0.39s"><span class="k">Питання 03</span><h3>Трансфер</h3><p>Три варіанти на вибір</p></div><div class="cd fu" style="--d:0.46s"><span class="k">Питання 04</span><h3>Схід / захід сонця</h3><p>Чому Sunset Villa дорожча за Sunrise Villa</p></div><div class="cd fu" style="--d:0.53s"><span class="k">Питання 05</span><h3>Плавання / снорклінг</h3><p>Наявність лагун і рифів</p></div><div class="cd fu" style="--d:0.60s"><span class="k">Питання 06</span><h3>Басейн: так чи ні</h3><p>Наскільки принципово</p></div></div>
+    <h2 class="rv" style="font-size:clamp(1.7rem,3.6vw,3rem);margin-bottom:1.4rem">«Хочу на Мальдіви» — 6 запитань туристу</h2>
+    <div class="g3"><div class="cd fu" style="--d:0.25s"><span class="k">Питання 01</span><h3>Хто подорожує</h3><p>Молодята шукають приватність і романтику, пара — баланс релаксу й активностей, родина з дітьми — дитячий клуб, мілку лагуну та family-вілли. Від цього залежить і атол, і категорія вілли.</p></div><div class="cd fu" style="--d:0.32s"><span class="k">Питання 02</span><h3>Локація</h3><p>Атоли біля Мале — короткий трансфер катером і жвавіше життя. Далекі атоли — тиша, seaplane і найкращі рифи. Різні атоли дають різний досвід та враження.</p></div><div class="cd fu" style="--d:0.39s"><span class="k">Питання 03</span><h3>Трансфер</h3><p>Seaplane лише вдень, domestic flight у комбінації з катером, speedboat — до найближчих островів. Вибір впливає на ціну, час у дорозі та стикування з рейсом.</p></div><div class="cd fu" style="--d:0.46s"><span class="k">Питання 04</span><h3>Схід / захід сонця</h3><p>Sunset Villa дорожча, бо вечір на терасі з заходом сонця — головна емоція Мальдів. Sunrise Villa тихіша, з ранковим світлом і зазвичай доступніша.</p></div><div class="cd fu" style="--d:0.53s"><span class="k">Питання 05</span><h3>Плавання / снорклінг</h3><p>Лагуна — для спокійного плавання й дітей, house reef — для снорклінгу просто з вілли. Не кожен острів має обидва, тому питання варто ставити одразу.</p></div><div class="cd fu" style="--d:0.60s"><span class="k">Питання 06</span><h3>Басейн: так чи ні</h3><p>Private pool у віллі — питання приватності та бюджету. Без басейну океан у трьох кроках і ціна нижча; з басейном — власний простір, який не залежить від припливу.</p></div></div>
   </div>
 </section>
 
@@ -2189,6 +2194,162 @@ body.moved .bot .hint{opacity:0}
          + '<circle cx="0" cy="-17" r="10" fill="#fff"/></g>';
       o += '<text class="lbs" x="20" y="500" style="--ad:1.5s">Радіус захисту навколо офісу</text>';
       return svgWrap(W,H,o);
+    },
+
+
+    /* Дубай — тріо Jumeirah у деталях */
+    trio: function(){
+      var W=760,H=520,o='';
+      /* небо, сонце */
+      o += '<circle cx="640" cy="120" r="46" fill="var(--g3)" stroke="var(--g2)" stroke-width="1.5"/>';
+      o += '<circle cx="640" cy="120" r="70" fill="none" stroke="var(--g3)" stroke-width="1"/>';
+      /* море з відблисками */
+      o += '<rect x="-20" y="396" width="800" height="150" fill="var(--g3)"/>';
+      for(var k=0;k<5;k++){ var y=414+k*24;
+        o += '<path class="ln" style="--len:900;--ad:'+(1.3+k*.12)+'s" d="M-20 '+y+' q 40 -8 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0" stroke-width="1.5" opacity=".7"/>'; }
+      /* відбиття Паруса */
+      o += '<path d="M130 400 L 130 470 C 190 460, 215 430, 225 400 Z" fill="var(--g3)" opacity=".8"/>';
+
+      /* ── Burj Al Arab: парус на острівці, щогла, вертолітний майданчик ── */
+      o += '<path d="M60 396 L 300 396 L 280 380 L 80 380 Z" fill="var(--g2)"/>';                 /* острівець */
+      o += '<path class="hl" style="--len:1000;--ad:.2s" d="M130 380 L 130 96 C 232 128, 252 300, 232 380 Z" fill="var(--g3)"/>';
+      o += '<path class="ln" style="--len:700;--ad:.7s" d="M130 96 C 190 160, 212 280, 205 380" stroke-width="2.5"/>';   /* переднє скло */
+      o += '<line class="ln" style="--len:300;--ad:.9s" x1="130" y1="380" x2="130" y2="60" stroke-width="7"/>';        /* щогла */
+      o += '<path class="ln" style="--len:80;--ad:1.1s" d="M130 62 L 165 62" stroke-width="4"/>';
+      o += '<ellipse class="mk" cx="200" cy="236" rx="30" ry="9" style="--ad:1.2s"/>';                               /* гелікоптерний майданчик */
+      for(var r=0;r<9;r++){ var yy=140+r*26;
+        o += '<line class="ln" style="--len:60;--ad:'+(1+r*.05)+'s" x1="140" y1="'+yy+'" x2="'+(160+r*5)+'" y2="'+yy+'" stroke-width="1.5" opacity=".7"/>'; }
+
+      /* ── Jumeirah Beach Hotel: хвиля з поверхами ── */
+      o += '<path class="hl" style="--len:800;--ad:.45s" d="M300 380 C 320 300, 400 240, 500 250 C 560 256, 590 290, 596 330 L 596 380 Z" fill="var(--g3)"/>';
+      for(var f=0;f<8;f++){ var yf=280+f*12;
+        o += '<path class="ln" style="--len:300;--ad:'+(1+f*.06)+'s" d="M'+(318+f*2)+' '+yf+' C 380 '+(yf-30)+', 470 '+(yf-38)+', 590 '+(yf-10)+'" stroke-width="1.2" opacity=".75"/>'; }
+
+      /* ── Marsa Al Arab: суперяхта ── */
+      o += '<path class="hl" style="--len:900;--ad:.7s" d="M605 380 L 605 340 L 618 340 L 630 318 L 664 306 L 700 300 L 738 300 L 764 318 L 774 344 L 780 380 Z" fill="var(--g3)"/>';
+      o += '<path class="ln" style="--len:300;--ad:1s" d="M640 340 L 760 340 M655 318 L 745 318 M700 300 L 700 286 L 726 286" stroke-width="2.5"/>';
+      for(var w=0;w<9;w++){ o += '<rect class="mk" style="--ad:'+(1.2+w*.04)+'s" x="'+(646+w*13)+'" y="326" width="7" height="6" rx="1"/>'; }
+
+      /* пальми на набережній */
+      [[40,382],[292,384],[598,384],[760,384]].forEach(function(pt,i){
+        var x=pt[0],y=pt[1];
+        o += '<g class="ln" style="--len:200;--ad:'+(1.3+i*.1)+'s" stroke-width="2.5">'
+           + '<path d="M'+x+' '+y+' q 4 -30 2 -58"/>'
+           + '<path d="M'+(x+2)+' '+(y-58)+' q -22 -14 -34 -2 M'+(x+2)+' '+(y-58)+' q 22 -14 34 -2 M'+(x+2)+' '+(y-58)+' q -18 6 -28 24 M'+(x+2)+' '+(y-58)+' q 18 6 28 24 M'+(x+2)+' '+(y-58)+' q -4 -22 2 -30"/></g>';
+      });
+      /* підписи */
+      [['Парус',180],['Хвиля',448],['Суперяхта',692]].forEach(function(l,i){
+        o += '<text class="lbt" x="'+l[1]+'" y="478" text-anchor="middle" style="--ad:'+(1.5+i*.15)+'s;font-size:17px">'+l[0]+'</text>';
+      });
+      [['Burj Al Arab',180],['Jumeirah Beach Hotel',448],['Marsa Al Arab',692]].forEach(function(l,i){
+        o += '<text class="lbs" x="'+l[1]+'" y="502" text-anchor="middle" style="--ad:'+(1.65+i*.15)+'s">'+l[0]+'</text>';
+      });
+      return svgWrap(W,H,o);
+    },
+
+    /* Пляжні готелі — резорти, пальми, лежаки, лагуна */
+    beach: function(el){
+      var W=760,H=520,o='', zones=(el.dataset.zones||'').split('|').filter(Boolean);
+      /* море */
+      o += '<path d="M-20 296 C 200 270, 520 262, 780 286 L 780 540 L -20 540 Z" fill="var(--g3)"/>';
+      for(var k=0;k<5;k++){ var y=326+k*30;
+        o += '<path class="ln" style="--len:900;--ad:'+(1.1+k*.12)+'s" d="M-20 '+y+' q 40 -9 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0" stroke-width="1.5" opacity=".7"/>'; }
+      /* пісок */
+      o += '<path d="M-20 296 C 200 270, 520 262, 780 286 L 780 236 C 520 214, 200 222, -20 246 Z" fill="var(--g3)" opacity=".6"/>';
+      o += '<path class="hl" style="--len:820" d="M-20 296 C 200 270, 520 262, 780 286" stroke-width="3"/>';
+      /* резорти: ступінчасті корпуси з вікнами */
+      var hs=[[36,70,3],[130,110,5],[268,84,4],[380,140,6],[540,96,4],[660,110,5]];
+      hs.forEach(function(h,i){
+        var x=h[0],w=h[1],fl=h[2], t=(x+w/2)/800, base=236-24*Math.sin(t*Math.PI);
+        var hh=fl*22;
+        o += '<path class="ln" style="--len:600;--ad:'+(0.4+i*.1)+'s" d="M'+x+' '+base+' L '+x+' '+(base-hh)+' L '+(x+w*.55)+' '+(base-hh)+' L '+(x+w*.55)+' '+(base-hh+18)+' L '+(x+w)+' '+(base-hh+18)+' L '+(x+w)+' '+base+' Z" fill="var(--g3)" stroke-width="2"/>';
+        for(var f=0;f<fl;f++){ for(var c=0;c<Math.floor(w/16);c++){
+          var wx=x+7+c*16, wy=base-hh+8+f*22; if(wx>x+w*.55-6 && f===0) continue;
+          o += '<rect class="mk" style="--ad:'+(0.9+i*.08+f*.03).toFixed(2)+'s" x="'+wx+'" y="'+wy+'" width="7" height="8" rx="1" opacity=".85"/>'; } }
+      });
+      /* пальми між корпусами */
+      [[110,236],[250,232],[520,228],[640,230],[748,238]].forEach(function(pt,i){
+        var x=pt[0],y=pt[1];
+        o += '<g class="ln" style="--len:200;--ad:'+(1.2+i*.08)+'s" stroke-width="2.5"><path d="M'+x+' '+y+' q 5 -28 3 -54"/>'
+           + '<path d="M'+(x+3)+' '+(y-54)+' q -22 -12 -32 0 M'+(x+3)+' '+(y-54)+' q 22 -12 32 0 M'+(x+3)+' '+(y-54)+' q -16 8 -24 26 M'+(x+3)+' '+(y-54)+' q 16 8 24 26"/></g>';
+      });
+      /* лежаки й парасольки */
+      for(var i=0;i<9;i++){
+        var x=48+i*84, t=(x+20)/800, y=290-24*Math.sin(t*Math.PI)-14;
+        o += '<g class="mk" style="--ad:'+(0.7+i*.06)+'s" transform="translate('+x+','+y+')">'
+           + '<path d="M-18 0 A 18 18 0 0 1 18 0 Z"/><line x1="0" y1="0" x2="0" y2="20" stroke="var(--g)" stroke-width="2"/>'
+           + '<rect x="-24" y="16" width="20" height="5" rx="2" fill="var(--g)" opacity=".7"/><rect x="4" y="16" width="20" height="5" rx="2" fill="var(--g)" opacity=".7"/></g>';
+      }
+      /* зони */
+      zones.forEach(function(z,i){
+        var x=150+i*(460/Math.max(zones.length-1,1));
+        o += '<line class="ln" style="--len:60;--ad:'+(1.4+i*.15)+'s" x1="'+x+'" y1="120" x2="'+x+'" y2="96" stroke-width="2"/>';
+        o += '<circle class="mk" cx="'+x+'" cy="126" r="6" style="--ad:'+(1.3+i*.15)+'s"/>';
+        o += '<text class="lbt" x="'+x+'" y="88" text-anchor="middle" style="--ad:'+(1.5+i*.15)+'s">'+z+'</text>';
+      });
+      return svgWrap(W,H,o);
+    },
+
+    /* Транспорт на Мальдівах — вид зверху: літаки над атолами, катер між островами */
+    vehicle: function(el){
+      var W=360,H=200,k=el.dataset.kind,o='';
+      /* атол: кільце рифу з лагуною і острівцями на ньому */
+      function atoll(cx,cy,rx,ry,n,ad){
+        var a='<ellipse cx="'+cx+'" cy="'+cy+'" rx="'+rx+'" ry="'+ry+'" fill="var(--g3)"/>';        /* лагуна */
+        a+='<ellipse class="ln" style="--len:'+Math.round(2*Math.PI*Math.max(rx,ry))+';--ad:'+ad+'s" cx="'+cx+'" cy="'+cy+'" rx="'+rx+'" ry="'+ry+'" stroke-width="5" opacity=".55"/>'; /* риф */
+        for(var i=0;i<n;i++){ var t=i/n*Math.PI*2, x=cx+Math.cos(t)*rx, y=cy+Math.sin(t)*ry;
+          a+='<ellipse class="mk" style="--ad:'+(ad+.3+i*.06).toFixed(2)+'s" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" rx="'+(6+i%3*2)+'" ry="'+(4+i%2*2)+'" transform="rotate('+(t*57.3).toFixed(0)+' '+x.toFixed(1)+' '+y.toFixed(1)+')" fill="var(--g)"/>'; }
+        return a;
+      }
+      /* окремий острівець із пальмою */
+      function isle(cx,cy,r,ad){
+        return '<circle cx="'+cx+'" cy="'+cy+'" r="'+(r+7)+'" fill="var(--g3)"/>'
+             + '<circle class="mk" style="--ad:'+ad+'s" cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="var(--g)"/>'
+             + '<circle class="mk" style="--ad:'+(ad+.2)+'s" cx="'+cx+'" cy="'+cy+'" r="'+(r*.35)+'" fill="var(--gm)"/>';
+      }
+      /* силует літака зверху, ніс праворуч, центр у (0,0); floats — з поплавками, ttail — Т-хвіст */
+      function planeTop(sc,floats,ttail){
+        var g='<g transform="scale('+sc+')">';
+        if(floats) g+='<rect x="-22" y="-10" width="42" height="3.5" rx="1.7" fill="var(--g)" opacity=".8"/><rect x="-22" y="6.5" width="42" height="3.5" rx="1.7" fill="var(--g)" opacity=".8"/>';
+        g+='<path d="M-6 -30 L 6 -30 L 4 30 L -8 30 Z" fill="var(--g)"/>';                                   /* крило */
+        g+='<rect x="-4" y="-19" width="16" height="7" rx="3" fill="var(--gm)"/><rect x="-4" y="12" width="16" height="7" rx="3" fill="var(--gm)"/>'; /* мотори */
+        g+='<circle cx="13" cy="-15.5" r="5" fill="none" stroke="var(--gm)" stroke-width="1.5" opacity=".9"/><circle cx="13" cy="15.5" r="5" fill="none" stroke="var(--gm)" stroke-width="1.5" opacity=".9"/>';
+        g+='<path d="M-28 -3.5 L 16 -3.5 C 24 -3, 28 -1.5, 30 0 C 28 1.5, 24 3, 16 3.5 L -28 3.5 Z" fill="var(--g)"/>'; /* фюзеляж */
+        g+=(ttail?'<path d="M-30 -13 L -22 -13 L -24 13 L -32 13 Z" fill="var(--g)"/>':'<path d="M-29 -10 L -22 -10 L -24 10 L -31 10 Z" fill="var(--g)"/>');
+        g+='<rect x="-30" y="-1" width="9" height="2" fill="var(--gm)"/>';                                  /* кіль */
+        return g+'</g>';
+      }
+      /* силует катера зверху з кільватером */
+      function boatTop(sc){
+        return '<g transform="scale('+sc+')">'
+          + '<path d="M-24 -5 L -60 -16 M-24 5 L -60 16 M-30 -3 L -58 -8 M-30 3 L -58 8" stroke="var(--g2)" stroke-width="2" fill="none" stroke-linecap="round"/>' /* кільватер */
+          + '<path d="M-24 -8 L 8 -8 C 20 -7, 28 -3, 32 0 C 28 3, 20 7, 8 8 L -24 8 Z" fill="var(--g)"/>'
+          + '<path d="M2 -6 Q 8 0 2 6" fill="none" stroke="var(--gm)" stroke-width="2"/>'
+          + '<rect x="-14" y="-5" width="6" height="4" rx="1" fill="var(--gm)"/><rect x="-14" y="1" width="6" height="4" rx="1" fill="var(--gm)"/>'
+          + '<rect x="-29" y="-3" width="6" height="6" rx="1" fill="var(--gm)"/></g>';
+      }
+      function route(d,len,ad){ return '<path class="ln" style="--len:'+len+';--ad:'+ad+'s" d="'+d+'" stroke-width="1.6" stroke-dasharray="5 7" opacity=".8"/>'; }
+      function mover(d,dur,inner){ return '<g class="a-fly" style="offset-path:path(\''+d+'\');offset-rotate:auto;--fd:'+dur+'s">'+inner+'</g>'; }
+
+      if(k==='seaplane'){
+        var path='M180 22 A 148 80 0 1 1 180 182 A 148 80 0 1 1 180 22';
+        o += atoll(180,102,96,52,9,.2);
+        o += route(path,900,.6);
+        o += mover(path,14,planeTop(1.15,true,false));
+      } else if(k==='plane'){
+        var path2='M-10 100 C 60 24, 140 24, 190 96 S 320 176, 380 100';
+        o += atoll(70,120,48,26,6,.2) + atoll(300,88,56,30,7,.35);
+        /* злітна смуга на другому атолі */
+        o += '<rect class="mk" style="--ad:.9s" x="278" y="86" width="44" height="4" rx="1" fill="var(--gm)" transform="rotate(-18 300 88)"/>';
+        o += route(path2,520,.6);
+        o += mover(path2,9,planeTop(1.35,false,true));
+      } else {
+        var path3='M-20 110 C 50 40, 110 40, 160 100 S 260 160, 330 100 S 400 40, 420 90';
+        o += isle(60,150,14,.2) + isle(150,44,11,.35) + isle(226,150,16,.45) + isle(300,52,12,.55) + isle(334,150,9,.6);
+        o += route(path3,620,.6);
+        o += mover(path3,11,boatTop(1.25));
+      }
+      return '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid meet" style="overflow:hidden">'+o+'</svg>';
     },
 
     /* Palm Jumeirah — стовбур, 16 гілок, півмісяць хвилеріза */
