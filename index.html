@@ -569,7 +569,7 @@ body.moved .bot .hint{opacity:0}
     <span class="lbl fu">Вмикай подорожі!</span>
     <h1 class="rv">Там зима<br>виглядає<br>як — літо!</h1>
     <div class="fu" style="--d:.55s;margin-top:2.2rem;display:flex;gap:2.6rem;flex-wrap:wrap;align-items:flex-end">
-      <div class="stat"><span class="v" data-count="21">0</span><span class="l">напрямків у продукті</span></div>
+      <div class="stat"><span class="v" data-count="21">0</span><span class="l">напрямок у продукті</span></div>
       <div class="stat"><span class="v">2026<span style="opacity:.75;font-weight:300">/</span>27</span><span class="l">сезон зима</span></div>
     </div>
   </div>
@@ -1459,9 +1459,9 @@ body.moved .bot .hint{opacity:0}
     <div class="gfx fu" data-gfx="ridge"  style="--d:.15s"></div>
     <div>
       <span class="lbl fu">Фуджейра · рекомендовані готелі</span>
-      <h2 class="rv">Гори<br>і океан</h2>
+      <h2 class="rv">Пляжні готелі<br>Фуджейри</h2>
       
-      <p class="sm fu" style="--d:.5s;margin:1rem 0 1rem">Готелі працюють на різних типах харчування: BB · HB · FB · AI. Рекомендована комбінація Фуджейра + Дубай.</p>
+      <p class="sm fu" style="--d:.5s;margin:1rem 0 1rem">Єдиний емірат на Оманській затоці: пляжі під горами Хаджар, спокійне море, за годину-півтори від Дубая. Готелі працюють на різних типах харчування: BB · HB · FB · AI. Рекомендована комбінація Фуджейра + Дубай.</p>
       <ul class="hot fu" style="--d:.3s;columns:2"><li><b>01</b>Intercontinental Fujairah</li><li><b>02</b>Fairmont Fujairah</li><li><b>03</b>Address Beach Resort Fujairah</li><li><b>04</b>Le Meridien Al Aqah Beach</li><li><b>05</b>Miramare Al Aqah Beach</li></ul>
     </div>
   </div>
@@ -1499,7 +1499,7 @@ body.moved .bot .hint{opacity:0}
 
 <section class="s prem" data-b="Мальдіви">
   <div class="w sp">
-    <div class="gfx fu" data-gfx="docs" data-stamp="30 днів" data-bans="Алкоголь|Вейпи|Дрони" style="--d:.15s"></div>
+    <div class="gfx fu" data-gfx="docs" data-stamp="30 днів" data-bans="Алкоголь|Вейпи|Дрони" data-notes="IMUGA" style="--d:.15s"></div>
     <div>
       <span class="lbl fu">Що знати перед вильотом</span>
       <h2 class="rv">Особливості<br>в'їзду</h2>
@@ -1509,7 +1509,7 @@ body.moved .bot .hint{opacity:0}
         <li><span class="n">02</span><span><span class="t">Паспорт — мінімум 30 днів на дату в'їзду</span></span></li>
         <li><span class="n">03</span><span><span class="t">Health Declaration IMUGA</span><span class="d">Не раніше ніж за 96 годин до прибуття</span></span></li>
         <li><span class="n">04</span><span><span class="t">Долари нового зразка, з 2009 року</span><span class="d">Обмін валюти не потрібен, банкноти у хорошому стані</span></span></li>
-        <li><span class="n">05</span><span><span class="t">Цигарки — до 200 шт.</span></span></li>
+        <li><span class="n">05</span><span><span class="t">Заборонено ввозити алкоголь, електронні цигарки та дрони</span><span class="d">Алкоголь — навіть із Duty Free. Цигарки — до 200 шт.</span></span></li>
       </ol>
     </div>
   </div>
@@ -1627,7 +1627,7 @@ body.moved .bot .hint{opacity:0}
         <li><span class="n">05</span><span><span class="t">Валюта — маврикійська рупія</span><span class="d">$1 ≈ 4,7 MRU. Основні кредитні картки плюс невелика сума готівкою</span></span></li>
       </ol>
     </div>
-    <div class="gfx fu" data-gfx="docs" data-stamp="Безвіз" data-bans="Tourist Fee|QR-форма" style="--d:.2s"></div>
+    <div class="gfx fu" data-gfx="docs" data-stamp="Безвіз" data-notes="QR-форма|Tourist Fee" style="--d:.2s"></div>
   </div>
 </section>
 
@@ -1752,7 +1752,7 @@ body.moved .bot .hint{opacity:0}
     <div class="gfx fu" data-gfx="ukraine" style="--d:.15s"></div>
     <div>
       <span class="lbl fu">Де ми вже є</span>
-      <h2 class="rv">Від Луцька<br>до Дніпра</h2>
+      <h2 class="rv">Від Калуша<br>до Дніпра</h2>
       <p class="lead fu" style="--d:.45s;margin-top:1.2rem">Двадцять дві агенції в шістнадцяти містах — офіси та онлайн-команди під одним брендом.</p>
       <p class="sm fu" style="--d:.6s;margin-top:1.2rem">Цифра в маркері — кількість агенцій у місті</p>
     </div>
@@ -2390,16 +2390,33 @@ body.moved .bot .hint{opacity:0}
       return svgWrap(W,H,o);
     },
 
-    /* Фуджейра — хребет Хаджар і узбережжя */
+    /* Фуджейра — пляжні готелі під горами Хаджар, Оманська затока */
     ridge: function(){
       var W=760,H=520,o='';
-      o += '<path class="ol" d="M-20 300 L 90 190 L 190 265 L 290 130 L 400 250 L 500 175 L 620 265 L 790 165 L 790 540 L -20 540 Z"/>';
-      o += '<path class="hl" style="--len:1100" d="M-20 300 L 90 190 L 190 265 L 290 130 L 400 250 L 500 175 L 620 265 L 790 165"/>';
-      for(var i=0;i<4;i++){
-        var y=400+i*36;
-        o += '<path class="ln" style="--len:820;--ad:'+(1+i*0.14)+'s" d="M-20 '+y+' q 60 -16 120 0 t 120 0 t 120 0 t 120 0 t 120 0 t 120 0"/>';
-      }
-      o += '<circle class="mk" cx="290" cy="130" r="8" style="--ad:1.4s"/>';
+      /* хребет на задньому плані */
+      o += '<path class="ol" d="M-20 250 L 70 150 L 160 210 L 250 90 L 340 190 L 430 130 L 540 210 L 640 120 L 780 200 L 780 300 L -20 300 Z" style="opacity:.55"/>';
+      o += '<path class="hl" style="--len:1200" d="M-20 250 L 70 150 L 160 210 L 250 90 L 340 190 L 430 130 L 540 210 L 640 120 L 780 200" stroke-width="5"/>';
+      /* море */
+      o += '<path d="M-20 330 C 200 312, 520 306, 780 322 L 780 540 L -20 540 Z" fill="var(--g3)"/>';
+      for(var k=0;k<5;k++){ var y=356+k*28;
+        o += '<path class="ln" style="--len:900;--ad:'+(1.1+k*.12)+'s" d="M-20 '+y+' q 40 -9 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0" stroke-width="1.5" opacity=".7"/>'; }
+      /* пісок */
+      o += '<path d="M-20 330 C 200 312, 520 306, 780 322 L 780 286 C 520 270, 200 276, -20 294 Z" fill="var(--g3)" opacity=".6"/>';
+      o += '<path class="ln" style="--len:820;--ad:.3s" d="M-20 330 C 200 312, 520 306, 780 322" stroke="var(--g)" stroke-width="3"/>';
+      /* готелі першої лінії з вікнами */
+      [[40,80,3],[170,110,4],[330,90,4],[470,120,5],[640,90,3]].forEach(function(h,i){
+        var x=h[0],w=h[1],fl=h[2],base=290-6*Math.sin((x+w/2)/800*Math.PI),hh=fl*20;
+        o += '<path class="ln" style="--len:600;--ad:'+(0.5+i*.1)+'s" d="M'+x+' '+base+' L '+x+' '+(base-hh)+' L '+(x+w*.6)+' '+(base-hh)+' L '+(x+w*.6)+' '+(base-hh+16)+' L '+(x+w)+' '+(base-hh+16)+' L '+(x+w)+' '+base+' Z" fill="var(--g3)" stroke-width="2"/>';
+        for(var f=0;f<fl;f++) for(var c=0;c<Math.floor(w/16);c++){
+          var wx=x+7+c*16, wy=base-hh+7+f*20; if(f===0 && wx>x+w*.6-6) continue;
+          o += '<rect class="mk" style="--ad:'+(0.9+i*.08+f*.03).toFixed(2)+'s" x="'+wx+'" y="'+wy+'" width="7" height="8" rx="1" opacity=".85"/>'; }
+      });
+      /* пальми і парасольки */
+      [[140,292],[300,288],[610,286],[750,292]].forEach(function(pt,i){ var x=pt[0],y=pt[1];
+        o += '<g class="ln" style="--len:200;--ad:'+(1.2+i*.08)+'s" stroke-width="2.5"><path d="M'+x+' '+y+' q 5 -26 3 -50"/>'
+           + '<path d="M'+(x+3)+' '+(y-50)+' q -20 -12 -30 0 M'+(x+3)+' '+(y-50)+' q 20 -12 30 0 M'+(x+3)+' '+(y-50)+' q -15 8 -22 24 M'+(x+3)+' '+(y-50)+' q 15 8 22 24"/></g>'; });
+      for(var i=0;i<8;i++){ var x=60+i*92, y=316-6*Math.sin((x+20)/800*Math.PI);
+        o += '<g class="mk" style="--ad:'+(0.7+i*.06)+'s" transform="translate('+x+','+y+')"><path d="M-16 0 A 16 16 0 0 1 16 0 Z"/><line x1="0" y1="0" x2="0" y2="18" stroke="var(--g)" stroke-width="2"/></g>'; }
       o += '<text class="lbs" x="20" y="500" style="--ad:1.6s">Гори Хаджар · Оманська затока</text>';
       return svgWrap(W,H,o);
     },
@@ -2450,13 +2467,16 @@ body.moved .bot .hint{opacity:0}
       o += '<g transform="translate(150,250)"><use href="#lm" fill="var(--g2)" transform="scale(.22)"/></g>';
       o += '<g transform="translate(300,150) rotate(-16)"><circle class="rg" r="52" stroke-dasharray="7 6"/>'
          + '<text class="lbt" y="7" text-anchor="middle" style="--ad:1.5s;font-size:19px">'+(el.dataset.stamp||'VISA')+'</text></g>';
+      /* праворуч: заборони (перекреслені) і вимоги (з галочкою) */
       var bans=(el.dataset.bans||'').split('|').filter(Boolean);
-      bans.forEach(function(b,i){
-        var x=470+ (i%2)*150, y=140+Math.floor(i/2)*140;
-        o += '<g transform="translate('+x+','+y+')">'
-           + '<circle class="rg" r="46"/>'
-           + '<line class="ln" style="--len:130;--ad:'+(1.1+i*0.1)+'s" x1="-33" y1="33" x2="33" y2="-33" stroke="var(--g)" stroke-width="4"/>'
-           + '<text class="lbs" y="72" text-anchor="middle" style="--ad:'+(1.3+i*0.1)+'s">'+b+'</text></g>';
+      var notes=(el.dataset.notes||'').split('|').filter(Boolean);
+      var items=bans.map(function(b){return [b,'ban'];}).concat(notes.map(function(n){return [n,'ok'];}));
+      items.forEach(function(it,i){
+        var x=470+(i%2)*150, y=140+Math.floor(i/2)*140;
+        o += '<g transform="translate('+x+','+y+')"><circle class="rg" r="46"/>';
+        if(it[1]==='ban') o += '<line class="ln" style="--len:130;--ad:'+(1.1+i*0.1)+'s" x1="-33" y1="33" x2="33" y2="-33" stroke="var(--g)" stroke-width="4"/>';
+        else o += '<path class="ln" style="--len:80;--ad:'+(1.1+i*0.1)+'s" d="M-22 2 L -6 18 L 24 -16" stroke="var(--g)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>';
+        o += '<text class="lbs" y="72" text-anchor="middle" style="--ad:'+(1.3+i*0.1)+'s">'+it[0]+'</text></g>';
       });
       return svgWrap(W,H,o);
     },
