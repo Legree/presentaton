@@ -201,15 +201,22 @@ tbody tr{opacity:0;transform:translateY(16px);transition:.7s var(--ease) var(--d
 .top{
   position:fixed;top:0;left:0;right:0;z-index:80;
   display:flex;align-items:center;justify-content:space-between;
-  padding:2.4vh 6vw;pointer-events:none;mix-blend-mode:difference;
+  padding:2.4vh 6vw;pointer-events:none;color:var(--ink);transition:color .4s;
 }
-.top img{height:1.5rem;width:auto;filter:invert(1) brightness(2)}
-.top .meta{font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:#fff;font-weight:600}
+.top img{height:2rem;width:auto;display:none}
+.top img.lg-dark{display:block}
+body.on-dark .top img.lg-dark{display:none}
+body.on-dark .top img.lg-white{display:block}
+.top .meta{font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:inherit;font-weight:600}
 .bot{
   position:fixed;left:0;right:0;bottom:0;z-index:80;
   display:flex;align-items:flex-end;justify-content:space-between;
-  padding:2.4vh 6vw;pointer-events:none;mix-blend-mode:difference;color:#fff;
+  padding:2.4vh 6vw;pointer-events:none;color:var(--ink);transition:color .4s;
 }
+body.on-dark .top,body.on-dark .bot{color:#FFF8F1}
+body.on-dark .rail b{background:rgba(255,255,255,.4)}
+body.on-dark .rail b.on{background:#FFF8F1}
+body.on-dark .prog{background:#FFF8F1}
 .bot .sec{font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;font-weight:600}
 .bot .num{font-size:.68rem;letter-spacing:.2em;font-weight:800;font-variant-numeric:tabular-nums}
 .bot .hint{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;opacity:.6;transition:opacity .6s}
@@ -551,7 +558,7 @@ body.moved .bot .hint{opacity:0}
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="lm"><g transform="translate(-192,-260.5)"><path d="M325.61 356.136C327.791 346.67 323.824 336.85 315.681 331.553L232.494 277.452C223.173 271.39 210.66 276.402 208.101 287.222L170.996 444.093C168.674 453.911 176.122 463.326 186.212 463.324C250.849 463.056 310.806 418.7 325.61 356.136Z"/><path d="M108.395 508.409C106.68 515.657 100.21 520.775 92.7622 520.776L86.1263 520.776C33.2179 520.11 -10.1163 462.083 2.072 410.36L22.294 325.657C24.4412 316.663 31.0771 309.413 39.8465 306.481L138.82 273.386C150.761 269.393 162.446 280.065 159.549 292.318L133.191 403.815C131.754 409.893 128.238 415.278 123.25 419.037L82.6996 449.602C81.3701 450.604 80.5823 452.167 80.568 453.832L80.5334 457.84C80.5078 460.815 82.9127 463.241 85.8884 463.241H112.312C115.768 463.241 118.319 466.466 117.524 469.829L108.395 508.409Z"/><path d="M291.002 0.000771553L286.093 0.000923456C278.646 0.00115386 272.176 5.11833 270.46 12.3643L228.555 189.323C226.917 196.238 228.816 203.515 233.623 208.749L325.504 308.787C328.408 311.949 333.666 310.579 334.659 306.402L381.99 107.123C394.292 54.6362 348.419 -0.237247 291.002 0.000771553Z"/><path d="M59.0945 167.591L35.7093 266.058C34.6623 270.467 39.1818 274.103 43.2332 272.074C68.2682 259.535 133.84 226.232 174.155 201.528C178.904 198.618 182.212 193.914 183.497 188.494L211.001 72.4638C212.872 64.5695 206.88 56.9988 198.767 57.0077C133.977 56.1926 74.0161 104.538 59.0945 167.591Z"/></g></g></defs></svg>
 <div class="prog" id="prog"></div>
-<header class="top"><img src="assets/logo-white.png" alt="Тревелон"><span class="meta">Сезон 2026-2027</span></header>
+<header class="top"><img class="lg-dark" src="assets/logo-dark.png" alt="Тревелон"><img class="lg-white" src="assets/logo-white.png" alt="Тревелон"><span class="meta">Сезон 2026-2027</span></header>
 <nav class="rail" id="rail" aria-label="Секції"></nav>
 <footer class="bot">
   <span class="sec" id="secName">Старт</span>
@@ -2641,6 +2648,8 @@ body.moved .bot .hint{opacity:0}
     if(i===cur) return; cur=i;
     dots.forEach(function(d,k){ d.classList.toggle('on', k===i); });
     nameEl.textContent = slides[i].dataset.b || '';
+    var cl = slides[i].classList;
+    document.body.classList.toggle('on-dark', cl.contains('coral') || cl.contains('prem') || cl.contains('ph'));
     numEl.textContent  = pad(i+1)+' / '+pad(slides.length);
     prog.style.width   = (i/(slides.length-1)*100)+'%';
   }
