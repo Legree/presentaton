@@ -524,8 +524,8 @@ body.moved .bot .hint{opacity:0}
 .s.in .chain span,.s.in .chain i{opacity:1;transform:none}
 
 /* телефони */
-.phones{display:flex;gap:1.6rem;align-items:flex-end;justify-content:center}
-.phones img{height:min(58vh,560px);width:auto;display:block;border-radius:22px;
+.phones{display:flex;gap:1.2rem;align-items:flex-end;justify-content:center;min-width:0}
+.phones img{height:min(58vh,560px);width:auto;max-width:31%;object-fit:contain;display:block;border-radius:22px;
   box-shadow:0 30px 60px -30px rgba(23,23,23,.45)}
 
 .a-hover{animation:hover 3.4s ease-in-out infinite;animation-play-state:paused}
@@ -595,6 +595,12 @@ body.moved .bot .hint{opacity:0}
 .ipng{height:2.8rem;width:auto;display:block;margin-bottom:.7rem}
 .legend .ic{width:1.6em;height:1.6em}
 
+/* ═════════ ЛІЧИЛЬНИК ВІДВІДУВАЧІВ ═════════ */
+.eye{display:inline-flex;align-items:center;gap:.4em;margin-left:1.6em;opacity:.38;font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.eye svg{width:1.25em;height:1.25em}
+.eye i{font-style:normal;opacity:.6;margin:0 .1em}
+.eye[hidden]{display:none}
+
 /* ═════════ АДАПТИВ ═════════ */
 @media (max-width:1100px){
   .sp,.sp.rev,.sp.eq{grid-template-columns:1fr;gap:2.4rem}
@@ -625,7 +631,7 @@ body.moved .bot .hint{opacity:0}
 <nav class="rail" id="rail" aria-label="Секції"></nav>
 <footer class="bot">
   <span class="sec" id="secName">Старт</span>
-  <span class="hint">← → гортати · F повний екран</span>
+  <span class="hint">← → гортати · F повний екран<span class="eye" id="eye" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg><b id="eye-v">–</b><i>·</i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><b id="eye-u">–</b></span></span>
   <span class="num" id="secNum">01 / 01</span>
 </footer>
 
@@ -650,7 +656,7 @@ body.moved .bot .hint{opacity:0}
 <section class="s tint" data-b="Оновлення">
   <div class="w sp">
     <div>
-      <span class="lbl fu">Solution</span>
+      <span class="lbl fu">Що нового</span>
       <h2 class="rv">Зміни<br>та оновлення</h2>
       <p class="lead fu" style="--d:.4s;margin-top:1.4rem">…та багато цікавого попереду.</p>
     </div>
@@ -916,7 +922,7 @@ body.moved .bot .hint{opacity:0}
     </div>
     <div class="g3 fu" style="--d:.65s;margin-top:2rem">
       <div class="cd"><span class="k">7–10 ночей</span><h3>Перезавантаження</h3><p>Швидкий вихід із сірого грудня. Найчастіше — Єгипет «все включено» або Канари. Готель з харчуванням, груповий трансфер, страхування.</p></div>
-      <div class="cd"><span class="k">21–30 ночей · найпопулярніше</span><h3>Зимовий місяць</h3><p>Баланс ціни й ефекту: організм перебудовується, ціна за ніч падає. Апартаменти або готель з кухнею — Аланія, Хургада, Пхукет, Тенерифе.</p></div>
+      <div class="cd"><span class="k">21–30 ночей · найпопулярніше</span><h3>Зимовий місяць</h3><p>Баланс ціни й ефекту: організм перебудовується, ціна за ніч падає. Апартаменти або готель з кухнею — Аланія, Хургада, Пхукет, Тенеріфе.</p></div>
       <div class="cd"><span class="k">60–90 днів</span><h3>Повна зимівля</h3><p>Уся зима на південь. Рахуємо ліміт 90/180, підбираємо житло на довгий строк, продовжуємо страховку. Комбінації Шенген + Кіпр / Туреччина / Таїланд.</p></div>
     </div>
   </div>
@@ -933,7 +939,7 @@ body.moved .bot .hint{opacity:0}
         <tr><td>Туреччина</td><td class="n">Аланія · Анталія · Сіде · Стамбул</td><td class="n">+15…+18</td><td class="n">+17</td><td class="n"><b>€400–600</b></td><td class="n">Безвіз, 90 днів</td><td class="n">від €667</td></tr>
         <tr><td>Єгипет</td><td class="n">Хургада · Шарм-ель-Шейх · Марса-Алам</td><td class="n">+22…+25</td><td class="n">+21…+23</td><td class="n"><b>€300–600</b></td><td class="n">Віза $30</td><td class="n">від €1174</td></tr>
         <tr><td>Таїланд</td><td class="n">Пхукет · Крабі · Самуї · Бангкок</td><td class="n">+31…+33</td><td class="n">+28</td><td class="n"><b>€300–450</b></td><td class="n">Безвіз, 30 днів</td><td class="n">від €966</td></tr>
-        <tr><td>Іспанія</td><td class="n">Тенерифе · Гран-Канарія · Коста-дель-Соль</td><td class="n">+21…+24</td><td class="n">+20</td><td class="n"><b>€350–550</b></td><td class="n">Безвіз, Шенген</td><td class="n">—</td></tr>
+        <tr><td>Іспанія</td><td class="n">Тенеріфе · Гран-Канарія · Коста-дель-Соль</td><td class="n">+21…+24</td><td class="n">+20</td><td class="n"><b>€350–550</b></td><td class="n">Безвіз, Шенген</td><td class="n">—</td></tr>
         <tr><td>Кіпр</td><td class="n">Ларнака · Лімасол · Пафос · Айя-Напа</td><td class="n">+16…+19</td><td class="n">+17…+19</td><td class="n"><b>€600–900</b></td><td class="n">Безвіз, не Шенген</td><td class="n">—</td></tr>
         <tr><td>Болгарія</td><td class="n">Варна · Бургас · Несебр · Созополь</td><td class="n">+5…+8</td><td class="n">+6…+9</td><td class="n"><b>€350–450</b></td><td class="n">Безвіз, Шенген</td><td class="n">від €607</td></tr>
       </tbody>
@@ -1347,8 +1353,8 @@ body.moved .bot .hint{opacity:0}
 <section class="s" data-b="Сайт">
   <div class="w g2">
     <div>
-      <div class="med r169 fu" style="--d:.15s"><img src="assets/ui-passport-calc.jpg" alt="Калькулятор терміну паспорту" loading="lazy"></div>
-      <h3 class="fu" style="--d:.3s;margin-top:1.2rem">Калькулятор терміну паспорту</h3>
+      <div class="med r169 fu" style="--d:.15s"><img src="assets/ui-passport-calc.jpg" alt="Калькулятор терміну паспорта" loading="lazy"></div>
+      <h3 class="fu" style="--d:.3s;margin-top:1.2rem">Калькулятор терміну паспорта</h3>
       <p class="sm fu" style="--d:.36s">Розрахунок актуальний для вильоту з України. Якщо виліт з іншої країни — Польща, Молдова, Румунія — звіряйте окремо.</p>
     </div>
     <div>
@@ -1420,7 +1426,7 @@ body.moved .bot .hint{opacity:0}
         <li><span class="n">02</span><span><span class="t">Надішле документи по туру</span><span class="d">Ваучер, страховка, авіаквитки, пам'ятка — або все разом</span></span></li>
         <li><span class="n">03</span><span><span class="t">Підкаже, як швидше дістатись аеропорту</span></span></li>
         <li><span class="n">04</span><span><span class="t">Пояснить, як діяти у страховому випадку</span></span></li>
-        <li><span class="n">05</span><span><span class="t">І багато іншого</span><span class="d">Рейс, погода, приймаюча сторона, зворотній трансфер</span></span></li>
+        <li><span class="n">05</span><span><span class="t">І багато іншого</span><span class="d">Рейс, погода, приймаюча сторона, зворотний трансфер</span></span></li>
       </ol>
       <div class="cd box fu" style="--d:.7s;margin-top:1.4rem;border-top-color:var(--red)">
         <span class="k">Важливо</span>
@@ -1436,7 +1442,7 @@ body.moved .bot .hint{opacity:0}
     <span class="lbl fu">Так це виглядає для туриста</span>
     <h2 class="rv" style="margin-bottom:1.4rem">Що відповідає консьєрж</h2>
   </div>
-  <div class="strip chats fu" style="--d:.3s;--dur:75s"><div class="strip-t"><figure><img src="assets/ai/chat-docs.jpg" alt="Документи заявки" loading="lazy"><figcaption>Документи заявки</figcaption></figure><figure><img src="assets/ai/chat-flight.jpg" alt="О котрій мій рейс?" loading="lazy"><figcaption>О котрій мій рейс?</figcaption></figure><figure><img src="assets/ai/chat-meet.jpg" alt="Хто мене зустрічає?" loading="lazy"><figcaption>Хто мене зустрічає?</figcaption></figure><figure><img src="assets/ai/chat-weather.jpg" alt="Яка погода?" loading="lazy"><figcaption>Яка погода?</figcaption></figure><figure><img src="assets/ai/chat-transfer.jpg" alt="Зворотній трансфер" loading="lazy"><figcaption>Зворотній трансфер</figcaption></figure><figure><img src="assets/ai/chat-rights.jpg" alt="Якщо гід тисне" loading="lazy"><figcaption>Якщо гід тисне</figcaption></figure><figure><img src="assets/ai/chat-docs.jpg" alt="Документи заявки" loading="lazy"><figcaption>Документи заявки</figcaption></figure><figure><img src="assets/ai/chat-flight.jpg" alt="О котрій мій рейс?" loading="lazy"><figcaption>О котрій мій рейс?</figcaption></figure><figure><img src="assets/ai/chat-meet.jpg" alt="Хто мене зустрічає?" loading="lazy"><figcaption>Хто мене зустрічає?</figcaption></figure><figure><img src="assets/ai/chat-weather.jpg" alt="Яка погода?" loading="lazy"><figcaption>Яка погода?</figcaption></figure><figure><img src="assets/ai/chat-transfer.jpg" alt="Зворотній трансфер" loading="lazy"><figcaption>Зворотній трансфер</figcaption></figure><figure><img src="assets/ai/chat-rights.jpg" alt="Якщо гід тисне" loading="lazy"><figcaption>Якщо гід тисне</figcaption></figure></div></div>
+  <div class="strip chats fu" style="--d:.3s;--dur:75s"><div class="strip-t"><figure><img src="assets/ai/chat-docs.jpg" alt="Документи заявки" loading="lazy"><figcaption>Документи заявки</figcaption></figure><figure><img src="assets/ai/chat-flight.jpg" alt="О котрій мій рейс?" loading="lazy"><figcaption>О котрій мій рейс?</figcaption></figure><figure><img src="assets/ai/chat-meet.jpg" alt="Хто мене зустрічає?" loading="lazy"><figcaption>Хто мене зустрічає?</figcaption></figure><figure><img src="assets/ai/chat-weather.jpg" alt="Яка погода?" loading="lazy"><figcaption>Яка погода?</figcaption></figure><figure><img src="assets/ai/chat-transfer.jpg" alt="Зворотний трансфер" loading="lazy"><figcaption>Зворотний трансфер</figcaption></figure><figure><img src="assets/ai/chat-rights.jpg" alt="Якщо гід тисне" loading="lazy"><figcaption>Якщо гід тисне</figcaption></figure><figure><img src="assets/ai/chat-docs.jpg" alt="Документи заявки" loading="lazy"><figcaption>Документи заявки</figcaption></figure><figure><img src="assets/ai/chat-flight.jpg" alt="О котрій мій рейс?" loading="lazy"><figcaption>О котрій мій рейс?</figcaption></figure><figure><img src="assets/ai/chat-meet.jpg" alt="Хто мене зустрічає?" loading="lazy"><figcaption>Хто мене зустрічає?</figcaption></figure><figure><img src="assets/ai/chat-weather.jpg" alt="Яка погода?" loading="lazy"><figcaption>Яка погода?</figcaption></figure><figure><img src="assets/ai/chat-transfer.jpg" alt="Зворотний трансфер" loading="lazy"><figcaption>Зворотний трансфер</figcaption></figure><figure><img src="assets/ai/chat-rights.jpg" alt="Якщо гід тисне" loading="lazy"><figcaption>Якщо гід тисне</figcaption></figure></div></div>
   <div class="w"><p class="phone fu" style="--d:.6s;margin-top:1.6rem;font-size:clamp(1.2rem,2.4vw,1.9rem)">@travelon_concierge_bot</p></div>
 </section>
 
@@ -1541,7 +1547,7 @@ body.moved .bot .hint{opacity:0}
       </ul>
       <p class="lead fu" style="--d:.8s;margin-top:1rem">Ми з'ясовуємо, що потрібно конкретній людині.</p>
     </div>
-    <div class="med fu" style="--d:.15s;aspect-ratio:4/3"><img src="assets/spec/access-prom.JPG" alt=""></div>
+    <div class="med fu" style="--d:.15s;aspect-ratio:4/3"><img src="assets/spec/access-prom.jpg" alt=""></div>
   </div>
 </section>
 
@@ -1664,7 +1670,7 @@ body.moved .bot .hint{opacity:0}
       <h2 class="rv">Чому саме ми?</h2>
       <div class="med r169 fu" style="--d:.4s;margin-top:1.6rem"><img src="assets/prem/why.jpg" alt="" loading="lazy"></div>
     </div>
-    <ol class="idx fu" style="--d:.3s"><li><span class="n">01</span><span><span class="t">Індивідуальний підхід до масових напрямків</span></span></li><li><span class="n">02</span><span><span class="t">Персональний супровід вашого замовлення</span></span></li><li><span class="n">03</span><span><span class="t">Завжди на зв'язку</span></span></li><li><span class="n">04</span><span><span class="t">Підтвердження за ціною конкурента</span></span></li><li><span class="n">05</span><span><span class="t">Преміальні опції для комфортного відпочинку</span></span></li><li><span class="n">06</span><span><span class="t">Об’єктивний та комплексний підхід до претензій</span><span class="d">Щодо якості наданих послуг</span></span></li></ol>
+    <ol class="idx fu" style="--d:.3s"><li><span class="n">01</span><span><span class="t">Індивідуальний підхід до масових напрямків</span></span></li><li><span class="n">02</span><span><span class="t">Персональний супровід вашого замовлення</span></span></li><li><span class="n">03</span><span><span class="t">Окрема телефонна лінія та пошта</span><span class="d">Для листування з Premium-відділом</span></span></li><li><span class="n">04</span><span><span class="t">Завжди на зв'язку</span><span class="d">Telegram</span></span></li><li><span class="n">05</span><span><span class="t">Підтвердження за ціною конкурента</span></span></li><li><span class="n">06</span><span><span class="t">Знаємо, як зробити подорож справді преміальною</span><span class="d">Додаткові послуги</span></span></li><li><span class="n">07</span><span><span class="t">Об’єктивний та комплексний підхід до претензій</span><span class="d">Щодо якості наданих послуг</span></span></li></ol>
   </div>
 </section>
 
@@ -2066,7 +2072,7 @@ body.moved .bot .hint{opacity:0}
 <section class="s coral" data-b="Мережа">
   <img class="cover" src="assets/net/cover.png" alt="">
   <div class="w">
-    <span class="lbl fu">Травелон Клуб · 2026</span>
+    <span class="lbl fu">Travelon Club · 2026</span>
     <h1 class="rv">Мережа<br>професійних<br>турагенцій</h1>
     <div class="fu" style="--d:.55s;margin-top:2rem;display:flex;gap:2.6rem;flex-wrap:wrap">
       <div class="stat"><span class="v" data-count="22">0</span><span class="l">агенції</span></div>
@@ -2176,7 +2182,7 @@ body.moved .bot .hint{opacity:0}
     </div>
     <div class="phones fu" style="--d:.3s">
       <img src="assets/net/ph-facebook.png" alt="Facebook" loading="lazy">
-      <img src="assets/net/ph-instagram.png" alt="Instagram" loading="lazy" style="height:min(64vh,620px)">
+      <img src="assets/net/ph-instagram.png" alt="Instagram" loading="lazy" style="height:min(64vh,620px);max-width:36%">
       <img src="assets/net/ph-telegram.png" alt="Telegram" loading="lazy">
     </div>
   </div>
@@ -2978,6 +2984,26 @@ body.moved .bot .hint{opacity:0}
   count(slides[0]);
 
   setActive(0);
+
+  /* ── лічильники: перегляди (кожне відкриття) і унікальні (кожен браузер один раз) ── */
+  (function(){
+    var API='https://abacus.jasoncameron.dev', NS='travelon-winter-2026';
+    var el=document.getElementById('eye'), v=document.getElementById('eye-v'), u=document.getElementById('eye-u');
+    if(!el || location.protocol==='file:') return;
+    var seen=false; try{ seen=localStorage.getItem('tvl-counted')==='1'; }catch(e){}
+    var get=function(r){ return r.json().then(function(d){ return d.value!=null ? d.value : d.count; }); };
+    Promise.all([
+      fetch(API+'/hit/'+NS+'/views').then(get),
+      fetch(API+'/'+(seen?'get':'hit')+'/'+NS+'/visitors').then(get)
+    ]).then(function(r){
+      if(r[0]==null || r[1]==null) return;
+      v.textContent=Number(r[0]).toLocaleString('uk-UA');
+      u.textContent=Number(r[1]).toLocaleString('uk-UA');
+      el.hidden=false;
+      if(!seen){ try{ localStorage.setItem('tvl-counted','1'); }catch(e){} }
+    }).catch(function(){});
+  })();
+
 })();
 </script>
 </body>
