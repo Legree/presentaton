@@ -608,6 +608,9 @@ body.moved .bot .hint{opacity:0}
 .legend .ic{width:1.6em;height:1.6em}
 
 /* ═════════ ЛІЧИЛЬНИК ВІДВІДУВАЧІВ ═════════ */
+.qr{display:inline-flex;align-items:center;gap:1rem;margin-top:1.4rem;background:#fff;border:1px solid var(--line-2);border-radius:8px;padding:.7rem .9rem .7rem .7rem}
+.qr img{width:clamp(110px,11vw,150px);height:auto;display:block;border-radius:4px}
+.qr span{font-size:.78rem;line-height:1.45;color:var(--fg-3);font-weight:600;letter-spacing:.01em}
 .eye{display:none;align-items:center;gap:.4em;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;opacity:.7;font-variant-numeric:tabular-nums;position:absolute;left:50%;bottom:2.4vh;transform:translateX(-50%)}
 body.last .eye:not([hidden]){display:inline-flex}
 .eye svg{width:1.25em;height:1.25em}
@@ -1211,7 +1214,7 @@ body.last .eye:not([hidden]){display:inline-flex}
         <tr><td>Наземне обслуговування</td><td class="n"><b>1 000 грн</b></td><td class="n">не менше 20% до 31.03.2027</td><td class="n">за 14 днів до заїзду</td></tr>
         <tr><td>Авіа та автобусні квитки</td><td class="n" colspan="3">Повна оплата в день підтвердження</td></tr>
         <tr><td>Тури на регулярних рейсах</td><td class="n"><b>30%</b>, але не менше вартості квитка</td><td class="n">не менше 40% до 31.03 (Європа — 50%)</td><td class="n">за 20 днів до заїзду</td></tr>
-        <tr><td>Преміум тури</td><td class="n"><b>Без оплати</b></td><td class="n">до 28.02 — 30%, до 30.04 — 50%</td><td class="n">за 30 днів до вильоту</td></tr>
+        <tr><td>Преміум тури</td><td class="n"><b>Без оплати</b></td><td class="n">до 31.01 — 20%, до 31.03 — 30%</td><td class="n">за 30 днів до вильоту</td></tr>
         <tr><td>Індивідуальні тури</td><td class="n" colspan="3">Індивідуальні умови за домовленістю з менеджером напрямку</td></tr>
       </tbody>
     </table>
@@ -1501,6 +1504,7 @@ body.last .eye:not([hidden]){display:inline-flex}
       <h2 class="rv">Як підключитися</h2>
       <p class="lead fu" style="--d:.45s;margin-top:1.2rem">Бот показує лише заявки вашого агентства — дані під захистом.</p>
       <p class="phone fu" style="--d:.6s;margin-top:1.6rem;font-size:clamp(1.3rem,2.8vw,2.2rem)">@travelon_agent_bot</p>
+      <div class="qr fu" style="--d:.75s"><img src="assets/qr/agent-bot.png" alt="QR: @travelon_agent_bot"><span>Скануй —<br>відкриється бот у Telegram</span></div>
     </div>
     <ol class="idx fu" style="--d:.3s">
       <li><span class="n">01</span><span><span class="t">Відкрийте @travelon_agent_bot</span><span class="d">І натисніть /start</span></span></li>
@@ -1544,7 +1548,7 @@ body.last .eye:not([hidden]){display:inline-flex}
     <h2 class="rv" style="margin-bottom:1.4rem">Що відповідає консьєрж</h2>
   </div>
   <div class="strip chats fu" style="--d:.3s;--dur:75s"><div class="strip-t"><figure><img src="assets/ai/chat-docs.jpg" alt="Документи заявки" loading="lazy"><figcaption>Документи заявки</figcaption></figure><figure><img src="assets/ai/chat-flight.jpg" alt="О котрій мій рейс?" loading="lazy"><figcaption>О котрій мій рейс?</figcaption></figure><figure><img src="assets/ai/chat-meet.jpg" alt="Хто мене зустрічає?" loading="lazy"><figcaption>Хто мене зустрічає?</figcaption></figure><figure><img src="assets/ai/chat-weather.jpg" alt="Яка погода?" loading="lazy"><figcaption>Яка погода?</figcaption></figure><figure><img src="assets/ai/chat-transfer.jpg" alt="Зворотний трансфер" loading="lazy"><figcaption>Зворотний трансфер</figcaption></figure><figure><img src="assets/ai/chat-rights.jpg" alt="Якщо гід тисне" loading="lazy"><figcaption>Якщо гід тисне</figcaption></figure><figure><img src="assets/ai/chat-docs.jpg" alt="Документи заявки" loading="lazy"><figcaption>Документи заявки</figcaption></figure><figure><img src="assets/ai/chat-flight.jpg" alt="О котрій мій рейс?" loading="lazy"><figcaption>О котрій мій рейс?</figcaption></figure><figure><img src="assets/ai/chat-meet.jpg" alt="Хто мене зустрічає?" loading="lazy"><figcaption>Хто мене зустрічає?</figcaption></figure><figure><img src="assets/ai/chat-weather.jpg" alt="Яка погода?" loading="lazy"><figcaption>Яка погода?</figcaption></figure><figure><img src="assets/ai/chat-transfer.jpg" alt="Зворотний трансфер" loading="lazy"><figcaption>Зворотний трансфер</figcaption></figure><figure><img src="assets/ai/chat-rights.jpg" alt="Якщо гід тисне" loading="lazy"><figcaption>Якщо гід тисне</figcaption></figure></div></div>
-  <div class="w"><p class="phone fu" style="--d:.6s;margin-top:1.6rem;font-size:clamp(1.2rem,2.4vw,1.9rem)">@travelon_concierge_bot</p></div>
+  <div class="w" style="display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;margin-top:1.2rem"><p class="phone fu" style="--d:.6s;margin:0;font-size:clamp(1.2rem,2.4vw,1.9rem)">@travelon_concierge_bot</p><div class="qr fu" style="--d:.75s"><img src="assets/qr/concierge-bot.png" alt="QR: @travelon_concierge_bot"><span>Скануй —<br>відкриється бот у Telegram</span></div></div>
 </section>
 
 <!-- ══ 46 ДИВАЙДЕР КОМАНДА ══ -->
